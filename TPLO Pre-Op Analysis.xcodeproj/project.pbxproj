@@ -15,6 +15,8 @@
 		96496EA71E2D834800EE8CB5 /* TPLO_Pre_Op_AnalysisUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EA61E2D834800EE8CB5 /* TPLO_Pre_Op_AnalysisUITests.swift */; };
 		96496EB51E2D86C400EE8CB5 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EB41E2D86C400EE8CB5 /* MainScreenViewController.swift */; };
 		96496EB71E2D93EF00EE8CB5 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EB61E2D93EE00EE8CB5 /* PictureViewController.swift */; };
+		96496EB91E32F00D00EE8CB5 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EB81E32F00D00EE8CB5 /* Procedure.swift */; };
+		96496EBB1E32F92F00EE8CB5 /* ProcedureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EBA1E32F92F00EE8CB5 /* ProcedureCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		96496EA81E2D834800EE8CB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96496EB41E2D86C400EE8CB5 /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScreenViewController.swift; path = ../../../../.Trash/MainScreenViewController.swift; sourceTree = "<group>"; };
 		96496EB61E2D93EE00EE8CB5 /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
+		96496EB81E32F00D00EE8CB5 /* Procedure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
+		96496EBA1E32F92F00EE8CB5 /* ProcedureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedureCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +105,13 @@
 			children = (
 				96496E861E2D834800EE8CB5 /* AppDelegate.swift */,
 				96496EB41E2D86C400EE8CB5 /* MainScreenViewController.swift */,
+				96496EBA1E32F92F00EE8CB5 /* ProcedureCell.swift */,
 				96496E8A1E2D834800EE8CB5 /* Main.storyboard */,
 				96496EB61E2D93EE00EE8CB5 /* PictureViewController.swift */,
 				96496E8D1E2D834800EE8CB5 /* Assets.xcassets */,
 				96496E8F1E2D834800EE8CB5 /* LaunchScreen.storyboard */,
 				96496E921E2D834800EE8CB5 /* Info.plist */,
+				96496EB81E32F00D00EE8CB5 /* Procedure.swift */,
 			);
 			path = "TPLO Pre-Op Analysis";
 			sourceTree = "<group>";
@@ -266,8 +272,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				96496EB51E2D86C400EE8CB5 /* MainScreenViewController.swift in Sources */,
+				96496EBB1E32F92F00EE8CB5 /* ProcedureCell.swift in Sources */,
 				96496EB71E2D93EF00EE8CB5 /* PictureViewController.swift in Sources */,
 				96496E871E2D834800EE8CB5 /* AppDelegate.swift in Sources */,
+				96496EB91E32F00D00EE8CB5 /* Procedure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
