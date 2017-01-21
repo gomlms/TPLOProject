@@ -114,7 +114,7 @@
         <!--Properties-->
         <scene sceneID="UDb-km-aDD">
             <objects>
-                <viewController id="obS-In-nic" sceneMemberID="viewController">
+                <viewController id="obS-In-nic" customClass="FirstPropertiesViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TGc-IJ-yG4"/>
                         <viewControllerLayoutGuide type="bottom" id="j5j-j9-6Si"/>
@@ -138,8 +138,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="XCG-WU-ZqH">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="XCG-WU-ZqH">
                                         <rect key="frame" x="0.0" y="85" width="343" height="478"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="99i-hZ-uzU" appends="YES" id="yA8-Sv-vyq"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -160,8 +164,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageSelector" destination="XCG-WU-ZqH" id="3QE-mv-0F4"/>
+                        <outlet property="nameTextField" destination="HB4-NC-qqX" id="LrQ-eO-dUB"/>
+                        <outlet property="nextButton" destination="nL2-Jk-nGG" id="nBn-4C-DYM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPy-dC-rYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="99i-hZ-uzU">
+                    <connections>
+                        <action selector="selectImageFromLibrary:" destination="obS-In-nic" id="62L-FQ-JEk"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1911.2" y="732.68365817091455"/>
         </scene>
@@ -342,6 +356,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Q4S-aX-Yg4"/>
-        <segue reference="n5a-7K-G2f"/>
+        <segue reference="Yhy-y9-CYd"/>
     </inferredMetricsTieBreakers>
 </document>
