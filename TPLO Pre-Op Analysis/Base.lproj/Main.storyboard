@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="169.5" width="343" height="373"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="Jpp-6F-CiU">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="Jpp-6F-CiU" customClass="ProcedureCell" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="343" height="110"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jpp-6F-CiU" id="GY0-df-ckh">
@@ -49,8 +49,28 @@
                                                             <rect key="frame" x="8" y="8" width="95" height="95"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date of Procedure" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4q-ly-2To">
+                                                            <rect key="frame" x="111" y="44" width="224" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name Of Procedure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-Pa-cca">
+                                                            <rect key="frame" x="111" y="15" width="224" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="date" destination="k4q-ly-2To" id="WTP-Cv-30p"/>
+                                                    <outlet property="name" destination="Wv7-Pa-cca" id="ntP-2h-4Oz"/>
+                                                    <outlet property="radiograph" destination="nKS-TQ-AsY" id="bJw-nj-WM4"/>
+                                                    <segue destination="6LE-zS-ZMr" kind="show" id="Q4S-aX-Yg4"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -209,12 +229,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="UHR-VT-unP">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="04d-df-ECK"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="save" id="Qja-1r-piS">
+                            <connections>
+                                <segue destination="tLu-V9-RXN" kind="show" id="sRG-xc-tvc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="04d-df-ECK">
+                            <connections>
+                                <segue destination="17A-lf-4N2" kind="show" id="n5a-7K-G2f"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGn-Ke-icU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4736.8000000000002" y="2906.8965517241381"/>
+            <point key="canvasLocation" x="2754" y="-155"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fsq-M4-sst">
@@ -304,11 +333,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ei-db-Klv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3797.5999999999999" y="2906.8965517241381"/>
+            <point key="canvasLocation" x="1911" y="-155"/>
         </scene>
     </scenes>
     <resources>
         <image name="Logo" width="558" height="437"/>
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Q4S-aX-Yg4"/>
+        <segue reference="n5a-7K-G2f"/>
+    </inferredMetricsTieBreakers>
 </document>

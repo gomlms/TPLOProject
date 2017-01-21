@@ -16,6 +16,10 @@ class Procedure: NSObject, NSCoding {
     var dateOfProcedure : String
     var radiograph : UIImage?
     
+    //MARK: Archiving Paths
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first
+    static let ArchiveURL = DocumentsDirectory?.appendingPathComponent("procedures")
+    
     //MARK: Initialization
     init?(n:String, r:UIImage?, d:String){
         guard !n.isEmpty else {
