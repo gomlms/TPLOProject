@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="169.5" width="343" height="373"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="Jpp-6F-CiU" customClass="ProcedureCell" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProcedureCell" rowHeight="110" id="Jpp-6F-CiU" customClass="ProcedureCell" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="343" height="110"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jpp-6F-CiU" id="GY0-df-ckh">
@@ -69,7 +69,7 @@
                                                     <outlet property="date" destination="k4q-ly-2To" id="WTP-Cv-30p"/>
                                                     <outlet property="name" destination="Wv7-Pa-cca" id="ntP-2h-4Oz"/>
                                                     <outlet property="radiograph" destination="nKS-TQ-AsY" id="bJw-nj-WM4"/>
-                                                    <segue destination="6LE-zS-ZMr" kind="show" id="Q4S-aX-Yg4"/>
+                                                    <segue destination="Hb3-OZ-9xz" kind="show" id="G3i-Ma-LJr"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -99,7 +99,7 @@
                     <navigationItem key="navigationItem" title="TPLO Pre-Op Analysis" id="xaf-Ve-UZK">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8P2-jd-2uT">
                             <connections>
-                                <segue destination="17A-lf-4N2" kind="show" id="Yhy-y9-CYd"/>
+                                <segue destination="obS-In-nic" kind="show" id="S06-zo-EVj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -123,24 +123,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WvK-by-VwU">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WvK-by-VwU">
                                 <rect key="frame" x="16" y="74" width="343" height="563"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Title of TPLO Procedure:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VH5-BG-xNh">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="18.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter title here" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HB4-NC-qqX">
-                                        <rect key="frame" x="0.0" y="38.5" width="343" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="42" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="XCG-WU-ZqH">
-                                        <rect key="frame" x="0.0" y="85" width="343" height="478"/>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="XCG-WU-ZqH">
+                                        <rect key="frame" x="0.0" y="93" width="343" height="470"/>
                                         <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="470" id="ISl-e5-RLh"/>
+                                            <constraint firstAttribute="width" constant="343" id="PaH-q2-zZ0"/>
+                                        </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="99i-hZ-uzU" appends="YES" id="yA8-Sv-vyq"/>
                                         </connections>
@@ -152,22 +156,26 @@
                         <constraints>
                             <constraint firstItem="j5j-j9-6Si" firstAttribute="top" secondItem="WvK-by-VwU" secondAttribute="bottom" constant="30" id="Czx-Uv-Mcd"/>
                             <constraint firstItem="WvK-by-VwU" firstAttribute="top" secondItem="TGc-IJ-yG4" secondAttribute="bottom" constant="10" id="FTd-nY-H2E"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="WvK-by-VwU" secondAttribute="trailing" id="ah0-8y-6hn"/>
                             <constraint firstItem="WvK-by-VwU" firstAttribute="leading" secondItem="9Fj-vW-Xa3" secondAttribute="leadingMargin" id="oBd-Kw-M0X"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WvK-by-VwU" secondAttribute="trailing" id="u6l-B5-IJN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Properties" id="AAf-um-jIH">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="nL2-Jk-nGG">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mXh-hz-x8G">
                             <connections>
-                                <segue destination="z1j-a8-45c" kind="show" id="l4a-lT-WKk"/>
+                                <segue destination="BYZ-38-t0r" kind="show" id="8oW-Cg-F3R"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="AAJ-gH-Mrf">
+                            <connections>
+                                <segue destination="bs8-JZ-Lfi" kind="show" identifier="Continue" id="do4-mG-0V9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="imageSelector" destination="XCG-WU-ZqH" id="3QE-mv-0F4"/>
                         <outlet property="nameTextField" destination="HB4-NC-qqX" id="LrQ-eO-dUB"/>
-                        <outlet property="nextButton" destination="nL2-Jk-nGG" id="nBn-4C-DYM"/>
+                        <outlet property="nextButton" destination="AAJ-gH-Mrf" id="u1O-oJ-nOq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPy-dC-rYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -179,10 +187,10 @@
             </objects>
             <point key="canvasLocation" x="1911.2" y="732.68365817091455"/>
         </scene>
-        <!--View Controller-->
+        <!--Relative Distance Selection-->
         <scene sceneID="TLg-f6-kVD">
             <objects>
-                <viewController id="bs8-JZ-Lfi" sceneMemberID="viewController">
+                <viewController id="bs8-JZ-Lfi" customClass="RelativeDistanceViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="haD-EE-Sye"/>
                         <viewControllerLayoutGuide type="bottom" id="eYs-w5-4jR"/>
@@ -190,15 +198,74 @@
                     <view key="view" contentMode="scaleToFill" id="ywe-Go-WJj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q98-vt-xiY">
+                                <rect key="frame" x="16" y="30" width="343" height="637"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designate your already established measurement using these two points" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzi-op-DhN">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="107"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="QAz-Fb-7ys">
+                                        <rect key="frame" x="0.0" y="117" width="343" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Th-Eu-fgA">
+                                                <rect key="frame" x="0.0" y="0.0" width="168" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Ocz-mi-Wpy"/>
+                                                </constraints>
+                                                <state key="normal" title="Point 1"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-Ow-ycz">
+                                                <rect key="frame" x="168" y="0.0" width="175" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="rug-cq-Pe2"/>
+                                                </constraints>
+                                                <state key="normal" title="Point 2"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="0m5-zT-3fD" userLabel="Radiograph">
+                                        <rect key="frame" x="0.0" y="167" width="343" height="470"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="343" id="Unm-B5-2C8"/>
+                                            <constraint firstAttribute="height" constant="470" id="aLj-g5-TUb"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Mzi-op-DhN" firstAttribute="trailing" secondItem="Q98-vt-xiY" secondAttribute="trailingMargin" id="16z-oF-TzK"/>
+                                    <constraint firstItem="Mzi-op-DhN" firstAttribute="leading" secondItem="Q98-vt-xiY" secondAttribute="leadingMargin" id="PiD-Fr-0v0"/>
+                                    <constraint firstItem="Mzi-op-DhN" firstAttribute="top" secondItem="Q98-vt-xiY" secondAttribute="topMargin" id="hnL-FU-1Qe"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q98-vt-xiY" secondAttribute="trailing" id="BOl-8q-r3h"/>
+                            <constraint firstItem="eYs-w5-4jR" firstAttribute="top" secondItem="Q98-vt-xiY" secondAttribute="bottom" id="Jxt-4p-n0g"/>
+                            <constraint firstItem="Q98-vt-xiY" firstAttribute="top" secondItem="haD-EE-Sye" secondAttribute="bottom" constant="10" id="P1m-0j-zVt"/>
+                            <constraint firstItem="Q98-vt-xiY" firstAttribute="leading" secondItem="ywe-Go-WJj" secondAttribute="leadingMargin" id="P2q-Nz-Eh2"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="j8d-ex-nw0">
+                    <navigationItem key="navigationItem" title="Relative Distance Selection" id="j8d-ex-nw0">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="0J1-QE-Rv4">
+                            <connections>
+                                <segue destination="obS-In-nic" kind="show" id="hoK-xO-hGM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="a2y-F5-zXR">
                             <connections>
-                                <segue destination="FFe-MP-eB1" kind="show" id="cr1-BD-dAq"/>
+                                <segue destination="fls-rP-eAf" kind="show" id="p3n-6f-fDx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nextButton" destination="a2y-F5-zXR" id="PlB-lE-thI"/>
+                        <outlet property="radiographImage" destination="0m5-zT-3fD" id="K8s-8c-hWE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Zs-Wg-ShG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -218,9 +285,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="BaG-73-nYp">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="lLh-5e-V1a">
+                            <connections>
+                                <segue destination="bs8-JZ-Lfi" kind="show" id="23y-Tu-IxE"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="J3P-nE-qzu">
                             <connections>
-                                <segue destination="6LE-zS-ZMr" kind="show" id="wNa-It-22K"/>
+                                <segue destination="Hb3-OZ-9xz" kind="show" id="JFS-o0-TxG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -245,12 +317,12 @@
                     <navigationItem key="navigationItem" id="UHR-VT-unP">
                         <barButtonItem key="leftBarButtonItem" systemItem="save" id="Qja-1r-piS">
                             <connections>
-                                <segue destination="tLu-V9-RXN" kind="show" id="sRG-xc-tvc"/>
+                                <segue destination="BYZ-38-t0r" kind="show" id="Dw6-YO-Xyr"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="04d-df-ECK">
                             <connections>
-                                <segue destination="17A-lf-4N2" kind="show" id="n5a-7K-G2f"/>
+                                <segue destination="obS-In-nic" kind="show" id="hO1-9M-prS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -262,6 +334,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fsq-M4-sst">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E2o-9y-oJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tLu-V9-RXN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yjb-Q7-fiE">
@@ -273,13 +346,13 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ja1-Ei-mtl"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E2o-9y-oJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gOm-WD-wKG">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ztt-IP-vjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="17A-lf-4N2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="peY-gR-nxK">
@@ -291,13 +364,13 @@
                         <segue destination="obS-In-nic" kind="relationship" relationship="rootViewController" id="LcN-1C-s4y"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ztt-IP-vjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="732.68365817091455"/>
+            <point key="canvasLocation" x="887" y="931"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l99-9F-8IB">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcl-Tz-Gfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z1j-a8-45c" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ah3-cS-iYI">
@@ -309,13 +382,13 @@
                         <segue destination="bs8-JZ-Lfi" kind="relationship" relationship="rootViewController" id="sgY-cf-xZz"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fcl-Tz-Gfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1909.5999999999999" y="1449.6251874062971"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gaz-p4-OuY">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="80w-NJ-EA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FFe-MP-eB1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cvi-ka-Dvr">
@@ -327,13 +400,13 @@
                         <segue destination="fls-rP-eAf" kind="relationship" relationship="rootViewController" id="50d-Or-ezp"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="80w-NJ-EA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2860" y="2182.7586206896553"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iP2-Q1-xFp">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ei-db-Klv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6LE-zS-ZMr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rwT-03-wWp">
@@ -345,7 +418,21 @@
                         <segue destination="Hb3-OZ-9xz" kind="relationship" relationship="rootViewController" id="qvj-H8-YUM"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ei-db-Klv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1911" y="-155"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7KA-ew-mMh">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EY8-GC-aav" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="76a-nQ-jeq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VTH-CS-O5v">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
             </objects>
             <point key="canvasLocation" x="1911" y="-155"/>
         </scene>
@@ -355,7 +442,10 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q4S-aX-Yg4"/>
-        <segue reference="Yhy-y9-CYd"/>
+        <segue reference="qvj-H8-YUM"/>
+        <segue reference="Ja1-Ei-mtl"/>
+        <segue reference="LcN-1C-s4y"/>
+        <segue reference="50d-Or-ezp"/>
+        <segue reference="sgY-cf-xZz"/>
     </inferredMetricsTieBreakers>
 </document>
