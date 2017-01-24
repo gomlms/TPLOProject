@@ -13,11 +13,15 @@ class RelativeDistanceViewController: UIViewController {
     
     //MARK: Properties
     
-    @IBOutlet weak var radiographImage: UIImageView!
+    @IBOutlet weak var radiographImageView: UIImageView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
     var pointOneCreated = false
     var pointTwoCreated = false
+    
+    var radiographImage : UIImage = #imageLiteral(resourceName: "defaultPhoto")
+    
+    //var currentProcedure : Procedure
     
     
     //MARK: Actions
@@ -25,8 +29,6 @@ class RelativeDistanceViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
         // Do any additional setup after loading the view.
     }
 

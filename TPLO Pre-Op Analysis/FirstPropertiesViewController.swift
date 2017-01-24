@@ -19,6 +19,11 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     
     var procedure : Procedure?
     
+    //var currentProcedure : Procedure = nil
+    var radiographImage : UIImage = #imageLiteral(resourceName: "defaultPhoto")
+    
+    var chosePicture = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateNextButtonState()
@@ -78,14 +83,11 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         
         procedure = Procedure(n: name, r: photo, d: currentDate)
         
-        os_log("Not in if statement", log: OSLog.default, type: .debug)
-        
         if segue.identifier == "Continue" {
             guard let procedureDataViewController = segue.destination as? RelativeDistanceViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            procedureDataViewController.radiographImage.image = imageSelector.image
-            os_log("In if statement", log:OSLog.default, type: .debug)
+            procedureDataViewController.radiographImageView = imageSelector
         }
         super.prepare(for: segue, sender: sender)
     }
@@ -120,7 +122,9 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         
         //Set Photo Image to display the selected image view
         imageSelector.image = selectedImage
+        radiographImage = selectedImage
         
+        chosePicture = true
         dismiss(animated: true, completion: nil)
     }
 

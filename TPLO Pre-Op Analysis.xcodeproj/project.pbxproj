@@ -530,6 +530,7 @@
 				96496EAD1E2D834800EE8CB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96496EAE1E2D834800EE8CB5 /* Build configuration list for PBXNativeTarget "TPLO Pre-Op AnalysisTests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +539,7 @@
 				96496EB01E2D834800EE8CB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96496EB11E2D834800EE8CB5 /* Build configuration list for PBXNativeTarget "TPLO Pre-Op AnalysisUITests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +548,7 @@
 				96496EB31E2D834800EE8CB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
