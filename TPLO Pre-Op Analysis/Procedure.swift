@@ -22,6 +22,7 @@ class Procedure: NSObject, NSCoding {
     var radius : Double?
     var chordLength : Double?
     var plateCatalogNumber : String?
+    var pixelRatio : Double?
     
     
     //MARK: Archiving Paths

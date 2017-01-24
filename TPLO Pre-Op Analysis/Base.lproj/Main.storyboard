@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tLu-V9-RXN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tLu-V9-RXN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -69,7 +69,6 @@
                                                     <outlet property="date" destination="k4q-ly-2To" id="WTP-Cv-30p"/>
                                                     <outlet property="name" destination="Wv7-Pa-cca" id="ntP-2h-4Oz"/>
                                                     <outlet property="radiograph" destination="nKS-TQ-AsY" id="bJw-nj-WM4"/>
-                                                    <segue destination="Hb3-OZ-9xz" kind="show" id="G3i-Ma-LJr"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -97,9 +96,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TPLO Pre-Op Analysis" id="xaf-Ve-UZK">
+                        <barButtonItem key="backBarButtonItem" title="TPLO Pre-Op" id="mpH-b1-o61"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8P2-jd-2uT">
                             <connections>
-                                <segue destination="obS-In-nic" kind="show" id="S06-zo-EVj"/>
+                                <segue destination="obS-In-nic" kind="show" identifier="AddItem" id="tSl-sU-2RQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -160,22 +160,12 @@
                             <constraint firstAttribute="trailingMargin" secondItem="WvK-by-VwU" secondAttribute="trailing" id="u6l-B5-IJN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Properties" id="AAf-um-jIH">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mXh-hz-x8G">
-                            <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="8oW-Cg-F3R"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="AAJ-gH-Mrf">
-                            <connections>
-                                <segue destination="bs8-JZ-Lfi" kind="show" identifier="Continue" id="do4-mG-0V9"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Properties" id="efL-HW-scd">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="gwF-7c-1z9"/>
                     </navigationItem>
                     <connections>
                         <outlet property="imageSelector" destination="XCG-WU-ZqH" id="3QE-mv-0F4"/>
                         <outlet property="nameTextField" destination="HB4-NC-qqX" id="LrQ-eO-dUB"/>
-                        <outlet property="nextButton" destination="AAJ-gH-Mrf" id="u1O-oJ-nOq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPy-dC-rYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,7 +175,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1911.2" y="732.68365817091455"/>
+            <point key="canvasLocation" x="972" y="803"/>
         </scene>
         <!--Relative Distance Selection-->
         <scene sceneID="TLg-f6-kVD">
@@ -251,85 +241,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Relative Distance Selection" id="j8d-ex-nw0">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="0J1-QE-Rv4">
-                            <connections>
-                                <segue destination="obS-In-nic" kind="show" id="hoK-xO-hGM"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="a2y-F5-zXR">
-                            <connections>
-                                <segue destination="fls-rP-eAf" kind="show" id="p3n-6f-fDx"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="OXi-TP-M1W"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="nextButton" destination="a2y-F5-zXR" id="PlB-lE-thI"/>
                         <outlet property="radiographImage" destination="0m5-zT-3fD" id="K8s-8c-hWE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Zs-Wg-ShG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2848.8000000000002" y="1449.6251874062971"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="TiX-lK-o9i">
-            <objects>
-                <viewController id="fls-rP-eAf" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="geY-z9-AMF"/>
-                        <viewControllerLayoutGuide type="bottom" id="LF8-gn-97C"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cK0-Vo-aiU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="BaG-73-nYp">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="lLh-5e-V1a">
-                            <connections>
-                                <segue destination="bs8-JZ-Lfi" kind="show" id="23y-Tu-IxE"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="J3P-nE-qzu">
-                            <connections>
-                                <segue destination="Hb3-OZ-9xz" kind="show" id="JFS-o0-TxG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oAp-xe-SOq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3799.1999999999998" y="2182.7586206896553"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="HJe-K1-rpR">
-            <objects>
-                <viewController id="Hb3-OZ-9xz" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9AJ-rV-6Ch"/>
-                        <viewControllerLayoutGuide type="bottom" id="QEy-5a-vD9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XgR-W5-5wj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="UHR-VT-unP">
-                        <barButtonItem key="leftBarButtonItem" systemItem="save" id="Qja-1r-piS">
-                            <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="Dw6-YO-Xyr"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="04d-df-ECK">
-                            <connections>
-                                <segue destination="obS-In-nic" kind="show" id="hO1-9M-prS"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gGn-Ke-icU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2754" y="-155"/>
+            <point key="canvasLocation" x="972" y="1559"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fsq-M4-sst">
@@ -349,103 +269,9 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="gOm-WD-wKG">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="17A-lf-4N2" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="peY-gR-nxK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="obS-In-nic" kind="relationship" relationship="rootViewController" id="LcN-1C-s4y"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ztt-IP-vjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="887" y="931"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="l99-9F-8IB">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z1j-a8-45c" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ah3-cS-iYI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bs8-JZ-Lfi" kind="relationship" relationship="rootViewController" id="sgY-cf-xZz"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fcl-Tz-Gfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1909.5999999999999" y="1449.6251874062971"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Gaz-p4-OuY">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FFe-MP-eB1" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cvi-ka-Dvr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fls-rP-eAf" kind="relationship" relationship="rootViewController" id="50d-Or-ezp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="80w-NJ-EA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2860" y="2182.7586206896553"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="iP2-Q1-xFp">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6LE-zS-ZMr" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rwT-03-wWp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Hb3-OZ-9xz" kind="relationship" relationship="rootViewController" id="qvj-H8-YUM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ei-db-Klv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1911" y="-155"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="7KA-ew-mMh">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="76a-nQ-jeq" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VTH-CS-O5v">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EY8-GC-aav" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1911" y="-155"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Logo" width="558" height="437"/>
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="50d-Or-ezp"/>
-        <segue reference="JFS-o0-TxG"/>
-        <segue reference="hO1-9M-prS"/>
-        <segue reference="8oW-Cg-F3R"/>
-        <segue reference="do4-mG-0V9"/>
-    </inferredMetricsTieBreakers>
 </document>

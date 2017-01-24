@@ -15,7 +15,6 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var imageSelector: UIImageView!
-    @IBOutlet weak var nextButton: UIBarButtonItem!
     
     var procedure : Procedure?
     
@@ -26,7 +25,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateNextButtonState()
+        //updateNextButtonState()
         // Do any additional setup after loading the view.
         
         nameTextField.delegate = self
@@ -48,7 +47,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        updateNextButtonState()
+        //updateNextButtonState()
     }
     
     // MARK: - Navigation
@@ -65,7 +64,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         }
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    /*// In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let button = sender as? UIBarButtonItem, button === nextButton else {
             os_log("The next button was not pressed, cancelling...", log: OSLog.default, type: .debug)
@@ -90,7 +89,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
             procedureDataViewController.radiographImageView = imageSelector
         }
         super.prepare(for: segue, sender: sender)
-    }
+    }*/
     
     //MARK: Actions
     @IBAction func selectImageFromLibrary(_ sender: UITapGestureRecognizer) {
@@ -129,7 +128,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     }
 
 
-    //MARK: Private Methods
+    /*//MARK: Private Methods
     private func updateNextButtonState() {
         let text = nameTextField.text ?? ""
         
@@ -138,5 +137,5 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         } else {
             nextButton.isEnabled = true
         }
-    }
+    }*/
 }
