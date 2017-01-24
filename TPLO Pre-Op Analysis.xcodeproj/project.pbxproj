@@ -50,7 +50,7 @@
 		96496EA21E2D834800EE8CB5 /* TPLO Pre-Op AnalysisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TPLO Pre-Op AnalysisUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96496EA61E2D834800EE8CB5 /* TPLO_Pre_Op_AnalysisUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPLO_Pre_Op_AnalysisUITests.swift; sourceTree = "<group>"; };
 		96496EA81E2D834800EE8CB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96496EB41E2D86C400EE8CB5 /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScreenViewController.swift; path = ../../../../.Trash/MainScreenViewController.swift; sourceTree = "<group>"; };
+		96496EB41E2D86C400EE8CB5 /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScreenViewController.swift; path = ../../../.Trash/MainScreenViewController.swift; sourceTree = SOURCE_ROOT; };
 		96496EB61E2D93EE00EE8CB5 /* FirstPropertiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPropertiesViewController.swift; sourceTree = "<group>"; };
 		96496EB81E32F00D00EE8CB5 /* Procedure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
 		96496EBA1E32F92F00EE8CB5 /* ProcedureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedureCell.swift; sourceTree = "<group>"; };
