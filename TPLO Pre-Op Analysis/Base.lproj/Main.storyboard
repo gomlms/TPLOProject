@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tLu-V9-RXN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tLu-V9-RXN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -132,7 +132,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter title here" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HB4-NC-qqX">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter Title Here" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HB4-NC-qqX">
                                         <rect key="frame" x="0.0" y="42" width="343" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -200,16 +200,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q98-vt-xiY">
-                                <rect key="frame" x="16" y="30" width="343" height="637"/>
+                                <rect key="frame" x="16" y="74" width="343" height="593"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designate your already established measurement using these two points" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzi-op-DhN">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="107"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="63"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="QAz-Fb-7ys">
-                                        <rect key="frame" x="0.0" y="117" width="343" height="40"/>
+                                        <rect key="frame" x="0.0" y="73" width="343" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Th-Eu-fgA">
                                                 <rect key="frame" x="0.0" y="0.0" width="168" height="40"/>
@@ -228,7 +228,7 @@
                                         </subviews>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="0m5-zT-3fD" userLabel="Radiograph">
-                                        <rect key="frame" x="0.0" y="167" width="343" height="470"/>
+                                        <rect key="frame" x="0.0" y="123" width="343" height="470"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="343" id="Unm-B5-2C8"/>
                                             <constraint firstAttribute="height" constant="470" id="aLj-g5-TUb"/>
@@ -334,7 +334,6 @@
         <!--Navigation Controller-->
         <scene sceneID="fsq-M4-sst">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E2o-9y-oJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tLu-V9-RXN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yjb-Q7-fiE">
@@ -346,13 +345,13 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ja1-Ei-mtl"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E2o-9y-oJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gOm-WD-wKG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ztt-IP-vjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="17A-lf-4N2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="peY-gR-nxK">
@@ -364,13 +363,13 @@
                         <segue destination="obS-In-nic" kind="relationship" relationship="rootViewController" id="LcN-1C-s4y"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ztt-IP-vjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="887" y="931"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l99-9F-8IB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fcl-Tz-Gfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z1j-a8-45c" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ah3-cS-iYI">
@@ -382,13 +381,13 @@
                         <segue destination="bs8-JZ-Lfi" kind="relationship" relationship="rootViewController" id="sgY-cf-xZz"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcl-Tz-Gfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1909.5999999999999" y="1449.6251874062971"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gaz-p4-OuY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="80w-NJ-EA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FFe-MP-eB1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cvi-ka-Dvr">
@@ -400,13 +399,13 @@
                         <segue destination="fls-rP-eAf" kind="relationship" relationship="rootViewController" id="50d-Or-ezp"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="80w-NJ-EA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2860" y="2182.7586206896553"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iP2-Q1-xFp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ei-db-Klv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6LE-zS-ZMr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rwT-03-wWp">
@@ -418,13 +417,13 @@
                         <segue destination="Hb3-OZ-9xz" kind="relationship" relationship="rootViewController" id="qvj-H8-YUM"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ei-db-Klv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1911" y="-155"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7KA-ew-mMh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EY8-GC-aav" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="76a-nQ-jeq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VTH-CS-O5v">
@@ -433,6 +432,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EY8-GC-aav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1911" y="-155"/>
         </scene>
@@ -442,10 +442,10 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qvj-H8-YUM"/>
-        <segue reference="Ja1-Ei-mtl"/>
-        <segue reference="LcN-1C-s4y"/>
         <segue reference="50d-Or-ezp"/>
-        <segue reference="sgY-cf-xZz"/>
+        <segue reference="JFS-o0-TxG"/>
+        <segue reference="hO1-9M-prS"/>
+        <segue reference="8oW-Cg-F3R"/>
+        <segue reference="do4-mG-0V9"/>
     </inferredMetricsTieBreakers>
 </document>
