@@ -11,6 +11,8 @@ import os.log
 
 class RelativeDistanceViewController: UIViewController {
     
+    var procedure : Procedure?
+    
     //MARK: Properties
     
     @IBOutlet weak var radiographImageView: UIImageView!
@@ -19,10 +21,9 @@ class RelativeDistanceViewController: UIViewController {
     var pointOneCreated = false
     var pointTwoCreated = false
     
-    var radiographImage : UIImage = #imageLiteral(resourceName: "defaultPhoto")
+    var radiographImage : UIImage?
     
     //var currentProcedure : Procedure
-    
     
     //MARK: Actions
     
@@ -30,6 +31,17 @@ class RelativeDistanceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        guard let procedure = procedure else{
+            fatalError("Procedure was not correctly passed to Relative Distance Controller")
+        }
+        radiographImage = procedure.radiograph
+        
+        radiographImageView.image = radiographImage
+        
+        if(procedure.name == "Max"){
+            os_log("Procedure Successfully Passed")
+        }
     }
 
     override func didReceiveMemoryWarning() {

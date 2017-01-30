@@ -15,6 +15,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var imageSelector: UIImageView!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
     
     var procedure : Procedure?
     
@@ -64,7 +65,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         }
     }
     
-    /*// In a storyboard-based application, you will often want to do a little preparation before navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let button = sender as? UIBarButtonItem, button === nextButton else {
             os_log("The next button was not pressed, cancelling...", log: OSLog.default, type: .debug)
@@ -86,10 +87,10 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
             guard let procedureDataViewController = segue.destination as? RelativeDistanceViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            procedureDataViewController.radiographImageView = imageSelector
+            procedureDataViewController.procedure = procedure
         }
         super.prepare(for: segue, sender: sender)
-    }*/
+    }
     
     //MARK: Actions
     @IBAction func selectImageFromLibrary(_ sender: UITapGestureRecognizer) {
@@ -122,6 +123,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         //Set Photo Image to display the selected image view
         imageSelector.image = selectedImage
         radiographImage = selectedImage
+        procedure?.radiograph = selectedImage
         
         chosePicture = true
         dismiss(animated: true, completion: nil)

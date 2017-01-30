@@ -12,7 +12,7 @@ import os.log
 class Procedure: NSObject, NSCoding {
 
     //MARK: Properties
-    var name : String
+    var name : String?
     var dateOfProcedure : String
     var radiograph : UIImage?
     var points = [ProcedurePoints]()
