@@ -25,6 +25,24 @@ class RelativeDistanceViewController: UIViewController {
     
     //var currentProcedure : Procedure
     
+    //MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard let button = sender as? UIBarButtonItem, button === nextButton else {
+            os_log("The next button was not pressed, cancelling...", log: OSLog.default, type: .debug)
+            return
+        }
+        
+        if segue.identifier == "Continue" {
+            guard let nextController = segue.destination as? SelectFirstFourPointsViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            nextController.procedure = procedure
+        }
+    }
+    
     //MARK: Actions
     
 

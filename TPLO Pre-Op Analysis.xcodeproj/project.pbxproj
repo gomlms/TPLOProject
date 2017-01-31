@@ -18,7 +18,7 @@
 		96496EB91E32F00D00EE8CB5 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EB81E32F00D00EE8CB5 /* Procedure.swift */; };
 		96496EBB1E32F92F00EE8CB5 /* ProcedureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EBA1E32F92F00EE8CB5 /* ProcedureCell.swift */; };
 		96496EBD1E347D9D00EE8CB5 /* RelativeDistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EBC1E347D9C00EE8CB5 /* RelativeDistanceViewController.swift */; };
-		96DBB37F1E37FD12002654C5 /* ProcedurePoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBB37E1E37FD12002654C5 /* ProcedurePoints.swift */; };
+		F42BE6971E412A2B00551DBF /* SelectFirstFourPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42BE6961E412A2B00551DBF /* SelectFirstFourPointsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 		96496EB81E32F00D00EE8CB5 /* Procedure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
 		96496EBA1E32F92F00EE8CB5 /* ProcedureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedureCell.swift; sourceTree = "<group>"; };
 		96496EBC1E347D9C00EE8CB5 /* RelativeDistanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeDistanceViewController.swift; sourceTree = "<group>"; };
-		96DBB37E1E37FD12002654C5 /* ProcedurePoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedurePoints.swift; sourceTree = "<group>"; };
+		F42BE6961E412A2B00551DBF /* SelectFirstFourPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFirstFourPointsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,14 +110,14 @@
 				96496E861E2D834800EE8CB5 /* AppDelegate.swift */,
 				96496EB41E2D86C400EE8CB5 /* MainScreenViewController.swift */,
 				96496EBA1E32F92F00EE8CB5 /* ProcedureCell.swift */,
-				96496E8A1E2D834800EE8CB5 /* Main.storyboard */,
-				96496EBC1E347D9C00EE8CB5 /* RelativeDistanceViewController.swift */,
 				96496EB61E2D93EE00EE8CB5 /* FirstPropertiesViewController.swift */,
+				96496EBC1E347D9C00EE8CB5 /* RelativeDistanceViewController.swift */,
+				F42BE6961E412A2B00551DBF /* SelectFirstFourPointsViewController.swift */,
+				96496E8A1E2D834800EE8CB5 /* Main.storyboard */,
 				96496E8D1E2D834800EE8CB5 /* Assets.xcassets */,
 				96496E8F1E2D834800EE8CB5 /* LaunchScreen.storyboard */,
 				96496E921E2D834800EE8CB5 /* Info.plist */,
 				96496EB81E32F00D00EE8CB5 /* Procedure.swift */,
-				96DBB37E1E37FD12002654C5 /* ProcedurePoints.swift */,
 			);
 			path = "TPLO Pre-Op Analysis";
 			sourceTree = "<group>";
@@ -281,7 +281,7 @@
 				96496EBB1E32F92F00EE8CB5 /* ProcedureCell.swift in Sources */,
 				96496EB71E2D93EF00EE8CB5 /* FirstPropertiesViewController.swift in Sources */,
 				96496E871E2D834800EE8CB5 /* AppDelegate.swift in Sources */,
-				96DBB37F1E37FD12002654C5 /* ProcedurePoints.swift in Sources */,
+				F42BE6971E412A2B00551DBF /* SelectFirstFourPointsViewController.swift in Sources */,
 				96496EB91E32F00D00EE8CB5 /* Procedure.swift in Sources */,
 				96496EBD1E347D9D00EE8CB5 /* RelativeDistanceViewController.swift in Sources */,
 			);

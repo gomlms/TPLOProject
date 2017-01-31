@@ -15,7 +15,7 @@ class Procedure: NSObject, NSCoding {
     var name : String?
     var dateOfProcedure : String
     var radiograph : UIImage?
-    var points = [ProcedurePoints]()
+    var points = [CGPoint]()
     var tpa : Double?
     var sawbladeSize : Int?
     var sawCatalogNumber : String?
