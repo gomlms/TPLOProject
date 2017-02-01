@@ -306,10 +306,30 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sC5-CL-CPo">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="3kC-he-YJ4"/>
                                                     <constraint firstAttribute="width" constant="300" id="goy-1d-AK5"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="5lC-Xe-lqr" appends="YES" id="Hif-wd-jTj"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot1" translatesAutoresizingMaskIntoConstraints="NO" id="LaB-uR-Map">
+                                                <rect key="frame" x="40" y="53" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot3" translatesAutoresizingMaskIntoConstraints="NO" id="9Dw-Ei-xca">
+                                                <rect key="frame" x="99" y="99" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot4" translatesAutoresizingMaskIntoConstraints="NO" id="yLA-5n-56q">
+                                                <rect key="frame" x="117" y="53" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot2" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-HX-KSl">
+                                                <rect key="frame" x="54" y="99" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -339,18 +359,30 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfT-Fy-UZQ">
                                         <rect key="frame" x="0.0" y="0.0" width="247" height="30"/>
                                         <state key="normal" title="Set Midpoint Tibial Eminence (pt1)"/>
+                                        <connections>
+                                            <action selector="selectPoint1:" destination="ata-jN-aIj" eventType="touchUpInside" id="VrU-Fe-2tE"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hy-S9-ebl">
                                         <rect key="frame" x="0.0" y="38" width="247" height="30"/>
                                         <state key="normal" title="Set Center of Talus (pt2)"/>
+                                        <connections>
+                                            <action selector="selectPoint2:" destination="ata-jN-aIj" eventType="touchUpInside" id="B0d-HL-rtq"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wry-do-o8J">
                                         <rect key="frame" x="0.0" y="76" width="247" height="30"/>
                                         <state key="normal" title="Set Tibial Plateau Point Cranial (pt3)"/>
+                                        <connections>
+                                            <action selector="selectPoint3:" destination="ata-jN-aIj" eventType="touchUpInside" id="Ixu-4h-CgR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1E-Hm-6Ot">
                                         <rect key="frame" x="0.0" y="114" width="247" height="30"/>
                                         <state key="normal" title="Set Caudal (pt4)"/>
+                                        <connections>
+                                            <action selector="selectPoint4:" destination="ata-jN-aIj" eventType="touchUpInside" id="cCS-uN-2Vz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -363,6 +395,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvd-1T-cHG">
                                 <rect key="frame" x="125.5" y="588.5" width="123" height="30"/>
                                 <state key="normal" title="Confirm Selection"/>
+                                <connections>
+                                    <action selector="confirmSelectionAction:" destination="ata-jN-aIj" eventType="touchUpInside" id="1ET-5p-BhN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -379,12 +414,27 @@
                     </view>
                     <navigationItem key="navigationItem" title="Set Key Points" id="H8K-ba-8Ih"/>
                     <connections>
+                        <outlet property="confirmSelection" destination="yvd-1T-cHG" id="Anu-2S-m4L"/>
+                        <outlet property="dot1" destination="LaB-uR-Map" id="CIn-fi-2pg"/>
+                        <outlet property="dot2" destination="jiM-HX-KSl" id="PKt-Gj-erb"/>
+                        <outlet property="dot3" destination="9Dw-Ei-xca" id="xvb-Ut-5Dh"/>
+                        <outlet property="dot4" destination="yLA-5n-56q" id="Yak-Iu-Cry"/>
                         <outlet property="imageView" destination="sC5-CL-CPo" id="HhS-ex-NAo"/>
                         <outlet property="innerView" destination="83j-Av-U0i" id="O6m-fj-BX7"/>
+                        <outlet property="outputLabel" destination="4cM-ZW-AId" id="0Qn-1q-pi2"/>
+                        <outlet property="point1Button" destination="AfT-Fy-UZQ" id="LSc-vK-Dt7"/>
+                        <outlet property="point2Button" destination="5hy-S9-ebl" id="uzE-Du-Ndb"/>
+                        <outlet property="point3Button" destination="wry-do-o8J" id="B0s-Mg-7RP"/>
+                        <outlet property="point4Button" destination="l1E-Hm-6Ot" id="r1v-Rp-cOV"/>
                         <outlet property="scrollView" destination="PYe-f5-5sm" id="0ws-KC-MKF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDN-IV-ZIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5lC-Xe-lqr">
+                    <connections>
+                        <action selector="tapForPoint:" destination="ata-jN-aIj" id="Kh7-Qm-fhM"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1821.5999999999999" y="2272.7136431784111"/>
         </scene>
@@ -410,5 +460,9 @@
     <resources>
         <image name="Logo" width="558" height="437"/>
         <image name="defaultPhoto" width="540" height="540"/>
+        <image name="dot1" width="25" height="25"/>
+        <image name="dot2" width="25" height="25"/>
+        <image name="dot3" width="25" height="25"/>
+        <image name="dot4" width="25" height="25"/>
     </resources>
 </document>
