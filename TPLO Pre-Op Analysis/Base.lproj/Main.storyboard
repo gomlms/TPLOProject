@@ -511,7 +511,13 @@
                             <constraint firstItem="4cM-ZW-AId" firstAttribute="top" secondItem="PYe-f5-5sm" secondAttribute="bottom" constant="15" id="w5k-2d-Yij"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Set Key Points" id="H8K-ba-8Ih"/>
+                    <navigationItem key="navigationItem" title="Set Key Points" id="H8K-ba-8Ih">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="wze-Mj-aua">
+                            <connections>
+                                <segue destination="hxi-XM-H8J" kind="show" identifier="Continue" id="Feb-Uz-9uF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="confirmSelection" destination="yvd-1T-cHG" id="Anu-2S-m4L"/>
                         <outlet property="dot1" destination="LaB-uR-Map" id="CIn-fi-2pg"/>
@@ -536,6 +542,50 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1821.5999999999999" y="2272.7136431784111"/>
+        </scene>
+        <!--Saw Blade Size-->
+        <scene sceneID="dh1-1C-i95">
+            <objects>
+                <viewController id="hxi-XM-H8J" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ygq-AN-SVX"/>
+                        <viewControllerLayoutGuide type="bottom" id="jzN-Xy-coO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HZD-s6-yeO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Saw Blade Size" id="DFd-Kf-LoC">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="NfV-ZK-OFf">
+                            <connections>
+                                <segue destination="6Fb-LK-qoH" kind="show" identifier="Next" id="jG0-IX-JPJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y3X-JJ-2IB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1822" y="2997"/>
+        </scene>
+        <!--Osteotomy-->
+        <scene sceneID="h7n-KZ-6tR">
+            <objects>
+                <viewController id="6Fb-LK-qoH" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="O1x-hf-DsC"/>
+                        <viewControllerLayoutGuide type="bottom" id="mFj-Qn-zQ8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ylz-fX-dAu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Osteotomy" id="isu-MO-4zK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UX0-8C-2Iv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1822" y="3712"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fsq-M4-sst">
