@@ -34,6 +34,8 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     @IBOutlet weak var dot3: UIImageView!
     @IBOutlet weak var dot4: UIImageView!
     
+    var radiographImage : UIImage?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,11 +51,13 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         guard let procedure = procedure else {
             fatalError("Procedure was not correctly passed to Relative Distance Controller")
         }
-
-        print(procedure.name!)
         
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
+        
+        radiographImage = procedure.radiograph
+        
+        imageView.image = radiographImage
     }
 
     override func didReceiveMemoryWarning() {
@@ -126,7 +130,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         imageView.isUserInteractionEnabled = false
         outputLabel.text = "Point #\(currSelector) Set!"
         
-        points[currSelector] = currentPoint
+        points[currSelector - 1] = currentPoint
     }
     
     

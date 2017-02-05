@@ -224,18 +224,26 @@
                                         <rect key="frame" x="0.0" y="51" width="375" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Th-Eu-fgA">
-                                                <rect key="frame" x="0.0" y="0.0" width="183.5" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="184" height="40"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Ocz-mi-Wpy"/>
                                                 </constraints>
                                                 <state key="normal" title="Point 1"/>
+                                                <connections>
+                                                    <action selector="selectPointOne:" destination="bs8-JZ-Lfi" eventType="touchUpInside" id="z9g-FB-vzd"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-Ow-ycz">
-                                                <rect key="frame" x="183.5" y="0.0" width="191.5" height="40"/>
+                                                <rect key="frame" x="184" y="0.0" width="191" height="40"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="rug-cq-Pe2"/>
                                                 </constraints>
                                                 <state key="normal" title="Point 2"/>
+                                                <connections>
+                                                    <action selector="selectPointTwo:" destination="bs8-JZ-Lfi" eventType="touchUpInside" id="vyj-gJ-5Z8"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -249,7 +257,7 @@
                                 </constraints>
                             </stackView>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="eV8-xK-YEL">
-                                <rect key="frame" x="37" y="247" width="300" height="300"/>
+                                <rect key="frame" x="37" y="220" width="300" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5j9-rR-TxG">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -261,9 +269,12 @@
                                                     <constraint firstAttribute="width" constant="300" id="bSG-hj-u9G"/>
                                                     <constraint firstAttribute="height" constant="300" id="mFE-NN-Pks"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="4Po-ns-bf9" appends="YES" id="4k6-RJ-k4f"/>
+                                                </connections>
                                             </imageView>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot1" translatesAutoresizingMaskIntoConstraints="NO" id="h94-7y-4ri">
-                                                <rect key="frame" x="30" y="44" width="25" height="25"/>
+                                                <rect key="frame" x="30" y="46" width="25" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot2" translatesAutoresizingMaskIntoConstraints="NO" id="OVq-hu-UTv">
@@ -292,22 +303,35 @@
                                     <outlet property="delegate" destination="ata-jN-aIj" id="BuZ-Up-OaE"/>
                                 </connections>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Will Go Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p15-Yn-h91">
+                                <rect key="frame" x="16" y="606" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcP-Ym-4Nn">
-                                <rect key="frame" x="16" y="586" width="343" height="36"/>
+                                <rect key="frame" x="16" y="545" width="343" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Confirm Selection"/>
+                                <connections>
+                                    <action selector="confirmSelectionAction:" destination="bs8-JZ-Lfi" eventType="touchUpInside" id="8Kh-af-np3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="eYs-w5-4jR" firstAttribute="top" secondItem="hcP-Ym-4Nn" secondAttribute="bottom" constant="45" id="7tT-gz-LtN"/>
+                            <constraint firstItem="p15-Yn-h91" firstAttribute="top" secondItem="hcP-Ym-4Nn" secondAttribute="bottom" constant="25" id="0bu-7c-84j"/>
+                            <constraint firstItem="p15-Yn-h91" firstAttribute="leading" secondItem="ywe-Go-WJj" secondAttribute="leadingMargin" id="51R-WY-k6M"/>
                             <constraint firstItem="hcP-Ym-4Nn" firstAttribute="leading" secondItem="ywe-Go-WJj" secondAttribute="leadingMargin" id="AJM-op-8Fg"/>
                             <constraint firstItem="eV8-xK-YEL" firstAttribute="centerX" secondItem="ywe-Go-WJj" secondAttribute="centerX" id="Dpc-th-HbR"/>
+                            <constraint firstItem="hcP-Ym-4Nn" firstAttribute="top" secondItem="eV8-xK-YEL" secondAttribute="bottom" constant="25" id="EsL-2g-F0R"/>
                             <constraint firstItem="Q98-vt-xiY" firstAttribute="top" secondItem="haD-EE-Sye" secondAttribute="bottom" constant="40" id="P1m-0j-zVt"/>
-                            <constraint firstItem="eYs-w5-4jR" firstAttribute="top" secondItem="eV8-xK-YEL" secondAttribute="bottom" constant="120" id="PyM-Jo-3Oy"/>
                             <constraint firstItem="Q98-vt-xiY" firstAttribute="leading" secondItem="ywe-Go-WJj" secondAttribute="leading" id="fgd-VD-DAf"/>
                             <constraint firstAttribute="trailing" secondItem="Q98-vt-xiY" secondAttribute="trailing" id="g38-SR-lQZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hcP-Ym-4Nn" secondAttribute="trailing" id="gbX-eZ-9W2"/>
+                            <constraint firstItem="eV8-xK-YEL" firstAttribute="top" secondItem="Q98-vt-xiY" secondAttribute="bottom" constant="25" id="mJx-Qd-hwN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="p15-Yn-h91" secondAttribute="trailing" id="y39-u3-J95"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Relative Distance Selection" id="j8d-ex-nw0">
@@ -319,10 +343,24 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="confirmSelectionButton" destination="hcP-Ym-4Nn" id="dn2-0e-tLb"/>
+                        <outlet property="dot1" destination="h94-7y-4ri" id="dQa-g5-VmG"/>
+                        <outlet property="dot2" destination="OVq-hu-UTv" id="F7w-E9-0bo"/>
+                        <outlet property="innerView" destination="5j9-rR-TxG" id="THw-kr-izh"/>
+                        <outlet property="nextButton" destination="ufZ-hC-GMu" id="fJ3-hS-mTZ"/>
+                        <outlet property="outputLabel" destination="p15-Yn-h91" id="GNr-zA-PeV"/>
+                        <outlet property="pointOneButton" destination="0Th-Eu-fgA" id="ydU-Jx-QSe"/>
+                        <outlet property="pointTwoButton" destination="HHC-Ow-ycz" id="EqV-BH-9rc"/>
                         <outlet property="radiographImageView" destination="3BC-Vh-yNj" id="8eU-GM-x16"/>
+                        <outlet property="scrollView" destination="eV8-xK-YEL" id="K8L-RS-43q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Zs-Wg-ShG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4Po-ns-bf9">
+                    <connections>
+                        <action selector="tapForPoint:" destination="bs8-JZ-Lfi" id="rqD-Pd-iXd"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1822" y="1517"/>
         </scene>
