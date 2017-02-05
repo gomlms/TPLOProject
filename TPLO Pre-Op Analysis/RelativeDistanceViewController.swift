@@ -49,7 +49,16 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
             guard let nextController = segue.destination as? SelectFirstFourPointsViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
+            
+            let distance = Double(sqrt(pow(points[0].x - points[1].x, 2) + pow(points[0].y - points[1].y, 2)))
+            
             procedure?.points = points
+            if(procedure?.designator == "Marker"){
+                procedure?.pixelToMMRatio = distance / 100.0
+            } else {
+                procedure?.pixelToMMRatio = distance / 25.0
+            }
+            
             nextController.procedure = procedure
         }
     }

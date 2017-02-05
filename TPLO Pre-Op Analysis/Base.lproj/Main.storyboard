@@ -159,12 +159,31 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="XCG-WU-ZqH">
-                                        <rect key="frame" x="0.0" y="130.5" width="333" height="432.5"/>
+                                        <rect key="frame" x="0.0" y="130.5" width="333" height="362.5"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="99i-hZ-uzU" appends="YES" id="yA8-Sv-vyq"/>
                                         </connections>
                                     </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4B6-W7-fIS">
+                                        <rect key="frame" x="0.0" y="533" width="333" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rn-Dd-3yG">
+                                                <rect key="frame" x="0.0" y="0.0" width="166.5" height="30"/>
+                                                <state key="normal" title="100mm Marker"/>
+                                                <connections>
+                                                    <action selector="markerPressed:" destination="obS-In-nic" eventType="touchUpInside" id="Tbn-aO-Mcq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hMh-h7-OLz">
+                                                <rect key="frame" x="166.5" y="0.0" width="166.5" height="30"/>
+                                                <state key="normal" title="25mm Ball"/>
+                                                <connections>
+                                                    <action selector="ballPressed:" destination="obS-In-nic" eventType="touchUpInside" id="wFt-Wr-GA4"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -185,7 +204,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ballButton" destination="hMh-h7-OLz" id="JZQ-Og-EaG"/>
                         <outlet property="imageSelector" destination="XCG-WU-ZqH" id="3QE-mv-0F4"/>
+                        <outlet property="markerButton" destination="7Rn-Dd-3yG" id="GI9-Rv-Mji"/>
                         <outlet property="nameTextField" destination="HB4-NC-qqX" id="LrQ-eO-dUB"/>
                         <outlet property="nextButton" destination="wes-rf-GwG" id="ckY-fb-ecb"/>
                     </connections>

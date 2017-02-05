@@ -17,6 +17,9 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     @IBOutlet weak var imageSelector: UIImageView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
+    @IBOutlet weak var markerButton: UIButton!
+    @IBOutlet weak var ballButton: UIButton!
+    
     var procedure : Procedure?
     
     //var currentProcedure : Procedure = nil
@@ -63,6 +66,18 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         } else {
             fatalError("The Properties View Controller is not inside a navigation controller")
         }
+    }
+    
+    @IBAction func markerPressed(_ sender: Any) {
+        procedure?.designator = "Marker"
+        markerButton.backgroundColor = UIColor.cyan
+        ballButton.backgroundColor = UIColor.white
+    }
+    
+    @IBAction func ballPressed(_ sender: Any) {
+        procedure?.designator = "Ball"
+        ballButton.backgroundColor = UIColor.cyan
+        markerButton.backgroundColor = UIColor.white
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
