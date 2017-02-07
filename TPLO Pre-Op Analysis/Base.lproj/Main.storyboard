@@ -546,7 +546,7 @@
         <!--Saw Blade Size-->
         <scene sceneID="dh1-1C-i95">
             <objects>
-                <viewController id="hxi-XM-H8J" sceneMemberID="viewController">
+                <viewController id="hxi-XM-H8J" customClass="SawbladeViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ygq-AN-SVX"/>
                         <viewControllerLayoutGuide type="bottom" id="jzN-Xy-coO"/>
@@ -559,7 +559,7 @@
                     <navigationItem key="navigationItem" title="Saw Blade Size" id="DFd-Kf-LoC">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="NfV-ZK-OFf">
                             <connections>
-                                <segue destination="6Fb-LK-qoH" kind="show" identifier="Next" id="jG0-IX-JPJ"/>
+                                <segue destination="6Fb-LK-qoH" kind="show" identifier="Continue" id="jG0-IX-JPJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -571,7 +571,7 @@
         <!--Osteotomy-->
         <scene sceneID="h7n-KZ-6tR">
             <objects>
-                <viewController id="6Fb-LK-qoH" sceneMemberID="viewController">
+                <viewController id="6Fb-LK-qoH" customClass="OsteotomyViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O1x-hf-DsC"/>
                         <viewControllerLayoutGuide type="bottom" id="mFj-Qn-zQ8"/>
@@ -579,7 +579,20 @@
                     <view key="view" contentMode="scaleToFill" id="Ylz-fX-dAu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O3E-KM-ir5">
+                                <rect key="frame" x="37" y="183" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="PRU-B6-umR"/>
+                                    <constraint firstAttribute="height" constant="300" id="g4C-4o-Dm7"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="O3E-KM-ir5" firstAttribute="centerY" secondItem="Ylz-fX-dAu" secondAttribute="centerY" id="INq-WE-pbg"/>
+                            <constraint firstItem="O3E-KM-ir5" firstAttribute="centerX" secondItem="Ylz-fX-dAu" secondAttribute="centerX" id="Lh7-WJ-Qyk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Osteotomy" id="isu-MO-4zK"/>
                 </viewController>

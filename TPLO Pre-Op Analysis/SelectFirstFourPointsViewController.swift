@@ -139,7 +139,14 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        
+        guard let nextController = segue.destination as? SawbladeViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        
         procedure?.points = points
+        
+        
     }
     
     //MARK: Private Methods

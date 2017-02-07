@@ -52,7 +52,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
             
             let distance = Double(sqrt(pow(points[0].x - points[1].x, 2) + pow(points[0].y - points[1].y, 2)))
             
-            procedure?.points = points
             if(procedure?.designator == "Marker"){
                 procedure?.pixelToMMRatio = distance / 100.0
             } else {
