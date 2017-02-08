@@ -152,7 +152,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard let nextController = segue.destination as? SawbladeViewController else {
+        guard let nextController = segue.destination as? TPAViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
         }
         

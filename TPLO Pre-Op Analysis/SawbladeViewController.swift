@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SawbladeViewController: UIViewController {
+class SawbladeViewController: UIViewController, UIScrollViewDelegate {
 
     //MARK: Properties
     var procedure : Procedure?
