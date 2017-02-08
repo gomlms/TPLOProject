@@ -32,7 +32,7 @@ class Procedure: NSObject, NSCoding {
     static let ArchiveURL = DocumentsDirectory?.appendingPathComponent("procedures")
     
     //MARK: Initialization
-    init?(n:String, r:UIImage?, d:String){
+    init?(n:String, r:UIImage?, d:String, m:String){
         guard !n.isEmpty else {
             return nil
         }
@@ -40,6 +40,7 @@ class Procedure: NSObject, NSCoding {
         name = n
         radiograph = r
         dateOfProcedure = d
+        designator = m
     }
     
     
@@ -48,6 +49,7 @@ class Procedure: NSObject, NSCoding {
         aCoder.encode(name, forKey: PropertyKey.name)
         aCoder.encode(dateOfProcedure, forKey: PropertyKey.dateOfProcedure)
         aCoder.encode(radiograph, forKey: PropertyKey.radiograph)
+        aCoder.encode(designator, forKey: PropertyKey.designator)
     }
     
     required convenience init?(coder aDecoder: NSCoder){
@@ -58,8 +60,9 @@ class Procedure: NSObject, NSCoding {
         
         let dateOfProcedure = aDecoder.decodeObject(forKey: PropertyKey.dateOfProcedure) as! String
         let radiograph = aDecoder.decodeObject(forKey: PropertyKey.radiograph) as? UIImage
+        let designator = aDecoder.decodeObject(forKey: PropertyKey.designator) as! String
     
-        self.init(n: name, r: radiograph, d: dateOfProcedure)
+        self.init(n: name, r: radiograph, d: dateOfProcedure, m: designator)
     }
     
     //MARK: Types
@@ -67,5 +70,6 @@ class Procedure: NSObject, NSCoding {
         static let name = "name"
         static let dateOfProcedure = "dateOfProcedure"
         static let radiograph = "radiograph"
+        static let designator = "designator"
     }
 }

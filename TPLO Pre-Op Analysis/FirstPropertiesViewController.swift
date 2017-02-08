@@ -20,7 +20,11 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     @IBOutlet weak var markerButton: UIButton!
     @IBOutlet weak var ballButton: UIButton!
     
+    @IBOutlet weak var titleBar: UILabel!
+    
+    
     var procedure : Procedure?
+    var designator: String?
     
     //var currentProcedure : Procedure = nil
     var radiographImage : UIImage = #imageLiteral(resourceName: "defaultPhoto")
@@ -69,13 +73,13 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     }
     
     @IBAction func markerPressed(_ sender: Any) {
-        procedure?.designator = "Marker"
+        designator = "Marker"
         markerButton.backgroundColor = UIColor.cyan
         ballButton.backgroundColor = UIColor.white
     }
     
     @IBAction func ballPressed(_ sender: Any) {
-        procedure?.designator = "Ball"
+        designator = "Ball"
         ballButton.backgroundColor = UIColor.cyan
         markerButton.backgroundColor = UIColor.white
     }
@@ -96,7 +100,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         dateFormatter.dateStyle = DateFormatter.Style.long
         let currentDate = dateFormatter.string(from: date)
         
-        procedure = Procedure(n: name, r: photo, d: currentDate)
+        procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!)
         
         if segue.identifier == "Continue" {
             guard let procedureDataViewController = segue.destination as? RelativeDistanceViewController else {

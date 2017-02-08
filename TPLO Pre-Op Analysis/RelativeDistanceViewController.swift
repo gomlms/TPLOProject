@@ -54,6 +54,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
             
             if(procedure?.designator == "Marker"){
                 procedure?.pixelToMMRatio = distance / 100.0
+                
             } else {
                 procedure?.pixelToMMRatio = distance / 25.0
             }

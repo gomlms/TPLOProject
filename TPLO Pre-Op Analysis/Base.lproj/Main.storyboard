@@ -209,6 +209,7 @@
                         <outlet property="markerButton" destination="7Rn-Dd-3yG" id="GI9-Rv-Mji"/>
                         <outlet property="nameTextField" destination="HB4-NC-qqX" id="LrQ-eO-dUB"/>
                         <outlet property="nextButton" destination="wes-rf-GwG" id="ckY-fb-ecb"/>
+                        <outlet property="titleBar" destination="VH5-BG-xNh" id="oMN-OL-0gI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPy-dC-rYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -283,7 +284,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5j9-rR-TxG">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="3BC-Vh-yNj">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="3BC-Vh-yNj">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
@@ -397,11 +398,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NUp-Ys-z2z">
-                                <rect key="frame" x="37" y="79" width="300" height="1025"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NUp-Ys-z2z">
+                                <rect key="frame" x="37" y="79" width="300" height="561.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wDO-km-F1r">
-                                        <rect key="frame" x="26.5" y="0.0" width="247" height="182"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wDO-km-F1r">
+                                        <rect key="frame" x="26.5" y="0.0" width="247" height="166"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfT-Fy-UZQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="247" height="30"/>
@@ -411,28 +412,28 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hy-S9-ebl">
-                                                <rect key="frame" x="0.0" y="38" width="247" height="30"/>
+                                                <rect key="frame" x="0.0" y="34" width="247" height="30"/>
                                                 <state key="normal" title="Set Center of Talus (pt2)"/>
                                                 <connections>
                                                     <action selector="selectPoint2:" destination="ata-jN-aIj" eventType="touchUpInside" id="B0d-HL-rtq"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wry-do-o8J">
-                                                <rect key="frame" x="0.0" y="76" width="247" height="30"/>
+                                                <rect key="frame" x="0.0" y="68" width="247" height="30"/>
                                                 <state key="normal" title="Set Tibial Plateau Point Cranial (pt3)"/>
                                                 <connections>
                                                     <action selector="selectPoint3:" destination="ata-jN-aIj" eventType="touchUpInside" id="Ixu-4h-CgR"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1E-Hm-6Ot">
-                                                <rect key="frame" x="0.0" y="114" width="247" height="30"/>
+                                                <rect key="frame" x="0.0" y="102" width="247" height="30"/>
                                                 <state key="normal" title="Set Caudal (pt4)"/>
                                                 <connections>
                                                     <action selector="selectPoint4:" destination="ata-jN-aIj" eventType="touchUpInside" id="cCS-uN-2Vz"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EO-aT-Kz7">
-                                                <rect key="frame" x="0.0" y="152" width="247" height="30"/>
+                                                <rect key="frame" x="0.0" y="136" width="247" height="30"/>
                                                 <state key="normal" title="Set Proximal Tubercle (pt5)"/>
                                                 <connections>
                                                     <action selector="selectPoint5:" destination="ata-jN-aIj" eventType="touchUpInside" id="HeC-kd-UbQ"/>
@@ -440,13 +441,13 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="PYe-f5-5sm">
-                                        <rect key="frame" x="0.0" y="192" width="300" height="300"/>
+                                    <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYe-f5-5sm">
+                                        <rect key="frame" x="0.0" y="181" width="300" height="300"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83j-Av-U0i">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sC5-CL-CPo">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sC5-CL-CPo">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
@@ -473,7 +474,7 @@
                                                         <rect key="frame" x="54" y="99" width="25" height="25"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot5" translatesAutoresizingMaskIntoConstraints="NO" id="J05-yE-7fc" userLabel="Dot5">
+                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot5" translatesAutoresizingMaskIntoConstraints="NO" id="J05-yE-7fc" userLabel="Dot5">
                                                         <rect key="frame" x="138" y="99" width="25" height="25"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
@@ -500,22 +501,19 @@
                                         </connections>
                                     </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text will Go Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cM-ZW-AId">
-                                        <rect key="frame" x="85.5" y="502" width="129" height="20.5"/>
+                                        <rect key="frame" x="85.5" y="496" width="129" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvd-1T-cHG">
-                                        <rect key="frame" x="88.5" y="532.5" width="123" height="492.5"/>
+                                        <rect key="frame" x="88.5" y="531.5" width="123" height="30"/>
                                         <state key="normal" title="Confirm Selection"/>
                                         <connections>
                                             <action selector="confirmSelectionAction:" destination="ata-jN-aIj" eventType="touchUpInside" id="1ET-5p-BhN"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="4cM-ZW-AId" firstAttribute="centerY" secondItem="NUp-Ys-z2z" secondAttribute="centerY" id="TpF-2v-X2y"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -561,7 +559,7 @@
         <!--Saw Blade Size-->
         <scene sceneID="dh1-1C-i95">
             <objects>
-                <viewController id="hxi-XM-H8J" customClass="SawbladeViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hxi-XM-H8J" customClass="SawbladeViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ygq-AN-SVX"/>
                         <viewControllerLayoutGuide type="bottom" id="jzN-Xy-coO"/>
@@ -569,7 +567,59 @@
                     <view key="view" contentMode="scaleToFill" id="HZD-s6-yeO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Wd9-oS-WQm">
+                                <rect key="frame" x="37" y="79" width="300" height="300"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kP4-ae-sC2">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Bgm-Lr-1jV">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="eVJ-6m-XJv"/>
+                                                    <constraint firstAttribute="height" constant="300" id="laI-gn-oOL"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="Rbn-AZ-v0r"/>
+                                            <constraint firstAttribute="width" constant="300" id="UYC-be-zBr"/>
+                                            <constraint firstItem="Bgm-Lr-1jV" firstAttribute="leading" secondItem="kP4-ae-sC2" secondAttribute="leading" id="W8L-D2-3xa"/>
+                                            <constraint firstItem="Bgm-Lr-1jV" firstAttribute="top" secondItem="kP4-ae-sC2" secondAttribute="top" id="wab-1b-32P"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="3vU-LV-OY0"/>
+                                    <constraint firstAttribute="bottom" secondItem="kP4-ae-sC2" secondAttribute="bottom" id="DtW-EH-O73"/>
+                                    <constraint firstAttribute="trailing" secondItem="kP4-ae-sC2" secondAttribute="trailing" id="Vru-DO-wxW"/>
+                                    <constraint firstAttribute="width" constant="300" id="a12-QB-dUA"/>
+                                    <constraint firstItem="kP4-ae-sC2" firstAttribute="top" secondItem="Wd9-oS-WQm" secondAttribute="top" id="eVC-UE-76D"/>
+                                    <constraint firstItem="kP4-ae-sC2" firstAttribute="leading" secondItem="Wd9-oS-WQm" secondAttribute="leading" id="lJO-v8-p86"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="hxi-XM-H8J" id="K15-PG-CSi"/>
+                                </connections>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOd-w4-gUe">
+                                <rect key="frame" x="16" y="399" width="343" height="268"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aOd-w4-gUe" firstAttribute="top" secondItem="Wd9-oS-WQm" secondAttribute="bottom" constant="20" id="3xh-We-gfd"/>
+                            <constraint firstItem="aOd-w4-gUe" firstAttribute="leading" secondItem="HZD-s6-yeO" secondAttribute="leadingMargin" id="6HL-rb-xIu"/>
+                            <constraint firstItem="jzN-Xy-coO" firstAttribute="top" secondItem="aOd-w4-gUe" secondAttribute="bottom" id="C7G-u9-rQj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aOd-w4-gUe" secondAttribute="trailing" id="E2B-AQ-ojL"/>
+                            <constraint firstItem="Wd9-oS-WQm" firstAttribute="top" secondItem="Ygq-AN-SVX" secondAttribute="bottom" constant="15" id="Z0i-VF-JDr"/>
+                            <constraint firstItem="Wd9-oS-WQm" firstAttribute="centerX" secondItem="HZD-s6-yeO" secondAttribute="centerX" id="y9V-yP-j3j"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Saw Blade Size" id="DFd-Kf-LoC">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="NfV-ZK-OFf">
@@ -578,10 +628,16 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="innerView" destination="kP4-ae-sC2" id="8V3-Go-3q1"/>
+                        <outlet property="outputLabel" destination="aOd-w4-gUe" id="mEo-FN-YdI"/>
+                        <outlet property="radiographView" destination="Bgm-Lr-1jV" id="z7r-W6-x94"/>
+                        <outlet property="scrollView" destination="Wd9-oS-WQm" id="Jde-Is-unJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y3X-JJ-2IB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="3232"/>
+            <point key="canvasLocation" x="1821.5999999999999" y="3231.6341829085459"/>
         </scene>
         <!--Osteotomy-->
         <scene sceneID="h7n-KZ-6tR">
@@ -595,34 +651,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="O3E-KM-ir5">
-                                <rect key="frame" x="37" y="183" width="300" height="300"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdF-Yx-5s8">
+                                <rect key="frame" x="37" y="79" width="300" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="PRU-B6-umR"/>
-                                    <constraint firstAttribute="height" constant="300" id="g4C-4o-Dm7"/>
+                                    <constraint firstAttribute="height" constant="300" id="XHX-oJ-Eyk"/>
+                                    <constraint firstAttribute="width" constant="300" id="iei-X3-ZT1"/>
                                 </constraints>
-                            </imageView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="O3E-KM-ir5" firstAttribute="centerY" secondItem="Ylz-fX-dAu" secondAttribute="centerY" id="INq-WE-pbg"/>
-                            <constraint firstItem="O3E-KM-ir5" firstAttribute="centerX" secondItem="Ylz-fX-dAu" secondAttribute="centerX" id="Lh7-WJ-Qyk"/>
+                            <constraint firstItem="IdF-Yx-5s8" firstAttribute="centerX" secondItem="Ylz-fX-dAu" secondAttribute="centerX" id="fmM-vq-qae"/>
+                            <constraint firstItem="IdF-Yx-5s8" firstAttribute="top" secondItem="O1x-hf-DsC" secondAttribute="bottom" constant="15" id="qkU-nC-Zmu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Osteotomy" id="isu-MO-4zK"/>
-                    <connections>
-                        <outlet property="radiographImage" destination="O3E-KM-ir5" id="8eE-BT-0Kr"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UX0-8C-2Iv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="4101"/>
+            <point key="canvasLocation" x="1821.5999999999999" y="4100.5997001499254"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fsq-M4-sst">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tLu-V9-RXN" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yjb-Q7-fiE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
