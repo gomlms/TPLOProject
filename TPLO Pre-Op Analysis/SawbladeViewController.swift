@@ -12,9 +12,25 @@ class SawbladeViewController: UIViewController {
 
     //MARK: Properties
     var procedure : Procedure?
+    var sawbladeRadiusMM : Double?
+    var roundedRadius : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        procedure?.sawbladeRadius = sqrt(Double(pow(((procedure?.points[4].x)! - (procedure?.points[0].x)!), 2) * pow(((procedure?.points[4].y)! - (procedure?.points[0].y)!), 2)))
+        
+        sawbladeRadiusMM = (procedure?.sawbladeRadius)! * (procedure?.pixelToMMRatio)!
+        
+        if(sawbladeRadiusMM! >= 15.0 && sawbladeRadiusMM! < 16.5){
+            roundedRadius = 15
+        } else if(sawbladeRadiusMM! > 16.5 && sawbladeRadiusMM! <= 19.5) {
+            roundedRadius = 18
+        } else if(sawbladeRadiusMM! > 19.5 && sawbladeRadiusMM! <= 22.5) {
+            roundedRadius = 21
+        } else if(sawbladeRadiusMM! > 22.5 && sawbladeRadiusMM! <= 25.5) {
+            
+        }
 
         // Do any additional setup after loading the view.
     }

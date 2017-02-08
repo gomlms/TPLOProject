@@ -25,6 +25,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     @IBOutlet weak var point2Button: UIButton!
     @IBOutlet weak var point3Button: UIButton!
     @IBOutlet weak var point4Button: UIButton!
+    @IBOutlet weak var point5Button: UIButton!
     
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var confirmSelection: UIButton!
@@ -33,6 +34,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     @IBOutlet weak var dot2: UIImageView!
     @IBOutlet weak var dot3: UIImageView!
     @IBOutlet weak var dot4: UIImageView!
+    @IBOutlet weak var dot5: UIImageView!
     
     var radiographImage : UIImage?
     
@@ -89,6 +91,9 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         case 4:
             dot4.frame = CGRect(x: currentPoint.x - 12.5, y: currentPoint.y - 12.5, width: 25, height: 25)
             dot4.isHidden = false
+        case 5:
+            dot5.frame = CGRect(x: currentPoint.x - 12.5, y: currentPoint.y - 12.5, width: 25, height: 25)
+            dot5.isHidden = false
         default:
             fatalError()
         }
@@ -124,6 +129,13 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         currSelector = 4
     }
     
+    @IBAction func selectPoint5(_ sender: Any) {
+        disableSelectionButtons()
+        imageView.isUserInteractionEnabled = true
+        outputLabel.text = "Selecting for Point #5"
+        currSelector = 5
+    }
+    
     @IBAction func confirmSelectionAction(_ sender: Any) {
         confirmSelection.isEnabled = false
         enableSelectionButtons()
@@ -146,7 +158,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         
         procedure?.points = points
         
-        
+        nextController.procedure = procedure
     }
     
     //MARK: Private Methods
@@ -155,6 +167,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point2Button.isEnabled = false
         point3Button.isEnabled = false
         point4Button.isEnabled = false
+        point5Button.isEnabled = false
     }
     
     private func enableSelectionButtons() {
@@ -162,6 +175,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point2Button.isEnabled = true
         point3Button.isEnabled = true
         point4Button.isEnabled = true
+        point5Button.isEnabled = true
     }
     
 

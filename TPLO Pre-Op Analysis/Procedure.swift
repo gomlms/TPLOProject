@@ -17,6 +17,7 @@ class Procedure: NSObject, NSCoding {
     var radiograph : UIImage?
     var points = [CGPoint]()
     var tpa : Double?
+    var sawbladeRadius : Double?
     var sawbladeSize : Int?
     var sawCatalogNumber : String?
     var radius : Double?

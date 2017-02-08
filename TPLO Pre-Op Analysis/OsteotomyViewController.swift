@@ -24,6 +24,7 @@ class OsteotomyViewController: UIViewController {
         
         maskLayer.path = maskPath?.cgPath
         maskLayer.fillRule = kCAFillRuleEvenOdd
+        radiographImage.image = procedure?.radiograph
         radiographImage.layer.mask = maskLayer
         // Do any additional setup after loading the view.
     }
@@ -72,7 +73,7 @@ class OsteotomyViewController: UIViewController {
         
         sliceLayer.borderWidth = 10.0
         
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        //let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return polygon
