@@ -14,17 +14,23 @@ class OsteotomyViewController: UIViewController {
     var procedure : Procedure?
     var maskImage : UIImage?
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var radiographImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let maskPath = drawMaskImage(size: (procedure?.radiograph?.size)!)
+        guard let procedure = procedure else {
+            fatalError("Procedure was not correctly passed to Osteotomy Controller")
+        }
+        
+        let maskPath = drawMaskImage(size: (procedure.radiograph?.size)!)
         let maskLayer = CAShapeLayer()
         
         maskLayer.path = maskPath?.cgPath
         maskLayer.fillRule = kCAFillRuleEvenOdd
-        radiographImage.image = procedure?.radiograph
+        radiographImage.image = procedure.radiograph
         radiographImage.layer.mask = maskLayer
         // Do any additional setup after loading the view.
     }

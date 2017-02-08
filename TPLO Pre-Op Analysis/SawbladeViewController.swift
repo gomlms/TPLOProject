@@ -59,7 +59,7 @@ class SawbladeViewController: UIViewController {
         
         radiographView.layer.addSublayer(circleLayer)
         
-        outputLabel.text = "\(roundedRadius!)mm Size Sawblade"
+        outputLabel.text = "\(roundedRadius!)mm Size Sawblade and \(sawbladeRadiusMM)mm and \(procedure?.sawbladeRadius) pixels"
 
         // Do any additional setup after loading the view.
     }
@@ -95,13 +95,11 @@ class SawbladeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if(segue.identifier == "Continue"){
-            guard let nextController = segue.destination as? OsteotomyViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            nextController.procedure = procedure
+        guard let nextController = segue.destination as? OsteotomyViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
         }
+            
+        nextController.procedure = procedure
     }
 
 }

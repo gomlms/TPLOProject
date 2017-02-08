@@ -642,7 +642,7 @@
         <!--Osteotomy-->
         <scene sceneID="h7n-KZ-6tR">
             <objects>
-                <viewController id="6Fb-LK-qoH" customClass="OsteotomyViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="6Fb-LK-qoH" customClass="OsteotomyViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O1x-hf-DsC"/>
                         <viewControllerLayoutGuide type="bottom" id="mFj-Qn-zQ8"/>
@@ -651,21 +651,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdF-Yx-5s8">
+                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="q6M-F7-nKC">
                                 <rect key="frame" x="37" y="79" width="300" height="300"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8N-WD-qkY">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="BwQ-yn-KzI">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="qx3-Uf-W3x"/>
+                                                    <constraint firstAttribute="width" constant="300" id="z2V-BI-cNC"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="BwQ-yn-KzI" firstAttribute="leading" secondItem="L8N-WD-qkY" secondAttribute="leading" id="0AW-cH-8Nc"/>
+                                            <constraint firstAttribute="width" constant="300" id="PmU-E3-VYz"/>
+                                            <constraint firstItem="BwQ-yn-KzI" firstAttribute="top" secondItem="L8N-WD-qkY" secondAttribute="top" id="U9m-IZ-1pX"/>
+                                            <constraint firstAttribute="height" constant="300" id="hK2-qY-Eje"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="XHX-oJ-Eyk"/>
-                                    <constraint firstAttribute="width" constant="300" id="iei-X3-ZT1"/>
+                                    <constraint firstAttribute="trailing" secondItem="L8N-WD-qkY" secondAttribute="trailing" id="1gs-Oe-UyW"/>
+                                    <constraint firstAttribute="bottom" secondItem="L8N-WD-qkY" secondAttribute="bottom" id="4V2-hh-hNf"/>
+                                    <constraint firstAttribute="width" constant="300" id="Wew-fr-RRL"/>
+                                    <constraint firstItem="L8N-WD-qkY" firstAttribute="top" secondItem="q6M-F7-nKC" secondAttribute="top" id="Y6M-Ap-9hs"/>
+                                    <constraint firstAttribute="height" constant="300" id="u2F-ak-RgP"/>
+                                    <constraint firstItem="L8N-WD-qkY" firstAttribute="leading" secondItem="q6M-F7-nKC" secondAttribute="leading" id="wAA-k6-bLF"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="6Fb-LK-qoH" id="FR6-7o-PrC"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IdF-Yx-5s8" firstAttribute="centerX" secondItem="Ylz-fX-dAu" secondAttribute="centerX" id="fmM-vq-qae"/>
-                            <constraint firstItem="IdF-Yx-5s8" firstAttribute="top" secondItem="O1x-hf-DsC" secondAttribute="bottom" constant="15" id="qkU-nC-Zmu"/>
+                            <constraint firstItem="q6M-F7-nKC" firstAttribute="centerX" secondItem="Ylz-fX-dAu" secondAttribute="centerX" id="M4J-GL-kw6"/>
+                            <constraint firstItem="q6M-F7-nKC" firstAttribute="top" secondItem="O1x-hf-DsC" secondAttribute="bottom" constant="15" id="R1M-Xx-KRi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Osteotomy" id="isu-MO-4zK"/>
+                    <connections>
+                        <outlet property="innerView" destination="L8N-WD-qkY" id="KL1-nL-6Y3"/>
+                        <outlet property="radiographImage" destination="BwQ-yn-KzI" id="fLU-2Q-gaI"/>
+                        <outlet property="scrollView" destination="q6M-F7-nKC" id="oFX-ay-qeQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UX0-8C-2Iv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
