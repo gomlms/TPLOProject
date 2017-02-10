@@ -32,7 +32,7 @@ class SawbladeViewController: UIViewController, UIScrollViewDelegate {
         
         sawbladeRadiusMM = (procedure?.sawbladeRadius)! * (procedure?.pixelToMMRatio)!
         
-        if(sawbladeRadiusMM! >= 15.0 && sawbladeRadiusMM! < 16.5){
+        if(sawbladeRadiusMM! < 16.5){
             roundedRadius = 15
         } else if(sawbladeRadiusMM! > 16.5 && sawbladeRadiusMM! <= 19.5) {
             roundedRadius = 18

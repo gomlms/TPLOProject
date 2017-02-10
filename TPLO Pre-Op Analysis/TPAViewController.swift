@@ -50,7 +50,7 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         procedure?.tpa = getAngle()
         let angle = procedure?.tpa
         
-        tpaLabel.text = "TPA: \(angle)°"
+        tpaLabel.text = "TPA: \(angle!)°"
         
         // Do any additional setup after loading the view.
     

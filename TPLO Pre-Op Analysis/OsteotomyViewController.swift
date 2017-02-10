@@ -59,10 +59,10 @@ class OsteotomyViewController: UIViewController {
         let polygon = UIBezierPath()
         
         polygon.move(to: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!))
-        polygon.addLine(to: CGPoint(x: (procedure?.points[1].x)!, y: (procedure?.points[1].y)!))
-        polygon.addLine(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[3].x)!, y: (procedure?.points[3].y)!))
+        polygon.addLine(to: CGPoint(x: (procedure?.points[1].x)!, y: (procedure?.points[1].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))
+        polygon.addLine(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!))
         
         polygon.close()
