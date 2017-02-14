@@ -46,6 +46,8 @@ class SawbladeViewController: UIViewController, UIScrollViewDelegate {
             roundedRadius = 30
         }
         
+        procedure?.roundedRadius = roundedRadius
+        
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
         

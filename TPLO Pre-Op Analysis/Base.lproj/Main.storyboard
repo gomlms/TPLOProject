@@ -431,22 +431,13 @@
                                                 <rect key="frame" x="137.5" y="137" width="25" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DF6-zn-gtp">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="Bwc-eO-vjl"/>
-                                            <constraint firstAttribute="trailing" secondItem="DF6-zn-gtp" secondAttribute="trailing" constant="175" id="JYJ-l5-stG"/>
-                                            <constraint firstItem="DF6-zn-gtp" firstAttribute="leading" secondItem="qd4-Pi-uXs" secondAttribute="leading" id="Khd-Ju-Rvu"/>
                                             <constraint firstItem="Odp-q7-79z" firstAttribute="top" secondItem="qd4-Pi-uXs" secondAttribute="top" id="Nad-RR-p9i"/>
                                             <constraint firstAttribute="height" constant="300" id="Zzc-67-1AR"/>
                                             <constraint firstItem="Odp-q7-79z" firstAttribute="leading" secondItem="qd4-Pi-uXs" secondAttribute="leading" id="p6H-hz-gTC"/>
-                                            <constraint firstItem="DF6-zn-gtp" firstAttribute="top" secondItem="qd4-Pi-uXs" secondAttribute="top" id="rAm-Yh-mPR"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -471,12 +462,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DF6-zn-gtp">
+                                <rect key="frame" x="125" y="425" width="125" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vZy-w0-L4J" firstAttribute="top" secondItem="De7-4I-FBq" secondAttribute="bottom" constant="20" id="1hs-r5-ubd"/>
+                            <constraint firstItem="DF6-zn-gtp" firstAttribute="top" secondItem="3Eo-EZ-bZh" secondAttribute="top" constant="425" id="6Gr-Ja-Voa"/>
+                            <constraint firstItem="DF6-zn-gtp" firstAttribute="leading" secondItem="3Eo-EZ-bZh" secondAttribute="leading" constant="125" id="9kE-Ui-kb8"/>
                             <constraint firstItem="De7-4I-FBq" firstAttribute="top" secondItem="tcM-7C-J9j" secondAttribute="bottom" constant="15" id="ITy-M8-ZCn"/>
                             <constraint firstItem="De7-4I-FBq" firstAttribute="centerX" secondItem="3Eo-EZ-bZh" secondAttribute="centerX" id="d9o-lc-5TH"/>
+                            <constraint firstAttribute="trailing" secondItem="DF6-zn-gtp" secondAttribute="trailing" constant="125" id="e4h-Tj-9Dy"/>
                             <constraint firstItem="vZy-w0-L4J" firstAttribute="centerX" secondItem="3Eo-EZ-bZh" secondAttribute="centerX" id="fdu-HB-3Po"/>
                             <constraint firstItem="cEa-Id-iNN" firstAttribute="top" secondItem="vZy-w0-L4J" secondAttribute="bottom" id="zg0-1v-OQx"/>
                         </constraints>
@@ -806,16 +806,26 @@
                                     <outlet property="delegate" destination="6Fb-LK-qoH" id="FR6-7o-PrC"/>
                                 </connections>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUe-5B-rxQ">
+                                <rect key="frame" x="16" y="596" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="q6M-F7-nKC" firstAttribute="centerX" secondItem="Ylz-fX-dAu" secondAttribute="centerX" id="M4J-GL-kw6"/>
                             <constraint firstItem="q6M-F7-nKC" firstAttribute="top" secondItem="O1x-hf-DsC" secondAttribute="bottom" constant="15" id="R1M-Xx-KRi"/>
+                            <constraint firstItem="mFj-Qn-zQ8" firstAttribute="top" secondItem="tUe-5B-rxQ" secondAttribute="bottom" constant="50" id="TCx-DR-2xp"/>
+                            <constraint firstItem="tUe-5B-rxQ" firstAttribute="leading" secondItem="Ylz-fX-dAu" secondAttribute="leadingMargin" id="f3o-nu-ZnS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tUe-5B-rxQ" secondAttribute="trailing" id="ikE-u2-tg8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Osteotomy" id="isu-MO-4zK"/>
                     <connections>
                         <outlet property="innerView" destination="L8N-WD-qkY" id="KL1-nL-6Y3"/>
+                        <outlet property="outputLabel" destination="tUe-5B-rxQ" id="BoA-Rw-05F"/>
                         <outlet property="radiographImage" destination="BwQ-yn-KzI" id="fLU-2Q-gaI"/>
                         <outlet property="scrollView" destination="q6M-F7-nKC" id="oFX-ay-qeQ"/>
                     </connections>

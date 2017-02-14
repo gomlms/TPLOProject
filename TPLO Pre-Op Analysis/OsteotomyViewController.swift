@@ -13,10 +13,14 @@ class OsteotomyViewController: UIViewController {
     //MARK: Properties
     var procedure : Procedure?
     var maskImage : UIImage?
+    var angleWith4 : CGFloat?
+    var angleWith5 : CGFloat?
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var radiographImage: UIImageView!
+    
+    @IBOutlet weak var outputLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,12 +62,16 @@ class OsteotomyViewController: UIViewController {
         
         let polygon = UIBezierPath()
         
-        polygon.move(to: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!))
+        polygon.move(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[3].x)!, y: (procedure?.points[3].y)!))
-        polygon.addLine(to: CGPoint(x: (procedure?.points[1].x)!, y: (procedure?.points[1].y)!))
+        polygon.addLine(to: CGPoint(x: (procedure?.points[3].x)!, y: (getYOnCircle(xPoint: (procedure?.points[3].x)!))!))
+        
+        _ = getXOnCircle(yPoint: (procedure?.points[4].y)!);
+        
+        polygon.addArc(withCenter: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!), radius: CGFloat(Float((procedure?.roundedRadius)!)), startAngle: angleWith4!, endAngle: angleWith5!, clockwise: true)
+        
+        polygon.move(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))
-        polygon.addLine(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
-        polygon.addLine(to: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!))
         
         polygon.close()
         polygon.stroke()
@@ -85,4 +93,52 @@ class OsteotomyViewController: UIViewController {
         return polygon
     }
 
+    func getXOnCircle(yPoint : CGFloat) -> CGFloat? {
+        var xPoint : CGFloat = 0
+        var angle : Double = 1.0
+
+        while(angle <= 360){
+            var tempX = Double((procedure?.sawbladeRadius)! * cos(angle * Double.pi / 180))
+            tempX += Double((procedure?.points[0].x)!)
+            
+            var tempY = Double((procedure?.sawbladeRadius)! * sin(angle * Double.pi / 180))
+            tempY += Double((procedure?.points[0].y)!)
+            
+            outputLabel.text = ("\(abs(CGFloat(tempY) - yPoint))")
+            if(abs(CGFloat(tempY) - yPoint) < 1){
+                xPoint = CGFloat(tempX)
+                break;
+            }
+            
+            angle += 1
+        }
+        
+        angleWith5 = CGFloat(angle);
+        
+        return xPoint
+    }
+    
+    func getYOnCircle(xPoint : CGFloat) -> CGFloat? {
+        var yPoint : CGFloat = 0
+        var angle : Double = 1.0
+        
+        while(angle <= 360){
+            var tempY = Double((procedure?.sawbladeRadius)! * sin(angle * Double.pi / 180))
+            tempY += Double((procedure?.points[0].y)!)
+            
+            var tempX = Double((procedure?.sawbladeRadius)! * cos(angle * Double.pi / 180))
+            tempX += Double((procedure?.points[0].x)!)
+            
+            if(abs(CGFloat(tempX) - xPoint) < 1){
+                yPoint = CGFloat(tempY)
+                break;
+            }
+            
+            angle += 1
+        }
+        
+        angleWith4 = CGFloat(angle);
+        
+        return yPoint
+    }
 }

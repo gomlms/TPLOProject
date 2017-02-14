@@ -26,6 +26,7 @@ class Procedure: NSObject, NSCoding {
     var plateCatalogNumber : String?
     var pixelToMMRatio : Double?
     var designator : String?
+    var roundedRadius : Int?
     
     
     //MARK: Archiving Paths
