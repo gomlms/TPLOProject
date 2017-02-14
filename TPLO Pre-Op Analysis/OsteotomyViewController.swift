@@ -68,7 +68,7 @@ class OsteotomyViewController: UIViewController {
         
         _ = getXOnCircle(yPoint: (procedure?.points[4].y)!);
         
-        polygon.addArc(withCenter: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!), radius: CGFloat(Float((procedure?.roundedRadius)!)), startAngle: angleWith4!, endAngle: angleWith5!, clockwise: true)
+        polygon.addArc(withCenter: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!), radius: CGFloat(Float((procedure?.roundedRadius)!)), startAngle: angleWith4!, endAngle: CGFloat.pi, clockwise: true)
         
         polygon.move(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))
@@ -78,6 +78,8 @@ class OsteotomyViewController: UIViewController {
         
         //Fills shape with black
         polygon.fill()
+        
+        outputLabel.text = ("\(angleWith5!)")
         
         let sliceLayer = CALayer()
         sliceLayer.accessibilityPath = polygon
@@ -104,16 +106,17 @@ class OsteotomyViewController: UIViewController {
             var tempY = Double((procedure?.sawbladeRadius)! * sin(angle * Double.pi / 180))
             tempY += Double((procedure?.points[0].y)!)
             
-            outputLabel.text = ("\(abs(CGFloat(tempY) - yPoint))")
-            if(abs(CGFloat(tempY) - yPoint) < 1){
+            if(abs(CGFloat(tempY) - yPoint) < 0.5){
                 xPoint = CGFloat(tempX)
-                break;
+                if(CGFloat(angle * Double.pi / 180) > 1.4){
+                    break;
+                }
             }
             
-            angle += 1
+            angle += 0.5
         }
         
-        angleWith5 = CGFloat(angle);
+        angleWith5 = CGFloat(angle * Double.pi / 180);
         
         return xPoint
     }
@@ -129,15 +132,15 @@ class OsteotomyViewController: UIViewController {
             var tempX = Double((procedure?.sawbladeRadius)! * cos(angle * Double.pi / 180))
             tempX += Double((procedure?.points[0].x)!)
             
-            if(abs(CGFloat(tempX) - xPoint) < 1){
+            if(abs(CGFloat(tempX) - xPoint) < 0.5){
                 yPoint = CGFloat(tempY)
                 break;
             }
             
-            angle += 1
+            angle += 0.5
         }
         
-        angleWith4 = CGFloat(angle);
+        angleWith4 = CGFloat(angle * Double.pi / 180);
         
         return yPoint
     }
