@@ -21,12 +21,12 @@ class Procedure: NSObject, NSCoding {
     var sawbladeRadius : Double?
     var sawbladeSize : Int?
     var sawCatalogNumber : String?
-    var radius : Double?
     var chordLength : Double?
     var plateCatalogNumber : String?
     var pixelToMMRatio : Double?
     var designator : String?
     var roundedRadius : Int?
+    var alpha : Double?
     
     
     //MARK: Archiving Paths

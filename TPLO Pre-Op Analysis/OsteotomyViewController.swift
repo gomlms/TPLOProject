@@ -16,11 +16,16 @@ class OsteotomyViewController: UIViewController {
     var angleWith4 : CGFloat?
     var angleWith5 : CGFloat?
     
+    let imagePixelWidth : Double = 300
+    let imagePixelHeight : Double = 300
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var radiographImage: UIImageView!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     @IBOutlet weak var outputLabel: UILabel!
+    @IBOutlet weak var chordLengthLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +39,21 @@ class OsteotomyViewController: UIViewController {
         
         maskLayer.path = maskPath?.cgPath
         maskLayer.fillRule = kCAFillRuleEvenOdd
+        
+        backgroundImage.image = procedure.radiograph
+        
         radiographImage.image = procedure.radiograph
         radiographImage.layer.mask = maskLayer
-        // Do any additional setup after loading the view.
+        
+        radiographImage.layer.anchorPoint = CGPoint(procedure.points[0].x / imagePixelWidth, procedure.points[0].y / imagePixelHeight)
+        radiographImage.transform = CGAffineTransform.init(rotationAngle: )
+        
+        procedure.alpha = procedure.tpa - 5.0
+        procedure.chordLength = Double(round(2 * procedure.sawbladeRadius! * sin(procedure.alpha! / 2) * 10)/10)
+        
+        chordLengthLabel.text = "Osteotomy Rotation = \(procedure.chordLength!)mm"
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
