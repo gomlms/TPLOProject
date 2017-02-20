@@ -15,14 +15,14 @@ class OsteotomyViewController: UIViewController {
     var maskImage : UIImage?
     var angleWith4 : CGFloat?
     var angleWith5 : CGFloat?
-    
-    let imagePixelWidth : Double = 300
-    let imagePixelHeight : Double = 300
+
+    var tempAngle : Double = 0;
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var radiographImage: UIImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var rotatingView: UIView!
     
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var chordLengthLabel: UILabel!
@@ -45,11 +45,16 @@ class OsteotomyViewController: UIViewController {
         radiographImage.image = procedure.radiograph
         radiographImage.layer.mask = maskLayer
         
-        radiographImage.layer.anchorPoint = CGPoint(procedure.points[0].x / imagePixelWidth, procedure.points[0].y / imagePixelHeight)
-        radiographImage.transform = CGAffineTransform.init(rotationAngle: )
-        
-        procedure.alpha = procedure.tpa - 5.0
+        procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
         procedure.chordLength = Double(round(2 * procedure.sawbladeRadius! * sin(procedure.alpha! / 2) * 10)/10)
+        
+        tempAngle = sin(procedure.alpha! / 2)
+        //rotatingView.transform = CGAffineTransform(rotationAngle: CGFloat(tempAngle))
+        
+        /*radiographImage.layer.anchorPoint = CGPoint(x: procedure.points[0].x / (radiographImage.image?.size.width)!, y: procedure.points[0].y / (radiographImage.image?.size.height)!)
+        
+        
+        radiographImage.transform = radiographImage.transform.rotated(by: CGFloat(tempAngle))*/
         
         chordLengthLabel.text = "Osteotomy Rotation = \(procedure.chordLength!)mm"
         
@@ -71,6 +76,12 @@ class OsteotomyViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    @IBAction func opaqueButton(_ sender: Any) {
+        rotatingView.transform = CGAffineTransform(rotationAngle: CGFloat(tempAngle))
+        tempAngle = -tempAngle
+    }
     
     func drawMaskImage(size: CGSize) -> UIBezierPath? {
         let opaque = false
