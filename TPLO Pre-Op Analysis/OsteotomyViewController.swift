@@ -34,29 +34,40 @@ class OsteotomyViewController: UIViewController {
             fatalError("Procedure was not correctly passed to Osteotomy Controller")
         }
         
+        //Creating Part that is being rotated
+        
         let maskPath = drawMaskImage(size: (procedure.radiograph?.size)!)
+
         let maskLayer = CAShapeLayer()
         
         maskLayer.path = maskPath?.cgPath
         maskLayer.fillRule = kCAFillRuleEvenOdd
         
-        backgroundImage.image = procedure.radiograph
-        
         radiographImage.image = procedure.radiograph
         radiographImage.layer.mask = maskLayer
+        
+        //Cropping out portion of original
+        
+        backgroundImage.image = procedure.radiograph
+        let subLayer = CAShapeLayer()
+        subLayer.path = drawMaskImage(size: (procedure.radiograph?.size)!)?.cgPath
+        subLayer.strokeColor = UIColor.gray.cgColor
+        subLayer.lineWidth = 0.1
+        subLayer.fillColor = UIColor.gray.cgColor
+        
+        backgroundImage.layer.addSublayer(subLayer)
+        
         
         procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
         procedure.chordLength = Double(round(2 * procedure.sawbladeRadius! * sin(procedure.alpha! / 2) * 10)/10)
         
         tempAngle = sin(procedure.alpha! / 2)
-        //rotatingView.transform = CGAffineTransform(rotationAngle: CGFloat(tempAngle))
         
-        /*radiographImage.layer.anchorPoint = CGPoint(x: procedure.points[0].x / (radiographImage.image?.size.width)!, y: procedure.points[0].y / (radiographImage.image?.size.height)!)
+        radiographImage.layer.anchorPoint = CGPoint(x: CGFloat(procedure.points[0].x / radiographImage.frame.width), y: CGFloat(procedure.points[0].y) / radiographImage.frame.height)
+        radiographImage.transform = CGAffineTransform.init(rotationAngle: CGFloat(-tempAngle))
         
         
-        radiographImage.transform = radiographImage.transform.rotated(by: CGFloat(tempAngle))*/
-        
-        chordLengthLabel.text = "Osteotomy Rotation = \(procedure.chordLength!)mm"
+        chordLengthLabel.text = "Osteotomy Rotation = \(procedure.chordLength!)mm and first point = \(CGFloat(procedure.points[0].x / radiographImage.frame.width)) and \((procedure.points[0].y) / radiographImage.frame.height) vs \(self.view.frame.width) and \(self.view.frame.height)"
         
         
     }
@@ -79,8 +90,8 @@ class OsteotomyViewController: UIViewController {
     
     
     @IBAction func opaqueButton(_ sender: Any) {
-        rotatingView.transform = CGAffineTransform(rotationAngle: CGFloat(tempAngle))
         tempAngle = -tempAngle
+        radiographImage.transform = CGAffineTransform.init(rotationAngle: CGFloat(-tempAngle))
     }
     
     func drawMaskImage(size: CGSize) -> UIBezierPath? {
@@ -91,6 +102,7 @@ class OsteotomyViewController: UIViewController {
         let polygon = UIBezierPath()
         
         polygon.move(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))
+        polygon.addLine(to: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[3].x)!, y: (procedure?.points[3].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[3].x)!, y: (getYOnCircle(xPoint: (procedure?.points[3].x)!))!))
         
