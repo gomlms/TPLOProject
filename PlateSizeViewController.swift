@@ -1,92 +1,65 @@
 //
-//  OsteotomyViewController.swift
+//  PlateSizeViewController.swift
 //  TPLO Pre-Op Analysis
 //
-//  Created by Max Sidebotham on 2/6/17.
+//  Created by Max Sidebotham on 2/24/17.
 //  Copyright © 2017 Preda Studios. All rights reserved.
 //
 
 import UIKit
 
-class OsteotomyViewController: UIViewController {
-
-    //MARK: Properties
+class PlateSizeViewController: UIViewController {
+    
+    @IBOutlet weak var rotatingView: UIView!
+    @IBOutlet weak var outerView: UIView!
+    @IBOutlet weak var radiographView: UIImageView!
+    @IBOutlet weak var backgroundView: UIImageView!
     var procedure : Procedure?
-    var maskImage : UIImage?
+    
+    var tempAngle : Double = 0
     var angleWith4 : CGFloat?
     var angleWith5 : CGFloat?
+    var maskImage : UIImage?
 
-    var tempAngle : Double = 0;
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var innerView: UIView!
-    @IBOutlet weak var radiographImage: UIImageView!
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var rotatingView: UIView!
-    
-    @IBOutlet weak var chordLengthLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         guard let procedure = procedure else {
-            fatalError("Procedure was not correctly passed to Osteotomy Controller")
+            fatalError("Procedure was not correctly passed to Plate Size Controller")
         }
         
-        //Creating Part that is being rotated
-        
         let maskPath = drawMaskImage(size: (procedure.radiograph?.size)!)
-
+        
         let maskLayer = CAShapeLayer()
         
         maskLayer.path = maskPath?.cgPath
         maskLayer.fillRule = kCAFillRuleEvenOdd
         
-        radiographImage.image = procedure.radiograph
-        radiographImage.layer.mask = maskLayer
+        radiographView.image = procedure.radiograph
+        radiographView.layer.mask = maskLayer
         
         //Cropping out portion of original
+
         
-        backgroundImage.image = procedure.radiograph
+        backgroundView.image = procedure.radiograph
         let subLayer = CAShapeLayer()
         subLayer.path = drawMaskImage(size: (procedure.radiograph?.size)!)?.cgPath
         subLayer.strokeColor = UIColor.gray.cgColor
         subLayer.lineWidth = 0.1
         subLayer.fillColor = UIColor.gray.cgColor
         
-        backgroundImage.layer.addSublayer(subLayer)
-        
+        backgroundView.layer.addSublayer(subLayer)
         
         procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
         procedure.chordLength = Double(round(2 * procedure.sawbladeRadius! * sin(procedure.alpha! / 2) * 10)/10)
         
         tempAngle = sin(procedure.alpha! / 2)
         
-        radiographImage.layer.anchorPoint = CGPoint(x: CGFloat(procedure.points[0].x / radiographImage.frame.width), y: CGFloat(procedure.points[0].y) / radiographImage.frame.height)
-        radiographImage.transform = radiographImage.transform.rotated(by: CGFloat(-tempAngle))
+        radiographView.layer.anchorPoint = CGPoint(x: CGFloat(procedure.points[0].x / radiographView.frame.width), y: CGFloat(procedure.points[0].y) / radiographView.frame.height)
+        radiographView.transform = radiographView.transform.rotated(by: CGFloat(-tempAngle))
         rotatingView.transform = rotatingView.transform.translatedBy(x: -150 + procedure.points[0].x, y: -150 + procedure.points[0].y)
-        
-        
-        chordLengthLabel.text = "Osteotomy Rotation = \(procedure.chordLength!)mm"
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        guard let nextController = segue.destination as? PlateSizeViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
-        }
-        
-        nextController.procedure = procedure
+        // Do any additional setup after loading the view.
     }
     
     func drawMaskImage(size: CGSize) -> UIBezierPath? {
@@ -128,10 +101,28 @@ class OsteotomyViewController: UIViewController {
         return polygon
     }
 
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+    
     func getXOnCircle(yPoint : CGFloat) -> CGFloat? {
         var xPoint : CGFloat = 0
         var angle : Double = 1.0
-
+        
         while(angle <= 360){
             var tempX = Double((procedure?.sawbladeRadius)! * cos(angle * Double.pi / 180))
             tempX += Double((procedure?.points[0].x)!)

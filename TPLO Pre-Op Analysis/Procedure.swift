@@ -27,6 +27,7 @@ class Procedure: NSObject, NSCoding {
     var designator : String?
     var roundedRadius : Int?
     var alpha : Double?
+    var rotatedRadiograph : UIView?
     
     
     //MARK: Archiving Paths
