@@ -906,6 +906,11 @@
                                             <constraint firstAttribute="width" constant="300" id="ov6-L1-oTg"/>
                                             <constraint firstItem="xag-vv-cW7" firstAttribute="leading" secondItem="AdG-pb-a2S" secondAttribute="leading" id="vE7-ae-7Yy"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="xag-vv-cW7"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
