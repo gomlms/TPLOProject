@@ -890,25 +890,21 @@
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="AdG-pb-a2S">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="xag-vv-cW7">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="aoo-67-zTK" userLabel="Radiograph View">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                                                <gestureRecognizers/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="300" id="4C5-dq-Gy9"/>
-                                                    <constraint firstAttribute="width" constant="300" id="R7l-YB-CxX"/>
+                                                    <constraint firstAttribute="height" constant="300" id="3SW-0a-OVw"/>
+                                                    <constraint firstAttribute="width" constant="300" id="xsq-ex-o6E"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="aoo-67-zTK" firstAttribute="leading" secondItem="AdG-pb-a2S" secondAttribute="leading" id="3lG-n6-Hqp"/>
                                             <constraint firstAttribute="height" constant="300" id="YPz-F3-jcV"/>
+                                            <constraint firstItem="aoo-67-zTK" firstAttribute="top" secondItem="AdG-pb-a2S" secondAttribute="top" id="f9H-GM-CAj"/>
                                             <constraint firstAttribute="width" constant="300" id="ov6-L1-oTg"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="subviews">
-                                                <exclude reference="xag-vv-cW7"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -938,7 +934,7 @@
                     <connections>
                         <outlet property="backgroundView" destination="E73-yT-q6b" id="Hb7-j6-DIS"/>
                         <outlet property="outerView" destination="eoZ-Ek-t6o" id="7QC-Hu-7qW"/>
-                        <outlet property="radiographView" destination="xag-vv-cW7" id="Xx8-y4-bNG"/>
+                        <outlet property="radiographView" destination="aoo-67-zTK" id="rol-rq-dj1"/>
                         <outlet property="rotatingView" destination="AdG-pb-a2S" id="K8C-42-db7"/>
                     </connections>
                 </viewController>
