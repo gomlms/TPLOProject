@@ -115,7 +115,7 @@
         <!--Summary-->
         <scene sceneID="K1w-LQ-LJ1">
             <objects>
-                <viewController id="bm3-ib-QkO" sceneMemberID="viewController">
+                <viewController id="bm3-ib-QkO" customClass="SummaryViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e3R-U4-IV0"/>
                         <viewControllerLayoutGuide type="bottom" id="OVu-WN-x2v"/>
@@ -123,9 +123,32 @@
                     <view key="view" contentMode="scaleToFill" id="vJq-ai-QzP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQ3-1H-aTN">
+                                <rect key="frame" x="36" y="60" width="323" height="607"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RQ3-1H-aTN" firstAttribute="leading" secondItem="vJq-ai-QzP" secondAttribute="leadingMargin" constant="20" id="8pY-vp-V9L"/>
+                            <constraint firstItem="RQ3-1H-aTN" firstAttribute="top" secondItem="e3R-U4-IV0" secondAttribute="bottom" constant="40" id="VQ2-57-qaK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RQ3-1H-aTN" secondAttribute="trailing" id="b8d-R2-qgz"/>
+                            <constraint firstItem="OVu-WN-x2v" firstAttribute="top" secondItem="RQ3-1H-aTN" secondAttribute="bottom" id="gJQ-vT-8UM"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Summary" id="eCF-op-yBy"/>
+                    <navigationItem key="navigationItem" title="Summary" id="eCF-op-yBy">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="siC-Wz-IWP">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="1a7-zG-5Jk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="outputLabel" destination="RQ3-1H-aTN" id="skT-f1-g4T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nwU-dY-Pva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -399,7 +422,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="De7-4I-FBq">
-                                <rect key="frame" x="37.5" y="79" width="300" height="300"/>
+                                <rect key="frame" x="37.5" y="35" width="300" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qd4-Pi-uXs">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -454,7 +477,7 @@
                                 </connections>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We have generated the Tibial Plateau Angle for you" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZy-w0-L4J">
-                                <rect key="frame" x="16" y="399" width="343" height="268"/>
+                                <rect key="frame" x="16" y="355" width="343" height="312"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="KsC-ir-jhj"/>
                                 </constraints>
@@ -688,7 +711,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Wd9-oS-WQm">
-                                <rect key="frame" x="37.5" y="79" width="300" height="300"/>
+                                <rect key="frame" x="37.5" y="35" width="300" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kP4-ae-sC2">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -724,7 +747,7 @@
                                 </connections>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOd-w4-gUe">
-                                <rect key="frame" x="16" y="399" width="343" height="268"/>
+                                <rect key="frame" x="16" y="355" width="343" height="312"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -771,7 +794,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="q6M-F7-nKC">
-                                <rect key="frame" x="37.5" y="79" width="300" height="300"/>
+                                <rect key="frame" x="38" y="35" width="300" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8N-WD-qkY">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -830,7 +853,7 @@
                                 </connections>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yN-Jk-BbU">
-                                <rect key="frame" x="16" y="483" width="343" height="21"/>
+                                <rect key="frame" x="16" y="439" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -929,7 +952,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Plate Size" id="hBw-81-ib8">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="ZE6-7W-b8l"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="ZE6-7W-b8l">
+                            <connections>
+                                <segue destination="bm3-ib-QkO" kind="show" id="ogz-KK-8fZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundView" destination="E73-yT-q6b" id="Hb7-j6-DIS"/>
@@ -972,4 +999,8 @@
         <image name="dot4" width="25" height="25"/>
         <image name="dot5" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1a7-zG-5Jk"/>
+        <segue reference="ogz-KK-8fZ"/>
+    </inferredMetricsTieBreakers>
 </document>
