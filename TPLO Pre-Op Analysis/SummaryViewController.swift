@@ -17,11 +17,11 @@ class SummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*guard let procedure = procedure else {
+        guard let procedure = procedure else {
             fatalError("Procedure was not correctly passed to Summary Controller")
-        }*/
+        }
         
-        
+        outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \(procedure.name)\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \(procedure.chordLength)mm\nSawblade Size: \(procedure.sawbladeSize)mm\nPlate Size: \(procedure.plateCatalogNumber)";
 
         // Do any additional setup after loading the view.
     }
