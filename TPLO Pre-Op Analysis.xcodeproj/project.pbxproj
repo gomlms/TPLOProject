@@ -220,7 +220,7 @@
 				TargetAttributes = {
 					96496E821E2D834700EE8CB5 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = SC486NBW2K;
+						DevelopmentTeam = HMA35Z546V;
 						ProvisioningStyle = Automatic;
 					};
 					96496E961E2D834800EE8CB5 = {
@@ -451,12 +451,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SC486NBW2K;
+				DEVELOPMENT_TEAM = HMA35Z546V;
 				INFOPLIST_FILE = "TPLO Pre-Op Analysis/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gomlms.TPLO-Pre-Op-Analysis";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gomlms.tplopreopanalysis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -464,12 +466,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SC486NBW2K;
+				DEVELOPMENT_TEAM = HMA35Z546V;
 				INFOPLIST_FILE = "TPLO Pre-Op Analysis/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gomlms.TPLO-Pre-Op-Analysis";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gomlms.tplopreopanalysis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
