@@ -25,6 +25,7 @@ class PlateSizeViewController: UIViewController {
     var originOfActiveImage = CGPoint.zero
     var activeImage: UIImageView?
     var totalRotation: CGFloat = 0.0
+    var betterPxlToMM: Double = 0.0
     
     @IBOutlet weak var rotatingRecognizer: UIRotationGestureRecognizer!    
     @IBOutlet weak var movingRecognizer: UIPanGestureRecognizer!
@@ -200,10 +201,7 @@ class PlateSizeViewController: UIViewController {
                     movingImage.removeGestureRecognizer(movingRecognizer)
                     movingImage.removeGestureRecognizer(rotatingRecognizer)
                     
-                    
-                    
                     movingImage.removeFromSuperview()
-                    print("\(totalRotation)")
                     movingImage.transform = movingImage.transform.rotated(by: -totalRotation)
                     movingImage.frame.origin = originOfActiveImage
                     innerScrollView.addSubview(movingImage)
@@ -233,6 +231,14 @@ class PlateSizeViewController: UIViewController {
             totalRotation += recognizer.rotation
             
             recognizer.rotation = 0
+        }
+    }
+    
+    func determineBetterRatio() {
+        if(procedure?.designator == "Ball") {
+            betterPxlToMM = (procedure?.pixelToMMRatio)! / 25.0
+        } else if(procedure?.designator == "Marker") {
+            betterPxlToMM = (procedure?.pixelToMMRatio)! / 100.0
         }
     }
 }
