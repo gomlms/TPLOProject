@@ -27,6 +27,13 @@ class PlateSizeViewController: UIViewController {
     var totalRotation: CGFloat = 0.0
     var betterPxlToMM: Double = 0.0
     
+    var broad35 = [79, 28.4, 45, 135]
+    var short35 = [56, 20, 31.5, 87.5]
+    var standard35 = [65, 21.67, 34, 101.5]
+    var desiredWidth: Double = 0.0
+    var desiredHeight: Double = 0.0
+    var currentImageName: String = ""
+    
     @IBOutlet weak var rotatingRecognizer: UIRotationGestureRecognizer!    
     @IBOutlet weak var movingRecognizer: UIPanGestureRecognizer!
     @IBOutlet weak var innerScrollView: UIView!
@@ -68,7 +75,7 @@ class PlateSizeViewController: UIViewController {
         radiographView.layer.anchorPoint = CGPoint(x: CGFloat(procedure.points[0].x / radiographView.frame.width), y: CGFloat(procedure.points[0].y) / radiographView.frame.height)
         radiographView.transform = radiographView.transform.rotated(by: CGFloat(-tempAngle))
         rotatingView.transform = rotatingView.transform.translatedBy(x: -150 + procedure.points[0].x, y: -150 + procedure.points[0].y)
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -185,13 +192,28 @@ class PlateSizeViewController: UIViewController {
     @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
         if let movingImage = recognizer.view as! UIImageView? {
             if(!imageInSuperview) {
+                if(movingImage.image == #imageLiteral(resourceName: "broad3.5(79mm)")) {
+                    desiredHeight = broad35[0]
+                    desiredWidth = broad35[1]
+                    currentImageName = "broad35"
+                } else if(movingImage.image == #imageLiteral(resourceName: "short3.5(56mm)")) {
+                    desiredHeight = Double(short35[0])
+                    desiredWidth = Double(short35[1])
+                    currentImageName = "short35"
+                } else if(movingImage.image == #imageLiteral(resourceName: "standard3.5(65mm)")) {
+                    desiredHeight = standard35[0]
+                    desiredWidth = standard35[1]
+                    currentImageName = "standard35"
+                }
+                
+                
                 movingImage.addGestureRecognizer(movingRecognizer)
                 movingImage.addGestureRecognizer(rotatingRecognizer)
                 
                 originOfActiveImage = movingImage.frame.origin
                 
                 movingImage.removeFromSuperview()
-                movingImage.center = CGPoint(x: 150, y: 150)
+                movingImage.frame = CGRect(x: 100.0, y: 100.0, width: desiredWidth * (procedure?.pixelToMMRatio)!, height: desiredHeight * (procedure?.pixelToMMRatio)!)
                 self.view.addSubview(movingImage)
                 
                 activeImage = movingImage
@@ -203,7 +225,15 @@ class PlateSizeViewController: UIViewController {
                     
                     movingImage.removeFromSuperview()
                     movingImage.transform = movingImage.transform.rotated(by: -totalRotation)
-                    movingImage.frame.origin = originOfActiveImage
+                    
+                    if(currentImageName == "broad35") {
+                        movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(broad35[2]), height: CGFloat(broad35[3]))
+                    } else if(currentImageName == "short35") {
+                        movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(short35[2]), height: CGFloat(short35[3]))
+                    } else if(currentImageName == "standard35") {
+                        movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(standard35[2]), height: CGFloat(standard35[3]))
+                    }
+                    
                     innerScrollView.addSubview(movingImage)
                     
                     originOfActiveImage = CGPoint.zero
@@ -233,12 +263,5 @@ class PlateSizeViewController: UIViewController {
             recognizer.rotation = 0
         }
     }
-    
-    func determineBetterRatio() {
-        if(procedure?.designator == "Ball") {
-            betterPxlToMM = (procedure?.pixelToMMRatio)! / 25.0
-        } else if(procedure?.designator == "Marker") {
-            betterPxlToMM = (procedure?.pixelToMMRatio)! / 100.0
-        }
-    }
+
 }
