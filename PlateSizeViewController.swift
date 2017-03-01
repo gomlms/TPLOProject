@@ -20,6 +20,15 @@ class PlateSizeViewController: UIViewController {
     var angleWith4 : CGFloat?
     var angleWith5 : CGFloat?
     var maskImage : UIImage?
+    
+    var imageInSuperview = false
+    var originOfActiveImage = CGPoint.zero
+    var activeImage: UIImageView?
+    var totalRotation: CGFloat = 0.0
+    
+    @IBOutlet weak var rotatingRecognizer: UIRotationGestureRecognizer!    
+    @IBOutlet weak var movingRecognizer: UIPanGestureRecognizer!
+    @IBOutlet weak var innerScrollView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,5 +179,60 @@ class PlateSizeViewController: UIViewController {
         angleWith4 = CGFloat(angle * Double.pi / 180);
         
         return yPoint
+    }
+    
+    @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
+        if let movingImage = recognizer.view as! UIImageView? {
+            if(!imageInSuperview) {
+                movingImage.addGestureRecognizer(movingRecognizer)
+                movingImage.addGestureRecognizer(rotatingRecognizer)
+                
+                originOfActiveImage = movingImage.frame.origin
+                
+                movingImage.removeFromSuperview()
+                movingImage.center = CGPoint(x: 150, y: 150)
+                self.view.addSubview(movingImage)
+                
+                activeImage = movingImage
+                imageInSuperview = true
+            } else {
+                if(movingImage == activeImage) {
+                    movingImage.removeGestureRecognizer(movingRecognizer)
+                    movingImage.removeGestureRecognizer(rotatingRecognizer)
+                    
+                    
+                    
+                    movingImage.removeFromSuperview()
+                    print("\(totalRotation)")
+                    movingImage.transform = movingImage.transform.rotated(by: -totalRotation)
+                    movingImage.frame.origin = originOfActiveImage
+                    innerScrollView.addSubview(movingImage)
+                    
+                    originOfActiveImage = CGPoint.zero
+                    activeImage = nil
+                    imageInSuperview = false
+                    totalRotation = 0.0
+                }
+            }
+        }
+    }
+    
+    @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: self.view)
+        if let movingView = recognizer.view as! UIImageView? {
+            if(movingView == activeImage) {
+                movingView.center = CGPoint(x: movingView.center.x + translation.x, y: movingView.center.y + translation.y)
+            }
+        }
+        recognizer.setTranslation(CGPoint(x: 0.0, y: 0.0), in: self.view)
+    }
+    
+    @IBAction func handleRotate(recognizer: UIRotationGestureRecognizer) {
+        if let movingView = recognizer.view as! UIImageView? {
+            movingView.transform = movingView.transform.rotated(by: recognizer.rotation)
+            totalRotation += recognizer.rotation
+            
+            recognizer.rotation = 0
+        }
     }
 }
