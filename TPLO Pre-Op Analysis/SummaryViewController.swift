@@ -24,18 +24,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             fatalError("Procedure was not correctly passed to Summary Controller")
         }
         
-        var outputText : String!
-        
-        let date : String!
-        let name : String!
-        let tpa : Double!
-        let chordLength : Double!
-        let roundedRadius : Int!
-        let plateCatalogNum : String!
-        
-        
-        
-        outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \(procedure.name))\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \((procedure.chordLength))mm\nSawblade Size: \(procedure.roundedRadius)mm\nPlate Size: \(procedure.plateCatalogNumber)";
+        outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \((procedure.name)!)\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)";
 
         // Do any additional setup after loading the view.
     }
@@ -51,7 +40,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             mailComposer.mailComposeDelegate = self
             
             mailComposer.setSubject("TPLO Pre-Op Analysis Summary Report")
-            mailComposer.setMessageBody("Date: \(procedure?.dateOfProcedure)\nPatient Name: \(!((procedure?.name) != nil))\nTPA: \(procedure?.tpa)°\nOsteotomy Rotation: \(!((procedure?.chordLength) != nil))mm\nSawblade Size: \(procedure?.roundedRadius)mm\nPlate Size: \(procedure?.plateCatalogNumber)", isHTML: false)
+            mailComposer.setMessageBody("Date: \(procedure?.dateOfProcedure)\nPatient Name: \((procedure?.name)!)\nTPA: \(procedure?.tpa)°\nOsteotomy Rotation: \((procedure?.chordLength)!)mm\nSawblade Size: \((procedure?.roundedRadius)!)mm\nPlate Size: \((procedure?.plateCatalogNumber)!)", isHTML: false)
             
             self.present(mailComposer, animated: true, completion: nil)
         }
