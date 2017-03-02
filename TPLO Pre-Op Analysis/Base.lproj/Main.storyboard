@@ -341,11 +341,11 @@
                                                 </connections>
                                             </imageView>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot1" translatesAutoresizingMaskIntoConstraints="NO" id="h94-7y-4ri">
-                                                <rect key="frame" x="30" y="46" width="25" height="25"/>
+                                                <rect key="frame" x="30" y="46" width="7" height="7"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot2" translatesAutoresizingMaskIntoConstraints="NO" id="OVq-hu-UTv">
-                                                <rect key="frame" x="92" y="44" width="25" height="25"/>
+                                                <rect key="frame" x="92" y="44" width="7" height="7"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                         </subviews>
@@ -623,23 +623,23 @@
                                                         </connections>
                                                     </imageView>
                                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot1" translatesAutoresizingMaskIntoConstraints="NO" id="LaB-uR-Map">
-                                                        <rect key="frame" x="40" y="53" width="25" height="25"/>
+                                                        <rect key="frame" x="40" y="53" width="7" height="7"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot3" translatesAutoresizingMaskIntoConstraints="NO" id="9Dw-Ei-xca">
-                                                        <rect key="frame" x="99" y="99" width="25" height="25"/>
+                                                        <rect key="frame" x="99" y="99" width="7" height="7"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot4" translatesAutoresizingMaskIntoConstraints="NO" id="yLA-5n-56q">
-                                                        <rect key="frame" x="117" y="53" width="25" height="25"/>
+                                                        <rect key="frame" x="117" y="53" width="7" height="7"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot2" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-HX-KSl">
-                                                        <rect key="frame" x="54" y="99" width="25" height="25"/>
+                                                        <rect key="frame" x="54" y="99" width="7" height="7"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot5" translatesAutoresizingMaskIntoConstraints="NO" id="J05-yE-7fc" userLabel="Dot5">
-                                                        <rect key="frame" x="138" y="99" width="25" height="25"/>
+                                                        <rect key="frame" x="138" y="99" width="7" height="7"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                 </subviews>
