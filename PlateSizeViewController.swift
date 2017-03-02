@@ -135,6 +135,7 @@ class PlateSizeViewController: UIViewController {
             fatalError("Unexpected destination: \(segue.destination)")
         }
         
+        procedure?.plateCatalogNumber = currentImageName
         nextController.procedure = procedure
     }
 
