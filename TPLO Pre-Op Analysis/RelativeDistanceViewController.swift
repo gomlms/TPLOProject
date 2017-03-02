@@ -102,11 +102,11 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         switch currSelector {
         case 1:
-            dot1.frame = CGRect(x: currentPoint.x - 12.5, y: currentPoint.y - 12.5, width: 25, height: 25)
+            dot1.center = currentPoint
             dot1.isHidden = false
             pointOneCreated = true
         case 2:
-            dot2.frame = CGRect(x: currentPoint.x - 12.5, y: currentPoint.y - 12.5, width: 25, height: 25)
+            dot2.center = currentPoint
             dot2.isHidden = false
             pointTwoCreated = true
         default:

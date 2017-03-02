@@ -38,6 +38,8 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     
     var radiographImage : UIImage?
     
+    var currentPoints = [CGPoint]()
+    var currHeight : CGFloat = 300
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,12 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         points.append(CGPoint(x: 0.0, y: 0.0))
         points.append(CGPoint(x: 0.0, y: 0.0))
         points.append(CGPoint(x: 0.0, y: 0.0))
+        
+        currentPoints.append(CGPoint(x: 0.0, y: 0.0))
+        currentPoints.append(CGPoint(x: 0.0, y: 0.0))
+        currentPoints.append(CGPoint(x: 0.0, y: 0.0))
+        currentPoints.append(CGPoint(x: 0.0, y: 0.0))
+        currentPoints.append(CGPoint(x: 0.0, y: 0.0))
         
         confirmSelection.isEnabled = false
         
@@ -70,6 +78,22 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     //MARK: ScrollViewDelegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        let hRatio = self.innerView.frame.height / 300.0
+        
+        print("\(currHeight) \(self.innerView.frame.height)")
+        
+        if(currHeight != self.innerView.frame.height){
+            if(currHeight > self.innerView.frame.height){
+                dot1.frame = CGRect(x: dot1.frame.origin.x, y: dot1.frame.origin.y, width: 20 * hRatio, height: 20 * hRatio)
+                dot1.center = currentPoints[0]
+                currHeight = self.innerView.frame.height
+            } else {
+                dot1.frame = CGRect(x: dot1.frame.origin.x, y: dot1.frame.origin.y, width: 20 / hRatio, height: 20 / hRatio)
+                dot1.center = currentPoints[0]
+                currHeight = self.innerView.frame.height
+            }
+        }
+        
         return self.innerView
     }
     
@@ -80,20 +104,25 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         
         switch currSelector {
         case 1:
-            dot1.frame = CGRect(x: currentPoint.x - 12.5, y: currentPoint.y - 12.5, width: 25, height: 25)
+            dot1.center = currentPoint
             dot1.isHidden = false
+            currentPoints[0] = currentPoint
         case 2:
-            dot2.frame = CGRect(x: currentPoint.x - 12.5, y: currentPoint.y - 12.5, width: 25, height: 25)
+            dot2.center = currentPoint
             dot2.isHidden = false
+            currentPoints[1] = currentPoint
         case 3:
-            dot3.frame = CGRect(x: currentPoint.x - 12.5, y: currentPoint.y - 12.5, width: 25, height: 25)
+            dot3.center = currentPoint
             dot3.isHidden = false
+            currentPoints[2] = currentPoint
         case 4:
-            dot4.frame = CGRect(x: currentPoint.x - 12.5, y: currentPoint.y - 12.5, width: 25, height: 25)
+            dot4.center = currentPoint
             dot4.isHidden = false
+            currentPoints[3] = currentPoint
         case 5:
-            dot5.frame = CGRect(x: currentPoint.x - 12.5, y: currentPoint.y - 12.5, width: 25, height: 25)
+            dot5.center = currentPoint
             dot5.isHidden = false
+            currentPoints[4] = currentPoint
         default:
             fatalError()
         }
