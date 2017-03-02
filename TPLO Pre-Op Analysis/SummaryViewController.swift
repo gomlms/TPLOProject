@@ -16,12 +16,24 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
 
     var procedure : Procedure?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         guard let procedure = procedure else {
             fatalError("Procedure was not correctly passed to Summary Controller")
         }
+        
+        var outputText : String!
+        
+        let date : String!
+        let name : String!
+        let tpa : Double!
+        let chordLength : Double!
+        let roundedRadius : Int!
+        let plateCatalogNum : String!
+        
+        
         
         outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \(procedure.name))\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \((procedure.chordLength))mm\nSawblade Size: \(procedure.roundedRadius)mm\nPlate Size: \(procedure.plateCatalogNumber)";
 
