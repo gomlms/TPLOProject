@@ -950,9 +950,29 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPJ-YW-l6d">
                                         <rect key="frame" x="0.0" y="0.0" width="1000" height="200"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="broad3.5(79mm)" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-3Q-SKG">
-                                                <rect key="frame" x="26" y="36" width="45" height="135"/>
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="broad3.5(79mm)" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-3Q-SKG">
+                                                <rect key="frame" x="50" y="33" width="45" height="135"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="GWr-hR-ycm" appends="YES" id="H0s-T3-w5w"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="standard3.5(65mm)" translatesAutoresizingMaskIntoConstraints="NO" id="IJj-im-wpB">
+                                                <rect key="frame" x="226.5" y="50" width="34" height="101.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="FZ6-xz-lwp" appends="YES" id="eTc-ij-Uj8"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="short3.5(56mm)" translatesAutoresizingMaskIntoConstraints="NO" id="X8m-By-jUC">
+                                                <rect key="frame" x="145" y="57" width="31.5" height="87.5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Uz4-ue-RXc" appends="YES" id="o0k-OX-MeP"/>
+                                                </connections>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -990,12 +1010,40 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundView" destination="E73-yT-q6b" id="Hb7-j6-DIS"/>
+                        <outlet property="innerScrollView" destination="mPJ-YW-l6d" id="Y0b-aT-yzk"/>
+                        <outlet property="movingRecognizer" destination="0ah-qI-Geb" id="2Se-hP-zYa"/>
                         <outlet property="outerView" destination="eoZ-Ek-t6o" id="7QC-Hu-7qW"/>
                         <outlet property="radiographView" destination="aoo-67-zTK" id="rol-rq-dj1"/>
+                        <outlet property="rotatingRecognizer" destination="3Db-o3-KSV" id="dVV-Qb-1Oy"/>
                         <outlet property="rotatingView" destination="AdG-pb-a2S" id="K8C-42-db7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="asc-4v-bkA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="0ah-qI-Geb">
+                    <connections>
+                        <action selector="handlePanWithRecognizer:" destination="Gb7-id-kt6" id="FZ2-QJ-wuc"/>
+                    </connections>
+                </panGestureRecognizer>
+                <rotationGestureRecognizer id="3Db-o3-KSV">
+                    <connections>
+                        <action selector="handleRotateWithRecognizer:" destination="Gb7-id-kt6" id="dQn-qm-bS7"/>
+                    </connections>
+                </rotationGestureRecognizer>
+                <tapGestureRecognizer id="GWr-hR-ycm">
+                    <connections>
+                        <action selector="handleTapWithRecognizer:" destination="Gb7-id-kt6" id="bi1-FW-3Fz"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Uz4-ue-RXc">
+                    <connections>
+                        <action selector="handleTapWithRecognizer:" destination="Gb7-id-kt6" id="RYc-0Z-yZL"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="FZ6-xz-lwp">
+                    <connections>
+                        <action selector="handleTapWithRecognizer:" destination="Gb7-id-kt6" id="x1O-v4-BEs"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1821.5999999999999" y="5282.608695652174"/>
         </scene>
@@ -1029,6 +1077,8 @@
         <image name="dot3" width="25" height="25"/>
         <image name="dot4" width="25" height="25"/>
         <image name="dot5" width="25" height="25"/>
+        <image name="short3.5(56mm)" width="125" height="350"/>
+        <image name="standard3.5(65mm)" width="135" height="405"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1a7-zG-5Jk"/>

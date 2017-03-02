@@ -20,6 +20,23 @@ class PlateSizeViewController: UIViewController {
     var angleWith4 : CGFloat?
     var angleWith5 : CGFloat?
     var maskImage : UIImage?
+    
+    var imageInSuperview = false
+    var originOfActiveImage = CGPoint.zero
+    var activeImage: UIImageView?
+    var totalRotation: CGFloat = 0.0
+    var betterPxlToMM: Double = 0.0
+    
+    var broad35 = [79, 28.4, 45, 135]
+    var short35 = [56, 20, 31.5, 87.5]
+    var standard35 = [65, 21.67, 34, 101.5]
+    var desiredWidth: Double = 0.0
+    var desiredHeight: Double = 0.0
+    var currentImageName: String = ""
+    
+    @IBOutlet weak var rotatingRecognizer: UIRotationGestureRecognizer!    
+    @IBOutlet weak var movingRecognizer: UIPanGestureRecognizer!
+    @IBOutlet weak var innerScrollView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +75,7 @@ class PlateSizeViewController: UIViewController {
         radiographView.layer.anchorPoint = CGPoint(x: CGFloat(procedure.points[0].x / radiographView.frame.width), y: CGFloat(procedure.points[0].y) / radiographView.frame.height)
         radiographView.transform = radiographView.transform.rotated(by: CGFloat(-tempAngle))
         rotatingView.transform = rotatingView.transform.translatedBy(x: -150 + procedure.points[0].x, y: -150 + procedure.points[0].y)
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -171,4 +188,80 @@ class PlateSizeViewController: UIViewController {
         
         return yPoint
     }
+    
+    @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
+        if let movingImage = recognizer.view as! UIImageView? {
+            if(!imageInSuperview) {
+                if(movingImage.image == #imageLiteral(resourceName: "broad3.5(79mm)")) {
+                    desiredHeight = broad35[0]
+                    desiredWidth = broad35[1]
+                    currentImageName = "broad35"
+                } else if(movingImage.image == #imageLiteral(resourceName: "short3.5(56mm)")) {
+                    desiredHeight = Double(short35[0])
+                    desiredWidth = Double(short35[1])
+                    currentImageName = "short35"
+                } else if(movingImage.image == #imageLiteral(resourceName: "standard3.5(65mm)")) {
+                    desiredHeight = standard35[0]
+                    desiredWidth = standard35[1]
+                    currentImageName = "standard35"
+                }
+                
+                
+                movingImage.addGestureRecognizer(movingRecognizer)
+                movingImage.addGestureRecognizer(rotatingRecognizer)
+                
+                originOfActiveImage = movingImage.frame.origin
+                
+                movingImage.removeFromSuperview()
+                movingImage.frame = CGRect(x: 100.0, y: 100.0, width: desiredWidth * (procedure?.pixelToMMRatio)!, height: desiredHeight * (procedure?.pixelToMMRatio)!)
+                self.view.addSubview(movingImage)
+                
+                activeImage = movingImage
+                imageInSuperview = true
+            } else {
+                if(movingImage == activeImage) {
+                    movingImage.removeGestureRecognizer(movingRecognizer)
+                    movingImage.removeGestureRecognizer(rotatingRecognizer)
+                    
+                    movingImage.removeFromSuperview()
+                    movingImage.transform = movingImage.transform.rotated(by: -totalRotation)
+                    
+                    if(currentImageName == "broad35") {
+                        movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(broad35[2]), height: CGFloat(broad35[3]))
+                    } else if(currentImageName == "short35") {
+                        movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(short35[2]), height: CGFloat(short35[3]))
+                    } else if(currentImageName == "standard35") {
+                        movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(standard35[2]), height: CGFloat(standard35[3]))
+                    }
+                    
+                    innerScrollView.addSubview(movingImage)
+                    
+                    originOfActiveImage = CGPoint.zero
+                    activeImage = nil
+                    imageInSuperview = false
+                    totalRotation = 0.0
+                }
+            }
+        }
+    }
+    
+    @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: self.view)
+        if let movingView = recognizer.view as! UIImageView? {
+            if(movingView == activeImage) {
+                movingView.center = CGPoint(x: movingView.center.x + translation.x, y: movingView.center.y + translation.y)
+            }
+        }
+        recognizer.setTranslation(CGPoint(x: 0.0, y: 0.0), in: self.view)
+    }
+    
+    @IBAction func handleRotate(recognizer: UIRotationGestureRecognizer) {
+        if let movingView = recognizer.view as! UIImageView? {
+            movingView.transform = movingView.transform.rotated(by: recognizer.rotation)
+            totalRotation += recognizer.rotation
+            
+            recognizer.rotation = 0
+        }
+    }
+
 }
