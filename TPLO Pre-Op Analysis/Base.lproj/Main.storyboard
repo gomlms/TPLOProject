@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tLu-V9-RXN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tLu-V9-RXN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -124,19 +124,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQ3-1H-aTN">
-                                <rect key="frame" x="36" y="60" width="323" height="607"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iWh-ao-GcM">
+                                <rect key="frame" x="36" y="60" width="42" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQ3-1H-aTN">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="RQ3-1H-aTN" firstAttribute="top" secondItem="iWh-ao-GcM" secondAttribute="top" id="D1z-av-EPV"/>
+                                    <constraint firstItem="RQ3-1H-aTN" firstAttribute="leading" secondItem="iWh-ao-GcM" secondAttribute="leading" id="Mcr-LB-pE1"/>
+                                    <constraint firstAttribute="trailing" secondItem="RQ3-1H-aTN" secondAttribute="trailing" id="lrx-JY-bNa"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBk-y3-a9z">
+                                <rect key="frame" x="122" y="90.5" width="131" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="131" id="ChS-hO-ftX"/>
+                                    <constraint firstAttribute="height" constant="30" id="sNg-Ma-iA3"/>
+                                </constraints>
+                                <state key="normal" title="Send Email"/>
+                                <connections>
+                                    <action selector="sendEmailPressed:" destination="bm3-ib-QkO" eventType="touchUpInside" id="igM-oT-y1R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RQ3-1H-aTN" firstAttribute="leading" secondItem="vJq-ai-QzP" secondAttribute="leadingMargin" constant="20" id="8pY-vp-V9L"/>
-                            <constraint firstItem="RQ3-1H-aTN" firstAttribute="top" secondItem="e3R-U4-IV0" secondAttribute="bottom" constant="40" id="VQ2-57-qaK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RQ3-1H-aTN" secondAttribute="trailing" id="b8d-R2-qgz"/>
-                            <constraint firstItem="OVu-WN-x2v" firstAttribute="top" secondItem="RQ3-1H-aTN" secondAttribute="bottom" id="gJQ-vT-8UM"/>
+                            <constraint firstItem="mBk-y3-a9z" firstAttribute="top" secondItem="iWh-ao-GcM" secondAttribute="bottom" constant="10" id="Jx7-N7-N0H"/>
+                            <constraint firstItem="iWh-ao-GcM" firstAttribute="leading" secondItem="vJq-ai-QzP" secondAttribute="leadingMargin" constant="20" id="NQy-Ub-xy4"/>
+                            <constraint firstItem="mBk-y3-a9z" firstAttribute="centerX" secondItem="vJq-ai-QzP" secondAttribute="centerX" id="qqd-nu-ehK"/>
+                            <constraint firstItem="iWh-ao-GcM" firstAttribute="top" secondItem="e3R-U4-IV0" secondAttribute="bottom" constant="40" id="yst-iU-H7J"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Summary" id="eCF-op-yBy">
@@ -148,6 +169,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="outputLabel" destination="RQ3-1H-aTN" id="skT-f1-g4T"/>
+                        <outlet property="sendEmailButton" destination="mBk-y3-a9z" id="cqO-Q1-cSZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nwU-dY-Pva" userLabel="First Responder" sceneMemberID="firstResponder"/>

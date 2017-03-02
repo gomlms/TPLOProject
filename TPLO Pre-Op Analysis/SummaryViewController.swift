@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import MessageUI
 
-class SummaryViewController: UIViewController {
+class SummaryViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var outputLabel: UILabel!
+    @IBOutlet weak var sendEmailButton: UIButton!
 
     var procedure : Procedure?
     
@@ -21,7 +23,7 @@ class SummaryViewController: UIViewController {
             fatalError("Procedure was not correctly passed to Summary Controller")
         }
         
-        outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \(procedure.name)\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \(procedure.chordLength)mm\nSawblade Size: \(procedure.sawbladeSize)mm\nPlate Size: \(procedure.plateCatalogNumber)";
+        outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \(procedure.name))\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \((procedure.chordLength))mm\nSawblade Size: \(procedure.roundedRadius)mm\nPlate Size: \(procedure.plateCatalogNumber)";
 
         // Do any additional setup after loading the view.
     }
@@ -29,6 +31,22 @@ class SummaryViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func sendEmailPressed(_ sender: Any) {
+        if(MFMailComposeViewController.canSendMail()){
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            
+            mailComposer.setSubject("TPLO Pre-Op Analysis Summary Report")
+            mailComposer.setMessageBody("Date: \(procedure?.dateOfProcedure)\nPatient Name: \(!((procedure?.name) != nil))\nTPA: \(procedure?.tpa)°\nOsteotomy Rotation: \(!((procedure?.chordLength) != nil))mm\nSawblade Size: \(procedure?.roundedRadius)mm\nPlate Size: \(procedure?.plateCatalogNumber)", isHTML: false)
+            
+            self.present(mailComposer, animated: true, completion: nil)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 
