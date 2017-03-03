@@ -38,7 +38,9 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     
     var radiographImage : UIImage?
     
-    //var currentProcedure : Procedure
+    var currentPoints = [CGPoint]()
+    var currHeight : CGFloat = 300
+    
     
     //MARK: Navigation
     
@@ -69,6 +71,9 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         points.append(CGPoint(x: 0.0, y: 0.0))
         points.append(CGPoint(x: 0.0, y: 0.0))
         
+        currentPoints.append(CGPoint(x: 0.0, y: 0.0))
+        currentPoints.append(CGPoint(x: 0.0, y: 0.0))
+        
         confirmSelectionButton.isEnabled = false
         
         guard let procedure = procedure else{
@@ -91,6 +96,14 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     //MARK: ScrollViewDelegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        let hRatio = self.innerView.frame.height / currHeight
+        
+        if(currHeight != self.innerView.frame.height){
+            dot1.frame = CGRect(x: dot1.frame.origin.x, y: dot1.frame.origin.y, width: dot1.frame.size.width / hRatio, height: dot1.frame.size.height / hRatio)
+            dot1.center = currentPoints[0]
+            currHeight = self.innerView.frame.height
+        }
+        
         return self.innerView
     }
     
@@ -105,10 +118,12 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
             dot1.center = currentPoint
             dot1.isHidden = false
             pointOneCreated = true
+            currentPoints[0] = currentPoint
         case 2:
             dot2.center = currentPoint
             dot2.isHidden = false
             pointTwoCreated = true
+            currentPoints[1] = currentPoint
         default:
             fatalError("Tapping for points has failed")
         }

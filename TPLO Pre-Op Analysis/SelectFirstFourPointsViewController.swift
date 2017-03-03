@@ -78,20 +78,12 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     //MARK: ScrollViewDelegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        let hRatio = self.innerView.frame.height / 300.0
-        
-        print("\(currHeight) \(self.innerView.frame.height)")
+        let hRatio = self.innerView.frame.height / currHeight
         
         if(currHeight != self.innerView.frame.height){
-            if(currHeight > self.innerView.frame.height){
-                dot1.frame = CGRect(x: dot1.frame.origin.x, y: dot1.frame.origin.y, width: 20 * hRatio, height: 20 * hRatio)
-                dot1.center = currentPoints[0]
-                currHeight = self.innerView.frame.height
-            } else {
-                dot1.frame = CGRect(x: dot1.frame.origin.x, y: dot1.frame.origin.y, width: 20 / hRatio, height: 20 / hRatio)
-                dot1.center = currentPoints[0]
-                currHeight = self.innerView.frame.height
-            }
+            dot1.frame = CGRect(x: dot1.frame.origin.x, y: dot1.frame.origin.y, width: dot1.frame.size.width / hRatio, height: dot1.frame.size.height / hRatio)
+            dot1.center = currentPoints[0]
+            currHeight = self.innerView.frame.height
         }
         
         return self.innerView
