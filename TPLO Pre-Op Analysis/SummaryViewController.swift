@@ -25,8 +25,6 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         }
         
         outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \((procedure.name)!)\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)";
-        
-        saveProcedures()
 
         // Do any additional setup after loading the view.
     }
@@ -50,6 +48,21 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? ""){
+        case "StartScreen":
+            guard let startViewController = segue.destination as? MainScreenViewController else {
+                fatalError("Unexpected Destination: \(segue.destination)")
+            }
+            startViewController.procedures.append(procedure!)
+        default:
+            fatalError("Unexpected segue identifier: \(segue.identifier)")
+        }
     }
     
     

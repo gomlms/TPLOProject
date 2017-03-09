@@ -27,6 +27,10 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="dIp-p5-8R5">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="161.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="343" id="BUt-oi-8Rq"/>
+                                            <constraint firstAttribute="height" constant="161.5" id="WAj-7J-628"/>
+                                        </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Previous TPLO Pre-Op Analyses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUm-qo-HJk">
                                         <rect key="frame" x="48.5" y="171.5" width="246" height="20.5"/>
@@ -45,9 +49,12 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="109"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="nKS-TQ-AsY">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="nKS-TQ-AsY">
                                                             <rect key="frame" x="8" y="8" width="95" height="95"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="95" id="Bhg-MX-LYK"/>
+                                                                <constraint firstAttribute="height" constant="95" id="IPE-72-WJT"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date of Procedure" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4q-ly-2To">
                                                             <rect key="frame" x="111" y="44" width="224" height="21"/>
@@ -64,15 +71,23 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="nKS-TQ-AsY" firstAttribute="leading" secondItem="GY0-df-ckh" secondAttribute="leading" constant="8" id="271-JH-6KZ"/>
+                                                        <constraint firstItem="nKS-TQ-AsY" firstAttribute="top" secondItem="GY0-df-ckh" secondAttribute="top" constant="8" id="M6r-sc-eLk"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="date" destination="k4q-ly-2To" id="WTP-Cv-30p"/>
                                                     <outlet property="name" destination="Wv7-Pa-cca" id="ntP-2h-4Oz"/>
                                                     <outlet property="radiograph" destination="nKS-TQ-AsY" id="bJw-nj-WM4"/>
-                                                    <segue destination="bm3-ib-QkO" kind="show" id="UL5-Oe-iHR"/>
+                                                    <segue destination="bm3-ib-QkO" kind="show" identifier="ShowDetail" id="UL5-Oe-iHR"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="K0o-Yy-uSG"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="A6L-sy-tY9"/>
+                                        </connections>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us: 973-331-7800" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OE6-Pe-cws">
                                         <rect key="frame" x="69" y="596.5" width="205.5" height="20.5"/>
@@ -163,7 +178,7 @@
                     <navigationItem key="navigationItem" title="Summary" id="eCF-op-yBy">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="siC-Wz-IWP">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="1a7-zG-5Jk"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="StartScreen" id="1a7-zG-5Jk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

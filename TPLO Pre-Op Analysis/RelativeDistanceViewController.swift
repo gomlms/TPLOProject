@@ -104,6 +104,12 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
             currHeight = self.innerView.frame.height
         }
         
+        if(currHeight != self.innerView.frame.height){
+            dot2.frame = CGRect(x: dot2.frame.origin.x, y: dot2.frame.origin.y, width: dot2.frame.size.width / hRatio, height: dot2.frame.size.height / hRatio)
+            dot2.center = currentPoints[0]
+            currHeight = self.innerView.frame.height
+        }
+        
         return self.innerView
     }
     

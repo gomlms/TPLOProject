@@ -24,13 +24,9 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if let savedProcedures = loadProcedures() {
             procedures += savedProcedures
-        } else {
-            loadSampleProcedures()
         }
         
-        tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(row: procedures.count - 1, section: 0)], with: .automatic)
-        tableView.endUpdates()
+        saveProcedures()
         self.navigationItem.hidesBackButton = true
     }
 
@@ -66,6 +62,31 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? ""){
+        case "AddItem":
+            os_log("Adding a new procedure", log: OSLog.default, type: .debug)
+        case "ShowDetail":
+            guard let procedureDetailViewController = segue.destination as? SummaryViewController else {
+                fatalError("Unexpected Destination: \(segue.destination)")
+            }
+            guard let selectedProcedureCell = sender as? ProcedureCell else {
+                fatalError("Unexpected Sender: \(sender)")
+            }
+            guard let indexPath = tableView.indexPath(for: selectedProcedureCell) else{
+                fatalError("The selected meal cell is not being displayed by the table")
+            }
+            let selectedProcedure = procedures[indexPath.row]
+            procedureDetailViewController.procedure = selectedProcedure
+        default:
+            fatalError("Unexpected segue identifier: \(segue.identifier)")
+        }
+    }
+
+    
     //Method to run when table view cell is tapped
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath : IndexPath) {
         
@@ -84,24 +105,6 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func loadProcedures() -> [Procedure]?{
         return NSKeyedUnarchiver.unarchiveObject(withFile: (Procedure.ArchiveURL?.path)!) as? [Procedure]
-    }
-
-    private func loadSampleProcedures(){
-        let photo1 = #imageLiteral(resourceName: "dot1")
-        let photo2 = #imageLiteral(resourceName: "dot2")
-        let photo3 = #imageLiteral(resourceName: "dot3")
-        
-        guard let procedure1 = Procedure(n: "One", r: photo1, d: "Today", m: "Marker") else {
-            fatalError("Unable to Instantiate procedure1")
-        }
-        guard let procedure2 = Procedure(n: "Two", r: photo2, d: "Today", m: "Marker") else {
-            fatalError("Unable to Instantiate procedure1")
-        }
-        guard let procedure3 = Procedure(n: "Three", r: photo3, d: "Today", m: "Marker") else {
-            fatalError("Unable to Instantiate procedure1")
-        }
-        
-        procedures += [procedure1, procedure2, procedure3]
     }
 }
 

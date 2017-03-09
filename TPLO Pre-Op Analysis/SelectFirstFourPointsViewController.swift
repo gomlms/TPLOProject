@@ -86,6 +86,30 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
             currHeight = self.innerView.frame.height
         }
         
+        if(currHeight != self.innerView.frame.height){
+            dot2.frame = CGRect(x: dot2.frame.origin.x, y: dot2.frame.origin.y, width: dot2.frame.size.width / hRatio, height: dot2.frame.size.height / hRatio)
+            dot2.center = currentPoints[1]
+            currHeight = self.innerView.frame.height
+        }
+        
+        if(currHeight != self.innerView.frame.height){
+            dot3.frame = CGRect(x: dot3.frame.origin.x, y: dot3.frame.origin.y, width: dot3.frame.size.width / hRatio, height: dot3.frame.size.height / hRatio)
+            dot3.center = currentPoints[2]
+            currHeight = self.innerView.frame.height
+        }
+        
+        if(currHeight != self.innerView.frame.height){
+            dot4.frame = CGRect(x: dot4.frame.origin.x, y: dot4.frame.origin.y, width: dot4.frame.size.width / hRatio, height: dot4.frame.size.height / hRatio)
+            dot4.center = currentPoints[3]
+            currHeight = self.innerView.frame.height
+        }
+        
+        if(currHeight != self.innerView.frame.height){
+            dot5.frame = CGRect(x: dot5.frame.origin.x, y: dot5.frame.origin.y, width: dot5.frame.size.width / hRatio, height: dot5.frame.size.height / hRatio)
+            dot5.center = currentPoints[4]
+            currHeight = self.innerView.frame.height
+        }
+        
         return self.innerView
     }
     
