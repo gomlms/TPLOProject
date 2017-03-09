@@ -62,6 +62,20 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete) {
+            procedures.remove(at: indexPath.row)
+            saveProcedures()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if(editingStyle == .insert) {
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
