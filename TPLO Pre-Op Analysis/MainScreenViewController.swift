@@ -14,12 +14,23 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: Properties
     
     @IBOutlet weak var tableView: UITableView!
+    
+    
     var procedures = [Procedure]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        if let savedProcedures = loadProcedures() {
+            procedures += savedProcedures
+        } else {
+            loadSampleProcedures()
+        }
+        
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: procedures.count - 1, section: 0)], with: .automatic)
+        tableView.endUpdates()
         self.navigationItem.hidesBackButton = true
     }
 
@@ -29,6 +40,10 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     //MARK: TableView
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
     //Number of rows in table view
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,7 +72,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     //MARK: Private Methods
-    private func saveMeals() {
+    private func saveProcedures() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(procedures, toFile: (Procedure.ArchiveURL?.path)!)
         
         if(isSuccessfulSave){
@@ -71,5 +86,22 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         return NSKeyedUnarchiver.unarchiveObject(withFile: (Procedure.ArchiveURL?.path)!) as? [Procedure]
     }
 
+    private func loadSampleProcedures(){
+        let photo1 = #imageLiteral(resourceName: "dot1")
+        let photo2 = #imageLiteral(resourceName: "dot2")
+        let photo3 = #imageLiteral(resourceName: "dot3")
+        
+        guard let procedure1 = Procedure(n: "One", r: photo1, d: "Today", m: "Marker") else {
+            fatalError("Unable to Instantiate procedure1")
+        }
+        guard let procedure2 = Procedure(n: "Two", r: photo2, d: "Today", m: "Marker") else {
+            fatalError("Unable to Instantiate procedure1")
+        }
+        guard let procedure3 = Procedure(n: "Three", r: photo3, d: "Today", m: "Marker") else {
+            fatalError("Unable to Instantiate procedure1")
+        }
+        
+        procedures += [procedure1, procedure2, procedure3]
+    }
 }
 

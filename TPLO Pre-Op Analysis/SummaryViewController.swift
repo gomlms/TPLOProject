@@ -25,6 +25,8 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         }
         
         outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \((procedure.name)!)\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)";
+        
+        saveProcedures()
 
         // Do any additional setup after loading the view.
     }
@@ -49,6 +51,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     
 
     /*
