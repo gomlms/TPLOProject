@@ -35,7 +35,7 @@ class Procedure: NSObject, NSCoding {
     static let ArchiveURL = DocumentsDirectory?.appendingPathComponent("procedures")
     
     //MARK: Initialization
-    init?(n:String, r:UIImage?, d:String, m:String){
+    init?(n:String, r:UIImage?, d:String, m:String, p1: [CGPoint], i1: String, s1: Double, s2: Int, s3: String, c1: Double, p2: String, p3: Double, r1: Int, a1: Double){
         guard !n.isEmpty else {
             return nil
         }
@@ -44,6 +44,18 @@ class Procedure: NSObject, NSCoding {
         radiograph = r
         dateOfProcedure = d
         designator = m
+        points = p1
+        intersectionPoint = CGPointFromString(i1)
+        //tpa = t1
+        sawbladeRadius = s1
+        sawbladeSize = s2
+        sawCatalogNumber = s3
+        chordLength = c1
+        plateCatalogNumber = p2
+        pixelToMMRatio = p3
+        roundedRadius = r1
+        alpha = a1
+        //rotatedRadiograph = r2
     }
     
     
@@ -53,6 +65,19 @@ class Procedure: NSObject, NSCoding {
         aCoder.encode(dateOfProcedure, forKey: PropertyKey.dateOfProcedure)
         aCoder.encode(radiograph, forKey: PropertyKey.radiograph)
         aCoder.encode(designator, forKey: PropertyKey.designator)
+        aCoder.encode(points, forKey: PropertyKey.points)
+        aCoder.encode(intersectionPoint, forKey: PropertyKey.intersectionPoint)
+        //aCoder.encode(tpa, forKey: PropertyKey.tpa)
+        aCoder.encode(sawbladeRadius, forKey: PropertyKey.sawbladeRadius)
+        aCoder.encode(sawbladeSize, forKey: PropertyKey.sawbladeSize)
+        aCoder.encode(sawCatalogNumber, forKey: PropertyKey.sawCatalogNumber)
+        aCoder.encode(chordLength, forKey: PropertyKey.chordLength)
+        aCoder.encode(plateCatalogNumber, forKey: PropertyKey.plateCatalogNumber)
+        aCoder.encode(pixelToMMRatio, forKey: PropertyKey.pixelToMMRatio)
+        aCoder.encode(roundedRadius, forKey: PropertyKey.roundedRadius)
+        aCoder.encode(alpha, forKey: PropertyKey.alpha)
+        //aCoder.encode(rotatedRadiograph, forKey: PropertyKey.rotatedRadiograph)
+        
     }
     
     required convenience init?(coder aDecoder: NSCoder){
@@ -64,8 +89,20 @@ class Procedure: NSObject, NSCoding {
         let dateOfProcedure = aDecoder.decodeObject(forKey: PropertyKey.dateOfProcedure) as! String
         let radiograph = aDecoder.decodeObject(forKey: PropertyKey.radiograph) as? UIImage
         let designator = aDecoder.decodeObject(forKey: PropertyKey.designator) as! String
+        let points = aDecoder.decodeObject(forKey: PropertyKey.points) as! [CGPoint]
+        let intersectionPoint = aDecoder.decodeObject(forKey: PropertyKey.intersectionPoint) as! String
+        //let tpa = aDecoder.decodeObject(forKey: PropertyKey.tpa) as! Double
+        let sawbladeRadius = aDecoder.decodeObject(forKey: PropertyKey.sawbladeRadius) as! Double
+        let sawbladeSize = aDecoder.decodeObject(forKey: PropertyKey.sawbladeSize) as! Int
+        let sawCatalogNumber = aDecoder.decodeObject(forKey: PropertyKey.sawCatalogNumber) as! String
+        let chordLength = aDecoder.decodeObject(forKey: PropertyKey.chordLength) as! Double
+        let plateCatalogNumber = aDecoder.decodeObject(forKey: PropertyKey.plateCatalogNumber) as! String
+        let pixelToMMRatio = aDecoder.decodeObject(forKey: PropertyKey.pixelToMMRatio) as! Double
+        let roundedRadius = aDecoder.decodeObject(forKey: PropertyKey.roundedRadius) as! Int
+        let alpha = aDecoder.decodeObject(forKey: PropertyKey.alpha) as! Double
+        //let rotatedRadiograph = aDecoder.decodeObject(forKey: PropertyKey.radiograph) as! UIView
     
-        self.init(n: name, r: radiograph, d: dateOfProcedure, m: designator)
+        self.init(n: name, r: radiograph, d: dateOfProcedure, m: designator, p1: points, i1: intersectionPoint, s1: sawbladeRadius, s2: sawbladeSize, s3: sawCatalogNumber, c1: chordLength, p2: plateCatalogNumber, p3: pixelToMMRatio, r1: roundedRadius, a1: alpha)
     }
     
     //MARK: Types
@@ -74,5 +111,17 @@ class Procedure: NSObject, NSCoding {
         static let dateOfProcedure = "dateOfProcedure"
         static let radiograph = "radiograph"
         static let designator = "designator"
+        static let points = "points"
+        static let intersectionPoint = "intersectionPoint"
+        //static let tpa = "tpa"
+        static let sawbladeRadius = "sawbladeRadius"
+        static let sawbladeSize = "sawbladeSize"
+        static let sawCatalogNumber = "sawCatalogNumber"
+        static let chordLength = "chordLength"
+        static let plateCatalogNumber = "plateCatalogNumber"
+        static let pixelToMMRatio = "pixelToMMRatio"
+        static let roundedRadius = "roundedRadius"
+        static let alpha = "alpha"
+        //static let rotatedRadiograph = "rotatedRadiograph"
     }
 }

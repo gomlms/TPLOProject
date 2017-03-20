@@ -100,7 +100,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         dateFormatter.dateStyle = DateFormatter.Style.long
         let currentDate = dateFormatter.string(from: date)
         
-        procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!)
+        procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!, p1: [CGPoint](), i1: "0,0", s1: 0.0, s2: 0, s3: "", c1: 0.0, p2: "", p3: 0.0, r1: 0, a1: 0.0)
         
         if segue.identifier == "Continue" {
             guard let procedureDataViewController = segue.destination as? RelativeDistanceViewController else {

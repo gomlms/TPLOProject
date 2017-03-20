@@ -95,15 +95,10 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             let selectedProcedure = procedures[indexPath.row]
             procedureDetailViewController.procedure = selectedProcedure
+            procedureDetailViewController.isThere = true
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")
         }
-    }
-
-    
-    //Method to run when table view cell is tapped
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath : IndexPath) {
-        
     }
     
     //MARK: Private Methods

@@ -15,6 +15,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
     @IBOutlet weak var sendEmailButton: UIButton!
 
     var procedure : Procedure?
+    var isThere = false
     
     
     override func viewDidLoad() {
@@ -23,6 +24,8 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         guard let procedure = procedure else {
             fatalError("Procedure was not correctly passed to Summary Controller")
         }
+        
+        procedure.tpa = getAngle()
         
         outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \((procedure.name)!)\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)";
 
@@ -59,12 +62,21 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             guard let startViewController = segue.destination as? MainScreenViewController else {
                 fatalError("Unexpected Destination: \(segue.destination)")
             }
-            startViewController.procedures.append(procedure!)
+            if(!isThere){
+                startViewController.procedures.append(procedure!)
+            }
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")
         }
     }
     
+    func getAngle () -> Double {
+        let angle2I = Double(atan2((procedure?.points[1].y)! - (procedure?.intersectionPoint.y)!, (procedure?.points[1].x)! - (procedure?.intersectionPoint.x)!))
+        let angle4I = Double(atan2((procedure?.points[3].y)! - (procedure?.intersectionPoint.y)!, (procedure?.points[3].x)! - (procedure?.intersectionPoint.x)!))
+        var angle = Double(angle2I - angle4I)
+        angle = angle * (180.0 / M_PI)
+        return angle
+    }
     
 
     /*
