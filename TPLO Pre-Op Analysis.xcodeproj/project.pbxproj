@@ -24,6 +24,7 @@
 		96F9859F1E60AB090085E5B7 /* PlateSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9859E1E60AB090085E5B7 /* PlateSizeViewController.swift */; };
 		F42B17911E4BB3C400FEAFB2 /* TPAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42B17901E4BB3C400FEAFB2 /* TPAViewController.swift */; };
 		F42BE6971E412A2B00551DBF /* SelectFirstFourPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42BE6961E412A2B00551DBF /* SelectFirstFourPointsViewController.swift */; };
+		F4B7A22A1E81C64600AD8701 /* ZoomGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B7A2291E81C64600AD8701 /* ZoomGestureRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		96F9859E1E60AB090085E5B7 /* PlateSizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlateSizeViewController.swift; path = ../PlateSizeViewController.swift; sourceTree = "<group>"; };
 		F42B17901E4BB3C400FEAFB2 /* TPAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPAViewController.swift; sourceTree = "<group>"; };
 		F42BE6961E412A2B00551DBF /* SelectFirstFourPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFirstFourPointsViewController.swift; sourceTree = "<group>"; };
+		F4B7A2291E81C64600AD8701 /* ZoomGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomGestureRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				96496EB61E2D93EE00EE8CB5 /* FirstPropertiesViewController.swift */,
 				96F9859E1E60AB090085E5B7 /* PlateSizeViewController.swift */,
 				96496EBC1E347D9C00EE8CB5 /* RelativeDistanceViewController.swift */,
+				F4B7A2291E81C64600AD8701 /* ZoomGestureRecognizer.swift */,
 				F42BE6961E412A2B00551DBF /* SelectFirstFourPointsViewController.swift */,
 				F42B17901E4BB3C400FEAFB2 /* TPAViewController.swift */,
 				96496E8A1E2D834800EE8CB5 /* Main.storyboard */,
@@ -298,6 +301,7 @@
 				96F9859F1E60AB090085E5B7 /* PlateSizeViewController.swift in Sources */,
 				968423A51E48F2990063FDCE /* OsteotomyViewController.swift in Sources */,
 				96496EB71E2D93EF00EE8CB5 /* FirstPropertiesViewController.swift in Sources */,
+				F4B7A22A1E81C64600AD8701 /* ZoomGestureRecognizer.swift in Sources */,
 				96496E871E2D834800EE8CB5 /* AppDelegate.swift in Sources */,
 				F42BE6971E412A2B00551DBF /* SelectFirstFourPointsViewController.swift in Sources */,
 				968423A71E48F2B90063FDCE /* SawbladeViewController.swift in Sources */,

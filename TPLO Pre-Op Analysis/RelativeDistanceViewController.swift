@@ -14,32 +14,45 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     //MARK: Properties
     
     var procedure : Procedure?
-    var currentPoint = CGPoint(x: 0.0, y: 0.0)
     var points = [CGPoint]()
     var currSelector = 0
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var radiographImageView: UIImageView!
-    @IBOutlet weak var innerView: UIView!
-    
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
+    
+    @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var pointOneButton: UIButton!
     @IBOutlet weak var pointTwoButton: UIButton!
-    
-    @IBOutlet weak var dot1: UIImageView!
-    @IBOutlet weak var dot2: UIImageView!
-    
     @IBOutlet weak var confirmSelectionButton: UIButton!
-    @IBOutlet weak var outputLabel: UILabel!
+    @IBOutlet weak var zoomedView: UIImageView!
     
     var pointOneCreated = false
     var pointTwoCreated = false
     
-    var radiographImage : UIImage?
+    var radiographImage = #imageLiteral(resourceName: "defaultPhoto")
     
     var currentPoints = [CGPoint]()
     var currHeight : CGFloat = 300
+
+    var zoomedViewWidth: CGFloat = 200, zoomedViewHeight: CGFloat = 200
+    
+    let dotView = UIImageView(image: #imageLiteral(resourceName: "dot1"))
+    
+    var imageView = UIImageView()
+    var imageViewWidth = CGFloat(0)
+    var imageViewHeight = CGFloat(0)
+    
+    var imageWidth = CGFloat(0)
+    var imageHeight = CGFloat(0)
+    var imageRatio = CGFloat(0)
+    
+    var currentImageViewPoint = CGPoint.zero
+    
+    var currentDot = #imageLiteral(resourceName: "dot1")
+    var dot1ImageView = UIImageView(image: #imageLiteral(resourceName: "dot1"))
+    var dot2ImageView = UIImageView(image: #imageLiteral(resourceName: "dot2"))
+    
+    @IBOutlet var zoomRecog: ZoomGestureRecognizer!
     
     
     //MARK: Navigation
@@ -68,7 +81,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateNextButtonState()
+        //updateNextButtonState()
 
         points.append(CGPoint(x: 0.0, y: 0.0))
         points.append(CGPoint(x: 0.0, y: 0.0))
@@ -76,18 +89,50 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         currentPoints.append(CGPoint(x: 0.0, y: 0.0))
         currentPoints.append(CGPoint(x: 0.0, y: 0.0))
         
-        confirmSelectionButton.isEnabled = false
+        //confirmSelectionButton.isEnabled = false
         
         guard let procedure = procedure else{
             fatalError("Procedure was not correctly passed to Relative Distance Controller")
         }
         
-        self.scrollView.minimumZoomScale = 1.0
-        self.scrollView.maximumZoomScale = 6.0
+        radiographImage = procedure.radiograph!
         
-        radiographImage = procedure.radiograph
+        imageWidth = CGFloat((radiographImage.cgImage?.width)!)
+        imageHeight = CGFloat((radiographImage.cgImage?.height)!)
+        imageRatio = imageWidth / imageHeight
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        
+        print("here \(maxAllowedHeight())")
+        
+        imageViewWidth = screenWidth - 40
+        imageViewHeight = imageViewWidth / imageRatio
+        
+        if(imageViewHeight > maxAllowedHeight()) {
+            imageViewHeight = maxAllowedHeight()
+            imageViewWidth = imageViewHeight * imageRatio
+            imageView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
+        } else {
+            imageView.frame = CGRect(x: 20, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
+        }
+        
+        imageView.addGestureRecognizer(zoomRecog)
+        imageView.isUserInteractionEnabled = false
+        imageView.image = radiographImage
+        
+        self.view.addSubview(imageView)
+        
+        dotView.image = currentDot
+        dotView.frame = CGRect(x: zoomedViewWidth / 2  - 5, y: zoomedViewHeight / 2 - 5, width: 10, height: 10)
+        
+        zoomedViewWidth = zoomedView.frame.width
+        zoomedViewHeight = zoomedView.frame.height
+        
+        zoomedView.addSubview(dotView)
+        zoomedView.isHidden = true
+        
 
-        radiographImageView.image = radiographImage
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,53 +140,19 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: ScrollViewDelegate
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        let hRatio = self.innerView.frame.height / currHeight
-        
-        if(currHeight != self.innerView.frame.height){
-            dot1.frame = CGRect(x: dot1.frame.origin.x, y: dot1.frame.origin.y, width: dot1.frame.size.width / hRatio, height: dot1.frame.size.height / hRatio)
-            dot1.center = currentPoints[0]
-
-            dot2.frame = CGRect(x: dot2.frame.origin.x, y: dot2.frame.origin.y, width: dot2.frame.size.width / hRatio, height: dot2.frame.size.height / hRatio)
-            dot2.center = currentPoints[1]
-            
-            currHeight = self.innerView.frame.height
-        }
-        
-        return self.innerView
-    }
-    
     //MARK: Action
-    
-    @IBAction func tapForPoint(_ sender: UITapGestureRecognizer) {
-        confirmSelectionButton.isEnabled = true
-        currentPoint = sender.location(in: radiographImageView)
-        
-        switch currSelector {
-        case 1:
-            dot1.center = currentPoint
-            dot1.isHidden = false
-            pointOneCreated = true
-            currentPoints[0] = currentPoint
-        case 2:
-            dot2.center = currentPoint
-            dot2.isHidden = false
-            pointTwoCreated = true
-            currentPoints[1] = currentPoint
-        default:
-            fatalError("Tapping for points has failed")
-        }
-    }
+
     
     //MARK: SelectionButtonsActions
-
+    
     @IBAction func selectPointOne(_ sender: Any) {
         disableSelectionButtons()
-        radiographImageView.isUserInteractionEnabled = true
-        outputLabel.text = "Selecting for Point #1"
+        currentDot = #imageLiteral(resourceName: "dot1")
+        dotView.image = #imageLiteral(resourceName: "dot1")
         currSelector = 1
+        
+        imageView.isUserInteractionEnabled = true
+        
         if pointOneCreated {
             confirmSelectionButton.isEnabled = true
         }
@@ -149,25 +160,29 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func selectPointTwo(_ sender: Any) {
         disableSelectionButtons()
-        radiographImageView.isUserInteractionEnabled = true
-        outputLabel.text = "Selecting for Point #1"
+        currentDot = #imageLiteral(resourceName: "dot2")
+        dotView.image = #imageLiteral(resourceName: "dot2")
         currSelector = 2
+        
+        imageView.isUserInteractionEnabled = true
+        
         if pointTwoCreated {
             confirmSelectionButton.isEnabled = true
         }
     }
     
-    @IBAction func confirmSelectionAction(_ sender: Any) {
+    @IBAction func confirmSelectedAction(_ sender: Any) {
         confirmSelectionButton.isEnabled = false
+        imageView.isUserInteractionEnabled = false
         enableSelectionButtons()
-        radiographImageView.isUserInteractionEnabled = false
-        outputLabel.text = "Point #\(currSelector) Set!"
         
-        points[currSelector - 1] = currentPoint
+        points[currSelector - 1] = currentImageViewPoint
         updateNextButtonState()
     }
     
     //MARK: Private Methods
+    
+     
     private func updateNextButtonState() {
         if pointOneCreated && pointTwoCreated {
             nextButton.isEnabled = true
@@ -185,4 +200,106 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         pointOneButton.isEnabled = true
         pointTwoButton.isEnabled = true
     }
+    
+    private func calcYPos() -> CGFloat {
+        return buttonView.frame.origin.y + pointOneButton.frame.height + 10
+    }
+    
+    private func maxAllowedHeight() -> CGFloat {
+        return (zoomedView.frame.origin.y - 10) - calcYPos()
+    }
+    
+    @IBAction func tapDown(sender: ZoomGestureRecognizer) {
+        zoomedView.isHidden = false
+        let point = sender.location(in: imageView)
+        zoomedView.image = getZoomedImage(point: point)
+        
+        if(currentDot == #imageLiteral(resourceName: "dot1")) {
+            createDotAt(dotImageView: dot1ImageView, coordInImageView: currentImageViewPoint)
+        } else if(currentDot == #imageLiteral(resourceName: "dot2")) {
+            createDotAt(dotImageView: dot2ImageView, coordInImageView: currentImageViewPoint)
+        }
+        if(sender.state == .ended) {
+            zoomedView.isHidden = true
+            
+            if(currentDot == #imageLiteral(resourceName: "dot1")) {
+                createDotAt(dotImageView: dot1ImageView, coordInImageView: currentImageViewPoint)
+                pointOneCreated = true
+            } else if(currentDot == #imageLiteral(resourceName: "dot2")){
+                createDotAt(dotImageView: dot2ImageView, coordInImageView: currentImageViewPoint)
+                pointTwoCreated = true
+            }
+            
+            confirmSelectionButton.isEnabled = true
+        }
+        
+    }
+    
+    private func getZoomedImage(point: CGPoint) -> UIImage {
+        let width: CGFloat = 100.0, height: CGFloat = 100.0
+        let cgImage = imageView.image?.cgImage
+        
+        var croppedCgImage: CGImage?
+        var convertedPoint = CGPoint.zero
+        
+        currentImageViewPoint = point
+        
+        convertedPoint.x = (point.x * CGFloat((cgImage?.width)!)) / imageViewWidth
+        convertedPoint.y = (point.y * CGFloat((cgImage?.height)!)) / imageViewHeight
+        
+        if(convertedPoint.x >= (width / 2) && convertedPoint.x <= imageWidth - (width / 2) && convertedPoint.y >= (height / 2) && convertedPoint.y <= imageHeight - (height / 2)) {
+            dotView.frame.origin = CGPoint(x: zoomedViewWidth / 2  - 5, y: zoomedViewHeight / 2 - 5)
+            let croppingRect = CGRect(x: convertedPoint.x - (width / 2.0), y: convertedPoint.y - (height / 2.0), width: width, height: height)
+            croppedCgImage = cgImage?.cropping(to: croppingRect)
+        } else {
+            var newPoint = convertedPoint
+            
+            if(convertedPoint.x <= (width / 2)) {
+                if(convertedPoint.x < 0) {
+                    convertedPoint.x = 0
+                    currentImageViewPoint.x = 0
+                }
+                newPoint.x = (width / 2)
+                dotView.frame.origin.x = (zoomedViewWidth / width) * (convertedPoint.x) - 5
+            } else if(convertedPoint.x >= imageWidth - (width / 2)) {
+                if(convertedPoint.x > imageWidth) {
+                    convertedPoint.x = imageWidth
+                    currentImageViewPoint.x = imageViewWidth
+                }
+                newPoint.x = imageWidth - (width / 2)
+                dotView.frame.origin.x = (zoomedViewWidth / width) * (convertedPoint.x - (imageWidth - width)) - 5
+            }
+            
+            if(convertedPoint.y <= (height / 2)) {
+                if(convertedPoint.y < 0) {
+                    convertedPoint.y = 0
+                    currentImageViewPoint.y = 0
+                }
+                newPoint.y = (height / 2)
+                dotView.frame.origin.y = (zoomedViewHeight / height) * (convertedPoint.y) - 5
+            } else if(convertedPoint.y >= imageHeight - (height / 2)) {
+                if(convertedPoint.y > imageHeight) {
+                    convertedPoint.y = imageHeight
+                    currentImageViewPoint.y = imageViewHeight
+                }
+                newPoint.y = imageHeight - (height / 2)
+                dotView.frame.origin.y = (zoomedViewHeight / height) * (convertedPoint.y - (imageHeight - height)) - 5
+            }
+            
+            let croppingRect = CGRect(x: newPoint.x - (width / 2), y: newPoint.y - (height / 2), width: width, height: height)
+            croppedCgImage = cgImage?.cropping(to: croppingRect)
+        }
+        
+        return UIImage(cgImage: croppedCgImage!)
+    }
+    
+    private func createDotAt(dotImageView: UIImageView, coordInImageView: CGPoint) {
+        dotImageView.frame = CGRect(x: coordInImageView.x - 5, y: coordInImageView.y - 5, width: 10, height: 10)
+        imageView.addSubview(dotImageView)
+    }
+    
+    private func removeDot(dotImageView: UIImageView) {
+        dotImageView.removeFromSuperview()
+    }
+
 }
