@@ -67,6 +67,8 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateNextButtonState()
 
         points.append(CGPoint(x: 0.0, y: 0.0))
         points.append(CGPoint(x: 0.0, y: 0.0))
@@ -140,6 +142,9 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         radiographImageView.isUserInteractionEnabled = true
         outputLabel.text = "Selecting for Point #1"
         currSelector = 1
+        if pointOneCreated {
+            confirmSelectionButton.isEnabled = true
+        }
     }
     
     @IBAction func selectPointTwo(_ sender: Any) {
@@ -147,6 +152,9 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         radiographImageView.isUserInteractionEnabled = true
         outputLabel.text = "Selecting for Point #1"
         currSelector = 2
+        if pointTwoCreated {
+            confirmSelectionButton.isEnabled = true
+        }
     }
     
     @IBAction func confirmSelectionAction(_ sender: Any) {
@@ -156,6 +164,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         outputLabel.text = "Point #\(currSelector) Set!"
         
         points[currSelector - 1] = currentPoint
+        updateNextButtonState()
     }
     
     //MARK: Private Methods

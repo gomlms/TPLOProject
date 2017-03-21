@@ -717,6 +717,7 @@
                         <outlet property="dot5" destination="J05-yE-7fc" id="cyS-5d-Qsh"/>
                         <outlet property="imageView" destination="sC5-CL-CPo" id="HhS-ex-NAo"/>
                         <outlet property="innerView" destination="83j-Av-U0i" id="O6m-fj-BX7"/>
+                        <outlet property="nextButton" destination="wze-Mj-aua" id="B2W-PF-Q8X"/>
                         <outlet property="outputLabel" destination="4cM-ZW-AId" id="0Qn-1q-pi2"/>
                         <outlet property="point1Button" destination="AfT-Fy-UZQ" id="LSc-vK-Dt7"/>
                         <outlet property="point2Button" destination="5hy-S9-ebl" id="uzE-Du-Ndb"/>
@@ -1070,6 +1071,7 @@
                         <outlet property="backgroundView" destination="E73-yT-q6b" id="Hb7-j6-DIS"/>
                         <outlet property="innerScrollView" destination="mPJ-YW-l6d" id="Y0b-aT-yzk"/>
                         <outlet property="movingRecognizer" destination="0ah-qI-Geb" id="2Se-hP-zYa"/>
+                        <outlet property="nextButton" destination="ZE6-7W-b8l" id="6Kv-Mb-mGe"/>
                         <outlet property="outerView" destination="eoZ-Ek-t6o" id="7QC-Hu-7qW"/>
                         <outlet property="radiographView" destination="aoo-67-zTK" id="rol-rq-dj1"/>
                         <outlet property="rotatingRecognizer" destination="3Db-o3-KSV" id="dVV-Qb-1Oy"/>
@@ -1080,11 +1082,13 @@
                 <panGestureRecognizer minimumNumberOfTouches="1" id="0ah-qI-Geb">
                     <connections>
                         <action selector="handlePanWithRecognizer:" destination="Gb7-id-kt6" id="FZ2-QJ-wuc"/>
+                        <outlet property="delegate" destination="Gb7-id-kt6" id="bpN-8X-78r"/>
                     </connections>
                 </panGestureRecognizer>
                 <rotationGestureRecognizer id="3Db-o3-KSV">
                     <connections>
                         <action selector="handleRotateWithRecognizer:" destination="Gb7-id-kt6" id="dQn-qm-bS7"/>
+                        <outlet property="delegate" destination="Gb7-id-kt6" id="JUk-By-QwR"/>
                     </connections>
                 </rotationGestureRecognizer>
                 <tapGestureRecognizer id="GWr-hR-ycm">
@@ -1140,6 +1144,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1a7-zG-5Jk"/>
-        <segue reference="UL5-Oe-iHR"/>
+        <segue reference="ogz-KK-8fZ"/>
     </inferredMetricsTieBreakers>
 </document>

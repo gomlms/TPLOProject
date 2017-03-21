@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlateSizeViewController: UIViewController {
+class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var rotatingView: UIView!
     @IBOutlet weak var outerView: UIView!
@@ -37,6 +37,9 @@ class PlateSizeViewController: UIViewController {
     @IBOutlet weak var rotatingRecognizer: UIRotationGestureRecognizer!    
     @IBOutlet weak var movingRecognizer: UIPanGestureRecognizer!
     @IBOutlet weak var innerScrollView: UIView!
+    
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+    var platePresent = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,8 +211,8 @@ class PlateSizeViewController: UIViewController {
                 }
                 
                 
-                movingImage.addGestureRecognizer(movingRecognizer)
-                movingImage.addGestureRecognizer(rotatingRecognizer)
+                self.view.addGestureRecognizer(movingRecognizer)
+                self.view.addGestureRecognizer(rotatingRecognizer)
                 
                 originOfActiveImage = movingImage.frame.origin
                 
@@ -221,8 +224,8 @@ class PlateSizeViewController: UIViewController {
                 imageInSuperview = true
             } else {
                 if(movingImage == activeImage) {
-                    movingImage.removeGestureRecognizer(movingRecognizer)
-                    movingImage.removeGestureRecognizer(rotatingRecognizer)
+                    self.view.removeGestureRecognizer(movingRecognizer)
+                    self.view.removeGestureRecognizer(rotatingRecognizer)
                     
                     movingImage.removeFromSuperview()
                     movingImage.transform = movingImage.transform.rotated(by: -totalRotation)
@@ -248,21 +251,27 @@ class PlateSizeViewController: UIViewController {
     
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: self.view)
-        if let movingView = recognizer.view as! UIImageView? {
-            if(movingView == activeImage) {
-                movingView.center = CGPoint(x: movingView.center.x + translation.x, y: movingView.center.y + translation.y)
-            }
-        }
+        activeImage?.center = CGPoint(x: (activeImage?.center.x)! + translation.x, y: (activeImage?.center.y)! + translation.y)
+        
         recognizer.setTranslation(CGPoint(x: 0.0, y: 0.0), in: self.view)
     }
     
     @IBAction func handleRotate(recognizer: UIRotationGestureRecognizer) {
-        if let movingView = recognizer.view as! UIImageView? {
-            movingView.transform = movingView.transform.rotated(by: recognizer.rotation)
+            activeImage?.transform = (activeImage?.transform.rotated(by: recognizer.rotation))!
             totalRotation += recognizer.rotation
             
             recognizer.rotation = 0
-        }
     }
 
+    private func updateNextButtonState() {
+        if platePresent {
+            nextButton.isEnabled = true
+        } else {
+            nextButton.isEnabled = false
+        }
+    }
+    
+    internal func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

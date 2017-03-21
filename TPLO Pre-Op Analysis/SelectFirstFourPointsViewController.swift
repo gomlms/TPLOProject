@@ -41,8 +41,18 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     var currentPoints = [CGPoint]()
     var currHeight : CGFloat = 300
     
+    var p1Chose = false
+    var p2Chose = false
+    var p3Chose = false
+    var p4Chose = false
+    var p5Chose = false
+    
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nextButton.isEnabled = false
         
         points.append(CGPoint(x: 0.0, y: 0.0))
         points.append(CGPoint(x: 0.0, y: 0.0))
@@ -112,22 +122,27 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
             dot1.center = currentPoint
             dot1.isHidden = false
             currentPoints[0] = currentPoint
+            p1Chose = true
         case 2:
             dot2.center = currentPoint
             dot2.isHidden = false
             currentPoints[1] = currentPoint
+            p2Chose = true
         case 3:
             dot3.center = currentPoint
             dot3.isHidden = false
             currentPoints[2] = currentPoint
+            p3Chose = true
         case 4:
             dot4.center = currentPoint
             dot4.isHidden = false
             currentPoints[3] = currentPoint
+            p4Chose = true
         case 5:
             dot5.center = currentPoint
             dot5.isHidden = false
             currentPoints[4] = currentPoint
+            p5Chose = true
         default:
             fatalError()
         }
@@ -140,6 +155,9 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         imageView.isUserInteractionEnabled = true
         outputLabel.text = "Selecting for Point #1"
         currSelector = 1
+        if p1Chose {
+            confirmSelection.isEnabled = true
+        }
     }
     
     @IBAction func selectPoint2(_ sender: Any) {
@@ -147,6 +165,9 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         imageView.isUserInteractionEnabled = true
         outputLabel.text = "Selecting for Point #2"
         currSelector = 2
+        if p2Chose {
+            confirmSelection.isEnabled = true
+        }
     }
     
     @IBAction func selectPoint3(_ sender: Any) {
@@ -154,6 +175,9 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         imageView.isUserInteractionEnabled = true
         outputLabel.text = "Selecting for Point #3"
         currSelector = 3
+        if p3Chose {
+            confirmSelection.isEnabled = true
+        }
     }
     
     @IBAction func selectPoint4(_ sender: Any) {
@@ -161,6 +185,9 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         imageView.isUserInteractionEnabled = true
         outputLabel.text = "Selecting for Point #4"
         currSelector = 4
+        if p4Chose {
+            confirmSelection.isEnabled = true
+        }
     }
     
     @IBAction func selectPoint5(_ sender: Any) {
@@ -168,6 +195,9 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         imageView.isUserInteractionEnabled = true
         outputLabel.text = "Selecting for Point #5"
         currSelector = 5
+        if p5Chose {
+            confirmSelection.isEnabled = true
+        }
     }
     
     @IBAction func confirmSelectionAction(_ sender: Any) {
@@ -177,6 +207,8 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         outputLabel.text = "Point #\(currSelector) Set!"
         
         points[currSelector - 1] = currentPoint
+        
+        updateNextButtonState()
     }
     
     
@@ -212,5 +244,12 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point5Button.isEnabled = true
     }
     
+    private func updateNextButtonState() {
+        if p1Chose && p2Chose && p3Chose && p4Chose && p5Chose {
+            nextButton.isEnabled = true
+        } else {
+            nextButton.isEnabled = false
+        }
+    }
 
 }

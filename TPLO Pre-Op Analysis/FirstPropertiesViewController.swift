@@ -26,14 +26,16 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     var procedure : Procedure?
     var designator: String?
     
+    
     //var currentProcedure : Procedure = nil
     var radiographImage : UIImage = #imageLiteral(resourceName: "defaultPhoto")
     
     var chosePicture = false
+    var desChosen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //updateNextButtonState()
+        updateNextButtonState()
         // Do any additional setup after loading the view.
         
         nameTextField.delegate = self
@@ -55,7 +57,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        //updateNextButtonState()
+        updateNextButtonState()
     }
     
     // MARK: - Navigation
@@ -70,18 +72,23 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         } else {
             fatalError("The Properties View Controller is not inside a navigation controller")
         }
+        updateNextButtonState()
     }
     
     @IBAction func markerPressed(_ sender: Any) {
         designator = "Marker"
         markerButton.backgroundColor = UIColor.cyan
         ballButton.backgroundColor = UIColor.white
+        desChosen = true
+        updateNextButtonState()
     }
     
     @IBAction func ballPressed(_ sender: Any) {
         designator = "Ball"
         ballButton.backgroundColor = UIColor.cyan
         markerButton.backgroundColor = UIColor.white
+        desChosen = true
+        updateNextButtonState()
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -149,14 +156,14 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     }
 
 
-    /*//MARK: Private Methods
+    //MARK: Private Methods
     private func updateNextButtonState() {
         let text = nameTextField.text ?? ""
         
-        if text == "Enter title here" {
+        if text == "Enter title here" || desChosen == false || chosePicture == false {
             nextButton.isEnabled = false
         } else {
             nextButton.isEnabled = true
         }
-    }*/
+    }
 }
