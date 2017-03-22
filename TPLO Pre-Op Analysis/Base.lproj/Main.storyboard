@@ -528,42 +528,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KIT-vI-h8i">
+                                <rect key="frame" x="10" y="447" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="5on-Wg-Z0C"/>
+                                    <constraint firstAttribute="width" constant="200" id="UIg-Z1-RX2"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvd-1T-cHG">
+                                <rect key="frame" x="236" y="617" width="123" height="30"/>
+                                <state key="normal" title="Confirm Selection"/>
+                                <connections>
+                                    <action selector="confirmSelectionAction:" destination="ata-jN-aIj" eventType="touchUpInside" id="1ET-5p-BhN"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NUp-Ys-z2z">
-                                <rect key="frame" x="37.5" y="35" width="300" height="561.5"/>
+                                <rect key="frame" x="154" y="462" width="205" height="135"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wDO-km-F1r">
-                                        <rect key="frame" x="26.5" y="0.0" width="247" height="166"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wDO-km-F1r">
+                                        <rect key="frame" x="0.0" y="0.0" width="205" height="135"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfT-Fy-UZQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="247" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="205" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Set Midpoint Tibial Eminence (pt1)"/>
                                                 <connections>
                                                     <action selector="selectPoint1:" destination="ata-jN-aIj" eventType="touchUpInside" id="VrU-Fe-2tE"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hy-S9-ebl">
-                                                <rect key="frame" x="0.0" y="34" width="247" height="30"/>
+                                                <rect key="frame" x="0.0" y="27" width="205" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Set Center of Talus (pt2)"/>
                                                 <connections>
                                                     <action selector="selectPoint2:" destination="ata-jN-aIj" eventType="touchUpInside" id="B0d-HL-rtq"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wry-do-o8J">
-                                                <rect key="frame" x="0.0" y="68" width="247" height="30"/>
+                                                <rect key="frame" x="0.0" y="54" width="205" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Set Tibial Plateau Point Cranial (pt3)"/>
                                                 <connections>
                                                     <action selector="selectPoint3:" destination="ata-jN-aIj" eventType="touchUpInside" id="Ixu-4h-CgR"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1E-Hm-6Ot">
-                                                <rect key="frame" x="0.0" y="102" width="247" height="30"/>
+                                                <rect key="frame" x="0.0" y="81" width="205" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Set Caudal (pt4)"/>
                                                 <connections>
                                                     <action selector="selectPoint4:" destination="ata-jN-aIj" eventType="touchUpInside" id="cCS-uN-2Vz"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EO-aT-Kz7">
-                                                <rect key="frame" x="0.0" y="136" width="247" height="30"/>
+                                                <rect key="frame" x="0.0" y="108" width="205" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="Set Proximal Tubercle (pt5)"/>
                                                 <connections>
                                                     <action selector="selectPoint5:" destination="ata-jN-aIj" eventType="touchUpInside" id="HeC-kd-UbQ"/>
@@ -571,85 +590,17 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYe-f5-5sm">
-                                        <rect key="frame" x="0.0" y="181" width="300" height="300"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83j-Av-U0i">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sC5-CL-CPo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                                                        <gestureRecognizers/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="300" id="3kC-he-YJ4"/>
-                                                            <constraint firstAttribute="width" constant="300" id="goy-1d-AK5"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="5lC-Xe-lqr" appends="YES" id="Hif-wd-jTj"/>
-                                                        </connections>
-                                                    </imageView>
-                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot1" translatesAutoresizingMaskIntoConstraints="NO" id="LaB-uR-Map">
-                                                        <rect key="frame" x="40" y="53" width="15" height="15"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot3" translatesAutoresizingMaskIntoConstraints="NO" id="9Dw-Ei-xca">
-                                                        <rect key="frame" x="99" y="99" width="15" height="15"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot4" translatesAutoresizingMaskIntoConstraints="NO" id="yLA-5n-56q">
-                                                        <rect key="frame" x="117" y="53" width="15" height="15"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot2" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-HX-KSl">
-                                                        <rect key="frame" x="54" y="99" width="15" height="15"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dot5" translatesAutoresizingMaskIntoConstraints="NO" id="J05-yE-7fc" userLabel="Dot5">
-                                                        <rect key="frame" x="138" y="99" width="15" height="15"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="sC5-CL-CPo" firstAttribute="top" secondItem="83j-Av-U0i" secondAttribute="top" id="MEU-W6-DVY"/>
-                                                    <constraint firstAttribute="width" constant="300" id="e8Y-wS-UEy"/>
-                                                    <constraint firstAttribute="height" constant="300" id="lqm-sz-gkG"/>
-                                                    <constraint firstItem="sC5-CL-CPo" firstAttribute="leading" secondItem="83j-Av-U0i" secondAttribute="leading" id="qxV-WN-0fK"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="1ZH-tJ-YE0"/>
-                                            <constraint firstItem="83j-Av-U0i" firstAttribute="leading" secondItem="PYe-f5-5sm" secondAttribute="leading" id="4qA-2D-kqv"/>
-                                            <constraint firstItem="83j-Av-U0i" firstAttribute="top" secondItem="PYe-f5-5sm" secondAttribute="top" id="7WT-PK-vFq"/>
-                                            <constraint firstAttribute="trailing" secondItem="83j-Av-U0i" secondAttribute="trailing" id="D8h-lX-JYV"/>
-                                            <constraint firstAttribute="height" constant="300" id="DpG-Cm-1Nc"/>
-                                            <constraint firstAttribute="bottom" secondItem="83j-Av-U0i" secondAttribute="bottom" id="Kpa-FA-dWq"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="delegate" destination="ata-jN-aIj" id="vC7-Pe-8VC"/>
-                                        </connections>
-                                    </scrollView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cM-ZW-AId">
-                                        <rect key="frame" x="148" y="496" width="4.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvd-1T-cHG">
-                                        <rect key="frame" x="88.5" y="531.5" width="123" height="30"/>
-                                        <state key="normal" title="Confirm Selection"/>
-                                        <connections>
-                                            <action selector="confirmSelectionAction:" destination="ata-jN-aIj" eventType="touchUpInside" id="1ET-5p-BhN"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NUp-Ys-z2z" firstAttribute="centerX" secondItem="udC-9r-i6g" secondAttribute="centerX" id="gk4-ZH-YiT"/>
-                            <constraint firstItem="NUp-Ys-z2z" firstAttribute="top" secondItem="lzH-lY-MKL" secondAttribute="bottom" constant="15" id="wYX-hb-2Mq"/>
+                            <constraint firstItem="KIT-vI-h8i" firstAttribute="leading" secondItem="udC-9r-i6g" secondAttribute="leading" constant="10" id="2MW-3Y-Hdr"/>
+                            <constraint firstItem="jG7-bj-Fu9" firstAttribute="top" secondItem="yvd-1T-cHG" secondAttribute="bottom" constant="20" id="ESI-v7-igU"/>
+                            <constraint firstItem="yvd-1T-cHG" firstAttribute="trailing" secondItem="udC-9r-i6g" secondAttribute="trailingMargin" id="MfV-yF-pD2"/>
+                            <constraint firstItem="yvd-1T-cHG" firstAttribute="top" secondItem="NUp-Ys-z2z" secondAttribute="bottom" constant="20" id="NXj-Ij-HlI"/>
+                            <constraint firstItem="jG7-bj-Fu9" firstAttribute="top" secondItem="KIT-vI-h8i" secondAttribute="bottom" constant="20" id="P16-iQ-lYF"/>
+                            <constraint firstItem="NUp-Ys-z2z" firstAttribute="trailing" secondItem="udC-9r-i6g" secondAttribute="trailingMargin" id="jg2-EZ-wM5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Set Key Points" id="H8K-ba-8Ih">
@@ -661,29 +612,22 @@
                     </navigationItem>
                     <connections>
                         <outlet property="confirmSelection" destination="yvd-1T-cHG" id="Anu-2S-m4L"/>
-                        <outlet property="dot1" destination="LaB-uR-Map" id="CIn-fi-2pg"/>
-                        <outlet property="dot2" destination="jiM-HX-KSl" id="PKt-Gj-erb"/>
-                        <outlet property="dot3" destination="9Dw-Ei-xca" id="xvb-Ut-5Dh"/>
-                        <outlet property="dot4" destination="yLA-5n-56q" id="Yak-Iu-Cry"/>
-                        <outlet property="dot5" destination="J05-yE-7fc" id="cyS-5d-Qsh"/>
-                        <outlet property="imageView" destination="sC5-CL-CPo" id="HhS-ex-NAo"/>
-                        <outlet property="innerView" destination="83j-Av-U0i" id="O6m-fj-BX7"/>
                         <outlet property="nextButton" destination="wze-Mj-aua" id="B2W-PF-Q8X"/>
-                        <outlet property="outputLabel" destination="4cM-ZW-AId" id="0Qn-1q-pi2"/>
                         <outlet property="point1Button" destination="AfT-Fy-UZQ" id="LSc-vK-Dt7"/>
                         <outlet property="point2Button" destination="5hy-S9-ebl" id="uzE-Du-Ndb"/>
                         <outlet property="point3Button" destination="wry-do-o8J" id="B0s-Mg-7RP"/>
                         <outlet property="point4Button" destination="l1E-Hm-6Ot" id="r1v-Rp-cOV"/>
                         <outlet property="point5Button" destination="8EO-aT-Kz7" id="ayR-sI-7QX"/>
-                        <outlet property="scrollView" destination="PYe-f5-5sm" id="0ws-KC-MKF"/>
+                        <outlet property="zoomRecog" destination="9N1-0Q-UcD" id="HCD-cv-jwE"/>
+                        <outlet property="zoomedView" destination="KIT-vI-h8i" id="0Zx-8u-dIv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDN-IV-ZIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="5lC-Xe-lqr">
+                <gestureRecognizer id="9N1-0Q-UcD" customClass="ZoomGestureRecognizer" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target">
                     <connections>
-                        <action selector="tapForPoint:" destination="ata-jN-aIj" id="Kh7-Qm-fhM"/>
+                        <action selector="tapDownWithSender:" destination="ata-jN-aIj" id="wVP-1n-kAD"/>
                     </connections>
-                </tapGestureRecognizer>
+                </gestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1822" y="2411"/>
         </scene>

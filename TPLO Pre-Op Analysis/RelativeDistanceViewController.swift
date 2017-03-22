@@ -81,7 +81,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //updateNextButtonState()
+        updateNextButtonState()
 
         points.append(CGPoint(x: 0.0, y: 0.0))
         points.append(CGPoint(x: 0.0, y: 0.0))
@@ -89,7 +89,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         currentPoints.append(CGPoint(x: 0.0, y: 0.0))
         currentPoints.append(CGPoint(x: 0.0, y: 0.0))
         
-        //confirmSelectionButton.isEnabled = false
+        confirmSelectionButton.isEnabled = false
         
         guard let procedure = procedure else{
             fatalError("Procedure was not correctly passed to Relative Distance Controller")
@@ -103,8 +103,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
-        
-        print("here \(maxAllowedHeight())")
         
         imageViewWidth = screenWidth - 40
         imageViewHeight = imageViewWidth / imageRatio
