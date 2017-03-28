@@ -10,10 +10,9 @@ import UIKit
 
 class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var rotatingView: UIView!
-    @IBOutlet weak var outerView: UIView!
-    @IBOutlet weak var radiographView: UIImageView!
-    @IBOutlet weak var backgroundView: UIImageView!
+    var rotatingView = UIView()
+    var radiographView = UIImageView()
+    var backgroundView = UIImageView()
     var procedure : Procedure?
     
     var tempAngle : Double = 0
@@ -40,6 +39,8 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var nextButton: UIBarButtonItem!
     var platePresent = false
+    
+    var imageViewHeight: CGFloat = 0.0, imageViewWidth: CGFloat = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,33 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
         guard let procedure = procedure else {
             fatalError("Procedure was not correctly passed to Plate Size Controller")
         }
+        
+        imageViewWidth = procedure.imageViewWidth
+        imageViewHeight = procedure.imageViewHeight
+        
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        
+        backgroundView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        
+        backgroundView.isUserInteractionEnabled = false
+        backgroundView.image = procedure.radiograph
+        
+        self.view.addSubview(backgroundView)
+        
+        rotatingView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        
+        rotatingView.isUserInteractionEnabled = false
+        
+        self.view.addSubview(rotatingView)
+        
+        radiographView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        
+        radiographView.isUserInteractionEnabled = false
+        radiographView.image = procedure.radiograph
+        
+        rotatingView.addSubview(radiographView)
         
         let maskPath = drawMaskImage(size: (procedure.radiograph?.size)!)
         
@@ -77,7 +105,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         radiographView.layer.anchorPoint = CGPoint(x: CGFloat(procedure.points[0].x / radiographView.frame.width), y: CGFloat(procedure.points[0].y) / radiographView.frame.height)
         radiographView.transform = radiographView.transform.rotated(by: CGFloat(-tempAngle))
-        rotatingView.transform = rotatingView.transform.translatedBy(x: -150 + procedure.points[0].x, y: -150 + procedure.points[0].y)
+        rotatingView.center = procedure.points[0]
         
         // Do any additional setup after loading the view.
     }

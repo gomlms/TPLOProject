@@ -18,13 +18,13 @@ class OsteotomyViewController: UIViewController {
 
     var tempAngle : Double = 0;
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var innerView: UIView!
-    @IBOutlet weak var radiographImage: UIImageView!
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var rotatingView: UIView!
+    var radiographImage = UIImageView()
+    var backgroundImage = UIImageView()
+    var rotatingView = UIView()
     
     @IBOutlet weak var chordLengthLabel: UILabel!
+    
+    var imageViewWidth: CGFloat = 0.0, imageViewHeight: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,33 @@ class OsteotomyViewController: UIViewController {
         guard let procedure = procedure else {
             fatalError("Procedure was not correctly passed to Osteotomy Controller")
         }
+        
+        imageViewWidth = procedure.imageViewWidth
+        imageViewHeight = procedure.imageViewHeight
+        
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        
+        backgroundImage.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        
+        backgroundImage.isUserInteractionEnabled = false
+        backgroundImage.image = procedure.radiograph
+        
+        self.view.addSubview(backgroundImage)
+        
+        rotatingView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        
+        rotatingView.isUserInteractionEnabled = false
+        
+        self.view.addSubview(rotatingView)
+        
+        radiographImage.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        
+        radiographImage.isUserInteractionEnabled = false
+        radiographImage.image = procedure.radiograph
+        
+        rotatingView.addSubview(radiographImage)
         
         //Creating Part that is being rotated
         
@@ -64,8 +91,8 @@ class OsteotomyViewController: UIViewController {
         
         radiographImage.layer.anchorPoint = CGPoint(x: CGFloat(procedure.points[0].x / radiographImage.frame.width), y: CGFloat(procedure.points[0].y) / radiographImage.frame.height)
         radiographImage.transform = radiographImage.transform.rotated(by: CGFloat(-tempAngle))
-        rotatingView.transform = rotatingView.transform.translatedBy(x: -150 + procedure.points[0].x, y: -150 + procedure.points[0].y)
-        
+        rotatingView.center = procedure.points[0]
+
         
         chordLengthLabel.text = "Osteotomy Rotation = \(procedure.chordLength!)mm"
     }
