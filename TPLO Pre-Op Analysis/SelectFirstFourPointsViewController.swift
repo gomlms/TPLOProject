@@ -94,16 +94,14 @@ class SelectFirstFourPointsViewController: UIViewController {
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         
-        imageViewWidth = screenWidth - 40
-        imageViewHeight = imageViewWidth / imageRatio
+        /*imageViewWidth = screenWidth - 40
+        imageViewHeight = imageViewWidth / imageRatio*/
         
-        if(imageViewHeight > maxAllowedHeight()) {
-            imageViewHeight = maxAllowedHeight()
-            imageViewWidth = imageViewHeight * imageRatio
-            imageView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
-        } else {
-            imageView.frame = CGRect(x: 20, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
-        }
+        imageViewWidth = procedure.imageViewWidth
+        imageViewHeight = procedure.imageViewHeight
+        
+        
+        imageView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
         
         imageView.addGestureRecognizer(zoomRecog)
         imageView.isUserInteractionEnabled = false

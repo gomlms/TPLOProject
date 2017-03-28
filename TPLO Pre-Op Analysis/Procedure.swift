@@ -28,6 +28,8 @@ class Procedure: NSObject, NSCoding {
     var roundedRadius : Int?
     var alpha : Double?
     var rotatedRadiograph : UIView?
+    var imageViewWidth : CGFloat = 0
+    var imageViewHeight : CGFloat = 0
     
     
     //MARK: Archiving Paths

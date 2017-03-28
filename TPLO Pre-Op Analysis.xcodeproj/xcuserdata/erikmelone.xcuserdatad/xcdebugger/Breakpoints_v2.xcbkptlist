@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TPLO Pre-Op Analysis/TPAViewController.swift"
-            timestampString = "508283772.025769"
+            timestampString = "512421801.100651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "getAngle()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TPLO Pre-Op Analysis/TPAViewController.swift"
-            timestampString = "508283772.025769"
+            timestampString = "512421801.100651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "determineIntersection()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TPLO Pre-Op Analysis/TPAViewController.swift"
-            timestampString = "508283772.025769"
+            timestampString = "512421801.100651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "determineIntersection()"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TPLO Pre-Op Analysis/TPAViewController.swift"
-            timestampString = "508283772.025769"
+            timestampString = "512421801.100651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "determineIntersection()"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,13 +154,106 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TPLO Pre-Op Analysis/RelativeDistanceViewController.swift"
-            timestampString = "511899643.791819"
+            timestampString = "512420409.297815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TPLO Pre-Op Analysis/TPAViewController.swift"
+            timestampString = "512420994.773994"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "TPAViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TPLO_Pre_Op_Analysis.TPAViewController.__deallocating_deinit"
+                  moduleName = "TPLO Pre-Op Analysis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erikmelone/Desktop/TPLOProject/TPLO%20Pre-Op%20Analysis/TPAViewController.swift"
+                  timestampString = "512420997.143205"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TPLO_Pre_Op_Analysis.TPAViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; TPLO_Pre_Op_Analysis.TPAViewController"
+                  moduleName = "TPLO Pre-Op Analysis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erikmelone/Desktop/TPLOProject/TPLO%20Pre-Op%20Analysis/TPAViewController.swift"
+                  timestampString = "512420997.168702"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TPLO_Pre_Op_Analysis.TPAViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; TPLO_Pre_Op_Analysis.TPAViewController"
+                  moduleName = "TPLO Pre-Op Analysis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erikmelone/Desktop/TPLOProject/TPLO%20Pre-Op%20Analysis/TPAViewController.swift"
+                  timestampString = "512420997.188044"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TPLO_Pre_Op_Analysis.TPAViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;TPLO_Pre_Op_Analysis.TPAViewController&gt;"
+                  moduleName = "TPLO Pre-Op Analysis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erikmelone/Desktop/TPLOProject/TPLO%20Pre-Op%20Analysis/TPAViewController.swift"
+                  timestampString = "512420997.207579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TPLO_Pre_Op_Analysis.TPAViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;TPLO_Pre_Op_Analysis.TPAViewController&gt;"
+                  moduleName = "TPLO Pre-Op Analysis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erikmelone/Desktop/TPLOProject/TPLO%20Pre-Op%20Analysis/TPAViewController.swift"
+                  timestampString = "512420997.225864"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -106,6 +106,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         imageViewWidth = screenWidth - 40
         imageViewHeight = imageViewWidth / imageRatio
+      
         
         if(imageViewHeight > maxAllowedHeight()) {
             imageViewHeight = maxAllowedHeight()
@@ -114,6 +115,10 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         } else {
             imageView.frame = CGRect(x: 20, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
         }
+        
+        
+        procedure.imageViewWidth = imageViewWidth
+        procedure.imageViewHeight = imageViewHeight
         
         imageView.addGestureRecognizer(zoomRecog)
         imageView.isUserInteractionEnabled = false
@@ -204,7 +209,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func maxAllowedHeight() -> CGFloat {
-        return (zoomedView.frame.origin.y - 10) - calcYPos()
+        return (zoomedView.frame.origin.y) - calcYPos()
     }
     
     @IBAction func tapDown(sender: ZoomGestureRecognizer) {

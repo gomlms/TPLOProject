@@ -8,41 +8,56 @@
 
 import UIKit
 
-class TPAViewController: UIViewController, UIScrollViewDelegate {
+class TPAViewController: UIViewController {
 
     //MARK: Properties
     
     var procedure: Procedure?
     
+    var imageView = UIImageView()
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var innerView: UIView!
-    @IBOutlet weak var imageView: UIImageView!
-    
-    @IBOutlet weak var dot1: UIImageView!
-    @IBOutlet weak var dot2: UIImageView!
-    @IBOutlet weak var dot3: UIImageView!
-    @IBOutlet weak var dot4: UIImageView!
-    @IBOutlet weak var dot5: UIImageView!
+    var dot1 = UIImageView(image: #imageLiteral(resourceName: "dot1"))
+    var dot2 = UIImageView(image: #imageLiteral(resourceName: "dot2"))
+    var dot3 = UIImageView(image: #imageLiteral(resourceName: "dot3"))
+    var dot4 = UIImageView(image: #imageLiteral(resourceName: "dot4"))
+    var dot5 = UIImageView(image: #imageLiteral(resourceName: "dot5"))
     
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var tpaLabel: UILabel!
     
+    var imageViewWidth: CGFloat = 0.0, imageViewHeight: CGFloat = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imageViewWidth = procedure!.imageViewWidth
+        imageViewHeight = procedure!.imageViewHeight
+        
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        
+        imageView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        
+        imageView.isUserInteractionEnabled = false
         imageView.image = procedure?.radiograph
         
+        self.view.addSubview(imageView)
+        imageView.addSubview(dot1)
+        imageView.addSubview(dot2)
+        imageView.addSubview(dot3)
+        imageView.addSubview(dot4)
+        imageView.addSubview(dot5)
         
-        dot1.frame = CGRect(x: (procedure?.points[0].x)! - 12.5, y: (procedure?.points[0].y)! - 12.5, width: 25, height: 25)
+        dot1.frame = CGRect(x: (procedure?.points[0].x)! - 5, y: (procedure?.points[0].y)! - 5, width: 10, height: 10)
         dot1.isHidden = false
-        dot2.frame = CGRect(x: (procedure?.points[1].x)! - 12.5, y: (procedure?.points[1].y)! - 12.5, width: 25, height: 25)
+        dot2.frame = CGRect(x: (procedure?.points[1].x)! - 5, y: (procedure?.points[1].y)! - 5, width: 10, height: 10)
         dot2.isHidden = false
-        dot3.frame = CGRect(x: (procedure?.points[2].x)! - 12.5, y: (procedure?.points[2].y)! - 12.5, width: 25, height: 25)
+        dot3.frame = CGRect(x: (procedure?.points[2].x)! - 5, y: (procedure?.points[2].y)! - 5, width: 10, height: 10)
         dot3.isHidden = false
-        dot4.frame = CGRect(x: (procedure?.points[3].x)! - 12.5, y: (procedure?.points[3].y)! - 12.5, width: 25, height: 25)
+        dot4.frame = CGRect(x: (procedure?.points[3].x)! - 5, y: (procedure?.points[3].y)! - 5, width: 10, height: 10)
         dot4.isHidden = false
-        dot5.frame = CGRect(x: (procedure?.points[4].x)! - 12.5, y: (procedure?.points[4].y)! - 12.5, width: 25, height: 25)
+        dot5.frame = CGRect(x: (procedure?.points[4].x)! - 5, y: (procedure?.points[4].y)! - 5, width: 10, height: 10)
         dot5.isHidden = false
         
         drawSetOfLines()
@@ -54,9 +69,6 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         
         // Do any additional setup after loading the view.
     
-        self.scrollView.minimumZoomScale = 1.0
-        self.scrollView.maximumZoomScale = 6.0
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +80,7 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
     func drawSetOfLines() {
         let size = imageView.image?.size
         let lines = UIImageView(frame: CGRect(origin: CGPoint(x: 0 , y: 0), size: size!))
-        innerView.addSubview(lines)
+        imageView.addSubview(lines)
         
         let opaque = false
         let scale: CGFloat = 0
@@ -144,12 +156,6 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         }
         
         nextController.procedure = procedure
-    }
-    
-    //MARK: ScrollViewDelegate
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.innerView
     }
     
 

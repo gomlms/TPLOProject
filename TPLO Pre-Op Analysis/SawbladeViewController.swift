@@ -8,21 +8,35 @@
 
 import UIKit
 
-class SawbladeViewController: UIViewController, UIScrollViewDelegate {
+class SawbladeViewController: UIViewController {
 
     //MARK: Properties
     var procedure : Procedure?
     var sawbladeRadiusMM : Double?
     var roundedRadius : Int?
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var innerView: UIView!
-    @IBOutlet weak var radiographView: UIImageView!
+    var radiographView = UIImageView()
+    
+    var imageViewWidth: CGFloat = 0.0, imageViewHeight: CGFloat = 0.0
     
     @IBOutlet weak var outputLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageViewWidth = procedure!.imageViewWidth
+        imageViewHeight = procedure!.imageViewHeight
+        
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        
+        radiographView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        
+        radiographView.isUserInteractionEnabled = false
+        radiographView.image = procedure?.radiograph
+        
+        self.view.addSubview(radiographView)
         
         let xSquared = Double(pow(((procedure?.points[4].x)! - (procedure?.points[0].x)!), 2))
         
@@ -48,8 +62,6 @@ class SawbladeViewController: UIViewController, UIScrollViewDelegate {
         
         procedure?.roundedRadius = roundedRadius
         
-        self.scrollView.minimumZoomScale = 1.0
-        self.scrollView.maximumZoomScale = 6.0
         
         radiographView.image = procedure?.radiograph
         
@@ -82,9 +94,6 @@ class SawbladeViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: ScrollViewDelegate
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.innerView
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
