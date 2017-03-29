@@ -73,7 +73,7 @@ class SawbladeViewController: UIViewController {
         
         radiographView.layer.addSublayer(circleLayer)
         
-        outputLabel.text = "\(roundedRadius!)mm Size Sawblade and \(sawbladeRadiusMM)mm and \(procedure?.sawbladeRadius) pixels"
+        outputLabel.text = String(format: "%dmm Size Sawblade and %.2fmm and %.2f pixels", roundedRadius!, sawbladeRadiusMM!, (procedure?.sawbladeRadius)!)
 
         // Do any additional setup after loading the view.
     }

@@ -27,7 +27,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         
         procedure.tpa = getAngle()
         
-        outputLabel.text = "Date: \(procedure.dateOfProcedure)\nPatient Name: \((procedure.name)!)\nTPA: \(procedure.tpa)°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)";
+        outputLabel.text = String(format: "Date: \(procedure.dateOfProcedure)\nPatient Name: \((procedure.name)!)\nTPA: %.2f°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)", procedure.tpa)
 
         // Do any additional setup after loading the view.
     }

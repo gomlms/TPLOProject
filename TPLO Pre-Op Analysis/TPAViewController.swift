@@ -65,7 +65,7 @@ class TPAViewController: UIViewController {
         procedure?.tpa = getAngle()
         let angle = procedure?.tpa
         
-        tpaLabel.text = "TPA: \(angle!)°"
+        tpaLabel.text = String(format: "TPA: %.2f°", angle!)
         
         // Do any additional setup after loading the view.
     
