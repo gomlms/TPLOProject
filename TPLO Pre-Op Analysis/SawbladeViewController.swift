@@ -44,7 +44,7 @@ class SawbladeViewController: UIViewController {
         
         procedure?.sawbladeRadius = sqrt(xSquared + ySquared)
         
-        sawbladeRadiusMM = (procedure?.sawbladeRadius)! * (procedure?.pixelToMMRatio)!
+        sawbladeRadiusMM = (procedure?.sawbladeRadius)! / (procedure?.pixelToMMRatio)!
         
         if(sawbladeRadiusMM! < 16.5){
             roundedRadius = 15
