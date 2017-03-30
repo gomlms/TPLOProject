@@ -145,8 +145,7 @@ class SelectFirstFourPointsViewController: UIViewController {
         }
         
         if(sender.state == .ended) {
-            zoomedView.isHidden = true
-            
+
             if(currentDot == #imageLiteral(resourceName: "dot1")) {
                 createDotAt(dotImageView: dot1ImageView, coordInImageView: currentImageViewPoint)
                 p1Chose = true
@@ -292,6 +291,7 @@ class SelectFirstFourPointsViewController: UIViewController {
         confirmSelection.isEnabled = false
         enableSelectionButtons()
         imageView.isUserInteractionEnabled = false
+        zoomedView.isHidden = true
         
         points[currSelector - 1] = currentImageViewPoint
         

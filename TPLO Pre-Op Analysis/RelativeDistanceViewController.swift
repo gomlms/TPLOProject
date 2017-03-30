@@ -172,6 +172,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         confirmSelectionButton.isEnabled = false
         imageView.isUserInteractionEnabled = false
         enableSelectionButtons()
+        zoomedView.isHidden = true
         
         points[currSelector - 1] = currentImageViewPoint
         updateNextButtonState()
@@ -217,7 +218,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
             createDotAt(dotImageView: dot2ImageView, coordInImageView: currentImageViewPoint)
         }
         if(sender.state == .ended) {
-            zoomedView.isHidden = true
             
             if(currentDot == #imageLiteral(resourceName: "dot1")) {
                 createDotAt(dotImageView: dot1ImageView, coordInImageView: currentImageViewPoint)
