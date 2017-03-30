@@ -317,7 +317,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKT-Ry-wjT">
-                                        <rect key="frame" x="151.5" y="0.0" width="151.5" height="40"/>
+                                        <rect key="frame" x="152" y="0.0" width="151" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="AFn-uq-hda"/>
                                             <constraint firstAttribute="width" constant="151.5" id="TA1-GT-Yey"/>

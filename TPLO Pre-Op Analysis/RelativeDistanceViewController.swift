@@ -30,8 +30,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     var pointTwoCreated = false
     
     var radiographImage = #imageLiteral(resourceName: "defaultPhoto")
-    
-    var currentPoints = [CGPoint]()
+
     var currHeight : CGFloat = 300
 
     var zoomedViewWidth: CGFloat = 200, zoomedViewHeight: CGFloat = 200
@@ -41,6 +40,9 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     var imageView = UIImageView()
     var imageViewWidth = CGFloat(0)
     var imageViewHeight = CGFloat(0)
+    
+    var innerView = UIView()
+    var scrollView = UIScrollView()
     
     var imageWidth = CGFloat(0)
     var imageHeight = CGFloat(0)
@@ -86,9 +88,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         points.append(CGPoint(x: 0.0, y: 0.0))
         points.append(CGPoint(x: 0.0, y: 0.0))
         
-        currentPoints.append(CGPoint(x: 0.0, y: 0.0))
-        currentPoints.append(CGPoint(x: 0.0, y: 0.0))
-        
         confirmSelectionButton.isEnabled = false
         
         guard let procedure = procedure else{
@@ -102,7 +101,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         imageRatio = imageWidth / imageHeight
         
         let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
         
         imageViewWidth = screenWidth - 40
         imageViewHeight = imageViewWidth / imageRatio
@@ -111,20 +109,26 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         if(imageViewHeight > maxAllowedHeight()) {
             imageViewHeight = maxAllowedHeight()
             imageViewWidth = imageViewHeight * imageRatio
-            imageView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
+            scrollView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
         } else {
-            imageView.frame = CGRect(x: 20, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
+            scrollView.frame = CGRect(x: 20, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
         }
         
+        scrollView.contentSize = CGSize(width: imageViewWidth, height: imageViewHeight)
+        scrollView.delegate = self
+        scrollView.isUserInteractionEnabled = true
         
         procedure.imageViewWidth = imageViewWidth
         procedure.imageViewHeight = imageViewHeight
         
+        innerView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
+        scrollView.addSubview(innerView)
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         imageView.addGestureRecognizer(zoomRecog)
         imageView.isUserInteractionEnabled = false
         imageView.image = radiographImage
-        
-        self.view.addSubview(imageView)
+        innerView.addSubview(imageView)
         
         dotView.image = currentDot
         dotView.frame = CGRect(x: zoomedViewWidth / 2  - 5, y: zoomedViewHeight / 2 - 5, width: 10, height: 10)
@@ -134,6 +138,11 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         zoomedView.addSubview(dotView)
         zoomedView.isHidden = true
+        
+        self.scrollView.minimumZoomScale = 1.0
+        self.scrollView.maximumZoomScale = 6.0
+        
+        self.view.addSubview(scrollView)
         
 
     }
@@ -290,9 +299,23 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         return UIImage(cgImage: croppedCgImage!)
     }
     
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        let hRatio = self.innerView.frame.height / imageViewHeight
+        
+        if(imageViewHeight != self.innerView.frame.height) {
+            dot1ImageView.frame = CGRect(x: dot1ImageView.frame.origin.x, y: dot1ImageView.frame.origin.y, width: dot1ImageView.frame.size.width / hRatio, height: dot1ImageView.frame.size.height / hRatio)
+            dot1ImageView.center = points[0]
+        
+            dot2ImageView.frame = CGRect(x: dot2ImageView.frame.origin.x, y: dot2ImageView.frame.origin.y, width: dot2ImageView.frame.size.width / hRatio, height: dot2ImageView.frame.size.height / hRatio)
+            dot2ImageView.center = points[1]
+        }
+        
+        return innerView
+    }
+    
     private func createDotAt(dotImageView: UIImageView, coordInImageView: CGPoint) {
         dotImageView.frame = CGRect(x: coordInImageView.x - 5, y: coordInImageView.y - 5, width: 10, height: 10)
-        imageView.addSubview(dotImageView)
+        innerView.addSubview(dotImageView)
     }
     
     private func removeDot(dotImageView: UIImageView) {
