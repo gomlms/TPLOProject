@@ -156,9 +156,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         imageView.isUserInteractionEnabled = true
         
-        if pointOneCreated {
-            confirmSelectionButton.isEnabled = true
-        }
     }
     
     @IBAction func selectPointTwo(_ sender: Any) {
@@ -169,9 +166,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         imageView.isUserInteractionEnabled = true
         
-        if pointTwoCreated {
-            confirmSelectionButton.isEnabled = true
-        }
     }
     
     @IBAction func confirmSelectedAction(_ sender: Any) {

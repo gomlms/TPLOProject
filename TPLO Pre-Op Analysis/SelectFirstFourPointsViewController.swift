@@ -246,9 +246,6 @@ class SelectFirstFourPointsViewController: UIViewController {
         
         imageView.isUserInteractionEnabled = true
         
-        if p1Chose {
-            confirmSelection.isEnabled = true
-        }
     }
     
     @IBAction func selectPoint2(_ sender: Any) {
@@ -259,9 +256,6 @@ class SelectFirstFourPointsViewController: UIViewController {
         
         imageView.isUserInteractionEnabled = true
         
-        if p2Chose {
-            confirmSelection.isEnabled = true
-        }
     }
     
     @IBAction func selectPoint3(_ sender: Any) {
@@ -272,9 +266,6 @@ class SelectFirstFourPointsViewController: UIViewController {
         
         imageView.isUserInteractionEnabled = true
         
-        if p3Chose {
-            confirmSelection.isEnabled = true
-        }
     }
     
     @IBAction func selectPoint4(_ sender: Any) {
@@ -285,9 +276,6 @@ class SelectFirstFourPointsViewController: UIViewController {
         
         imageView.isUserInteractionEnabled = true
         
-        if p4Chose {
-            confirmSelection.isEnabled = true
-        }
     }
     
     @IBAction func selectPoint5(_ sender: Any) {
@@ -298,9 +286,6 @@ class SelectFirstFourPointsViewController: UIViewController {
         
         imageView.isUserInteractionEnabled = true
         
-        if p5Chose {
-            confirmSelection.isEnabled = true
-        }
     }
     
     @IBAction func confirmSelectionAction(_ sender: Any) {
