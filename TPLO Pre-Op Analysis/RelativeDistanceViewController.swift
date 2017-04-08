@@ -29,6 +29,8 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     var pointOneCreated = false
     var pointTwoCreated = false
     
+    var previouseHeight = 0
+    
     var radiographImage = #imageLiteral(resourceName: "defaultPhoto")
 
     var currHeight : CGFloat = 300
@@ -301,6 +303,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         let hRatio = self.innerView.frame.height / imageViewHeight
+        print(hRatio)
         
         if(imageViewHeight != self.innerView.frame.height) {
             dot1ImageView.frame = CGRect(x: dot1ImageView.frame.origin.x, y: dot1ImageView.frame.origin.y, width: dot1ImageView.frame.size.width / hRatio, height: dot1ImageView.frame.size.height / hRatio)
