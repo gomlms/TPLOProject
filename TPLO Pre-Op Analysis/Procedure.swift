@@ -30,6 +30,7 @@ class Procedure: NSObject, NSCoding {
     var rotatedRadiograph : UIView?
     var imageViewWidth : CGFloat = 0
     var imageViewHeight : CGFloat = 0
+    var imageViewXOrigin : CGFloat = 0
     
     
     //MARK: Archiving Paths

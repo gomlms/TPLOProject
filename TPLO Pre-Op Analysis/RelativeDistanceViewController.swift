@@ -18,12 +18,15 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     var currSelector = 0
     
     @IBOutlet weak var nextButton: UIBarButtonItem!
+    @IBOutlet weak var menuBotConstraint: NSLayoutConstraint!
+    @IBOutlet weak var plusBotConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var plusButton: UIImageView!
+    @IBOutlet weak var menuView: UIImageView!
     
-    @IBOutlet weak var buttonView: UIView!
-    @IBOutlet weak var pointOneButton: UIButton!
-    @IBOutlet weak var pointTwoButton: UIButton!
-    @IBOutlet weak var confirmSelectionButton: UIButton!
+    var pointOneButton = UIImageView(image: #imageLiteral(resourceName: "RelativePoint1"))
+    var pointTwoButton = UIImageView(image: #imageLiteral(resourceName: "RelativePoint2"))
+    var confirmSelectionButton = UIImageView(image: #imageLiteral(resourceName: "ConfirmButtonBlue"))
     @IBOutlet weak var zoomedView: UIImageView!
     
     var pointOneCreated = false
@@ -87,11 +90,12 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         updateNextButtonState()
-
+        
         points.append(CGPoint(x: 0.0, y: 0.0))
         points.append(CGPoint(x: 0.0, y: 0.0))
         
-        confirmSelectionButton.isEnabled = false
+        pointOneButton.isUserInteractionEnabled = true
+        pointTwoButton.isUserInteractionEnabled = true
         
         guard let procedure = procedure else{
             fatalError("Procedure was not correctly passed to Relative Distance Controller")
@@ -99,30 +103,23 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         radiographImage = procedure.radiograph!
         
-        imageWidth = CGFloat((radiographImage.cgImage?.width)!)
-        imageHeight = CGFloat((radiographImage.cgImage?.height)!)
-        imageRatio = imageWidth / imageHeight
-        
-        let screenWidth = UIScreen.main.bounds.width
-        
-        imageViewWidth = screenWidth - 40
-        imageViewHeight = imageViewWidth / imageRatio
+        imageViewWidth = procedure.imageViewWidth
+        imageViewHeight = procedure.imageViewHeight
       
-        
+        /*
         if(imageViewHeight > maxAllowedHeight()) {
             imageViewHeight = maxAllowedHeight()
             imageViewWidth = imageViewHeight * imageRatio
-            scrollView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
         } else {
             scrollView.frame = CGRect(x: 20, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
-        }
+        }*/
+        
+        scrollView.frame = CGRect(x: procedure.imageViewXOrigin, y: 0, width: imageViewWidth, height: imageViewHeight)
         
         scrollView.contentSize = CGSize(width: imageViewWidth, height: imageViewHeight)
         scrollView.delegate = self
         scrollView.isUserInteractionEnabled = true
-        
-        procedure.imageViewWidth = imageViewWidth
-        procedure.imageViewHeight = imageViewHeight
+        scrollView.layer.zPosition = -10
         
         innerView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         scrollView.addSubview(innerView)
@@ -146,8 +143,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.maximumZoomScale = 6.0
         
         self.view.addSubview(scrollView)
-        
-
+        self.view.bringSubview(toFront: plusButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -181,7 +177,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func confirmSelectedAction(_ sender: Any) {
-        confirmSelectionButton.isEnabled = false
         imageView.isUserInteractionEnabled = false
         enableSelectionButtons()
         zoomedView.isHidden = true
@@ -202,21 +197,11 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func disableSelectionButtons() {
-        pointOneButton.isEnabled = false
-        pointTwoButton.isEnabled = false
+
     }
     
     private func enableSelectionButtons() {
-        pointOneButton.isEnabled = true
-        pointTwoButton.isEnabled = true
-    }
-    
-    private func calcYPos() -> CGFloat {
-        return buttonView.frame.origin.y + pointOneButton.frame.height + 10
-    }
-    
-    private func maxAllowedHeight() -> CGFloat {
-        return (zoomedView.frame.origin.y) - calcYPos()
+
     }
     
     @IBAction func tapDown(sender: ZoomGestureRecognizer) {
@@ -239,9 +224,32 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
                 pointTwoCreated = true
             }
             
-            confirmSelectionButton.isEnabled = true
+            //Make CONFIRM SELECTION BUTTON ENABLED
         }
         
+    }
+    
+    
+    @IBAction func animate(_ sender: Any) {
+        if(plusButton.image == #imageLiteral(resourceName: "PlusButtonBlue")){
+            menuBotConstraint.constant = 0
+            plusBotConstraint.constant += 200
+        
+            plusButton.image = #imageLiteral(resourceName: "DownButtonBlue")
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            menuBotConstraint.constant = -200
+            plusBotConstraint.constant -= 200
+            
+            plusButton.image = #imageLiteral(resourceName: "PlusButtonBlue")
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
     }
     
     private func getZoomedImage(point: CGPoint) -> UIImage {
