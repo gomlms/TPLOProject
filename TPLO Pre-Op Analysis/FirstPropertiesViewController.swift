@@ -69,7 +69,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     }
     
     func scheduledTimerWithInterval(){
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.animateMenu), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.animateMenu), userInfo: nil, repeats: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,7 +126,10 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         
         chosePicture = false
         
-        let name = nameTextField.text ?? ""
+        var name = nameTextField.text ?? ""
+        if(name == nil){
+            name = ""
+        }
         let photo = radiographImage
         
         let date = Date()

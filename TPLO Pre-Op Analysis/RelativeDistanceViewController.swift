@@ -17,16 +17,22 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     var points = [CGPoint]()
     var currSelector = 0
     
+    var isTop = false
+    var isBot = false
+    
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var menuBotConstraint: NSLayoutConstraint!
     @IBOutlet weak var plusBotConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var zoomBotConstraint: NSLayoutConstraint!
+
     @IBOutlet weak var plusButton: UIImageView!
     @IBOutlet weak var menuView: UIImageView!
     
-    var pointOneButton = UIImageView(image: #imageLiteral(resourceName: "RelativePoint1"))
-    var pointTwoButton = UIImageView(image: #imageLiteral(resourceName: "RelativePoint2"))
-    var confirmSelectionButton = UIImageView(image: #imageLiteral(resourceName: "ConfirmButtonBlue"))
+    var pointOneButton = UIView()
+    var pointTwoButton = UIView()
+    var confirmButton = UIView()
+    
+    var confirmSelectionButton = UIImageView(image: #imageLiteral(resourceName: "CheckButtonBlue"))
     @IBOutlet weak var zoomedView: UIImageView!
     
     var pointOneCreated = false
@@ -60,6 +66,10 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     var dot1ImageView = UIImageView(image: #imageLiteral(resourceName: "dot1"))
     var dot2ImageView = UIImageView(image: #imageLiteral(resourceName: "dot2"))
     
+    var dot1Recog = UITapGestureRecognizer()
+    var dot2Recog = UITapGestureRecognizer()
+    var confirmRecog = UITapGestureRecognizer()
+    
     @IBOutlet var zoomRecog: ZoomGestureRecognizer!
     
     
@@ -83,6 +93,12 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
             }
             
             nextController.procedure = procedure
+        } else {
+            guard let nextController = segue.destination as? FirstPropertiesViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            nextController.nameTextField.text = procedure?.name
         }
     }
     
@@ -105,6 +121,9 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         imageViewWidth = procedure.imageViewWidth
         imageViewHeight = procedure.imageViewHeight
+        
+        imageWidth = (procedure.radiograph?.size.width)!
+        imageHeight = (procedure.radiograph?.size.height)!
       
         /*
         if(imageViewHeight > maxAllowedHeight()) {
@@ -144,6 +163,96 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         self.view.addSubview(scrollView)
         self.view.bringSubview(toFront: plusButton)
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let buttonWidth = screenWidth / 3.0
+        let dotRadius = buttonWidth / 3
+        let dotPosX = buttonWidth / 3
+        let dotPosY = menuView.frame.height / 6
+        
+        pointOneButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: menuView.frame.height)
+        
+        let dot1Image = UIImageView(image: #imageLiteral(resourceName: "dot1"))
+        dot1Image.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
+        dot1Image.contentMode = UIViewContentMode.scaleAspectFit
+        
+        let dot1Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: buttonWidth / 6.0 + dotRadius + menuView.frame.height / 12, width: buttonWidth * 4 / 5, height: 60))
+        dot1Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        dot1Label.numberOfLines = 0
+        dot1Label.font = UIFont(name:"Open Sans", size: 20)
+        dot1Label.textColor = UIColor.white
+        dot1Label.textAlignment = .center
+        dot1Label.text = "Relative\nPoint 1"
+        
+        pointOneButton.layer.borderColor = UIColor.gray.cgColor
+        pointOneButton.layer.borderWidth = 2.0
+        pointOneButton.layer.shadowRadius = 10.0
+        
+        pointOneButton.addSubview(dot1Image)
+        pointOneButton.addSubview(dot1Label)
+        
+        menuView.addSubview(pointOneButton)
+        
+        pointTwoButton.frame = CGRect(x: buttonWidth, y: 0, width: buttonWidth, height: menuView.frame.height)
+        
+        let dot2Image = UIImageView(image: #imageLiteral(resourceName: "dot2"))
+        dot2Image.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
+        dot2Image.contentMode = UIViewContentMode.scaleAspectFit
+        
+        let dot2Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: buttonWidth / 6.0 + dotRadius + menuView.frame.height / 12, width: buttonWidth * 4 / 5, height: 60))
+        dot2Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        dot2Label.numberOfLines = 0
+        dot2Label.font = UIFont(name:"Open Sans", size: 20)
+        dot2Label.textColor = UIColor.white
+        dot2Label.textAlignment = .center
+        dot2Label.text = "Relative\nPoint 2"
+    
+        pointTwoButton.layer.borderColor = UIColor.gray.cgColor
+        pointTwoButton.layer.borderWidth = 2.0
+        pointTwoButton.layer.shadowRadius = 10.0
+        
+        pointTwoButton.addSubview(dot2Image)
+        pointTwoButton.addSubview(dot2Label)
+        
+                menuView.addSubview(pointTwoButton)
+        
+        confirmButton.frame = CGRect(x: buttonWidth * 2, y: 0, width: buttonWidth, height: menuView.frame.height)
+        
+        let confirmLabel = UILabel(frame: CGRect(x: buttonWidth / 10, y: buttonWidth / 6.0 + dotRadius + menuView.frame.height / 12, width: buttonWidth * 4 / 5, height: 60))
+        confirmLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        confirmLabel.numberOfLines = 0
+        confirmLabel.font = UIFont(name:"Open Sans", size: 20)
+        confirmLabel.textColor = UIColor.white
+        confirmLabel.textAlignment = .center
+        confirmLabel.text = "Confirm\nSelection"
+        
+        confirmButton.layer.borderColor = UIColor.gray.cgColor
+        confirmButton.layer.borderWidth = 2.0
+        confirmButton.layer.shadowRadius = 10.0
+        
+        let confirmButtonImage = UIImageView(image: #imageLiteral(resourceName: "ConfirmButtonBlue"))
+        confirmButtonImage.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
+        confirmButtonImage.contentMode = UIViewContentMode.scaleAspectFit
+        
+        confirmButton.addSubview(confirmButtonImage)
+        confirmButton.addSubview(confirmLabel)
+        
+        menuView.addSubview(confirmButton)
+        
+        pointOneButton.isUserInteractionEnabled = true
+        pointTwoButton.isUserInteractionEnabled = true
+        menuView.isUserInteractionEnabled = true
+        confirmButton.isUserInteractionEnabled = false
+        
+        dot1Recog.addTarget(self, action: #selector(RelativeDistanceViewController.selectPointOne(_:)))
+        dot2Recog.addTarget(self, action: #selector(RelativeDistanceViewController.selectPointTwo(_:)))
+        confirmRecog.addTarget(self, action: #selector(RelativeDistanceViewController.confirmSelectedAction(_:)))
+        
+        pointOneButton.addGestureRecognizer(dot1Recog)
+        pointTwoButton.addGestureRecognizer(dot2Recog)
+        confirmButton.addGestureRecognizer(confirmRecog)
+        
+        self.view.bringSubview(toFront: menuView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -183,6 +292,8 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         
         points[currSelector - 1] = currentImageViewPoint
         updateNextButtonState()
+        
+        confirmButton.isUserInteractionEnabled = false
     }
     
     //MARK: Private Methods
@@ -209,6 +320,40 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         let point = sender.location(in: imageView)
         zoomedView.image = getZoomedImage(point: point)
         
+        if(point.y < self.imageViewHeight / 2){
+            isTop = true
+            if(plusButton.image != #imageLiteral(resourceName: "DownButtonBlue")){
+                zoomBotConstraint.constant = imageViewHeight * 0.1
+            }
+        } else {
+            isBot = true
+            zoomBotConstraint.constant = imageViewHeight * 0.6
+        }
+        
+        zoomedView.layer.borderColor = UIColor(red:0.00, green:0.74, blue:0.89, alpha:1.0).cgColor
+        zoomedView.layer.shadowRadius = 14
+        zoomedView.layer.shadowColor = UIColor.white.cgColor
+        zoomedView.layer.borderWidth = 1.0
+        
+        if(plusButton.image == #imageLiteral(resourceName: "DownButtonBlue")){
+            animate(self)
+        }
+        
+        if(isTop && isBot) {
+            zoomedView.alpha = 0
+            if(plusButton.image != #imageLiteral(resourceName: "DownButtonBlue")){
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.zoomedView.alpha = 1.0
+                })
+            }
+        
+            if(point.y < self.imageViewHeight / 2){
+                isBot = false
+            } else {
+                isTop = false
+            }
+        }
+        
         if(currentDot == #imageLiteral(resourceName: "dot1")) {
             createDotAt(dotImageView: dot1ImageView, coordInImageView: currentImageViewPoint)
         } else if(currentDot == #imageLiteral(resourceName: "dot2")) {
@@ -224,7 +369,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
                 pointTwoCreated = true
             }
             
-            //Make CONFIRM SELECTION BUTTON ENABLED
+            confirmButton.isUserInteractionEnabled = true
         }
         
     }
@@ -234,15 +379,24 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         if(plusButton.image == #imageLiteral(resourceName: "PlusButtonBlue")){
             menuBotConstraint.constant = 0
             plusBotConstraint.constant += 200
+            
+            if(isTop){
+                zoomBotConstraint.constant += 200
+            }
         
             plusButton.image = #imageLiteral(resourceName: "DownButtonBlue")
             
             UIView.animate(withDuration: 0.5, animations: {
                 self.view.layoutIfNeeded()
             })
+            
         } else {
             menuBotConstraint.constant = -200
             plusBotConstraint.constant -= 200
+            
+            if(isTop){
+                zoomBotConstraint.constant -= 200
+            }
             
             plusButton.image = #imageLiteral(resourceName: "PlusButtonBlue")
             
