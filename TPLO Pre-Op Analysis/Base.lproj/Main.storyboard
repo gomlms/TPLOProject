@@ -412,28 +412,66 @@
                                 <color key="textColor" red="0.29282432790000001" green="0.74044257400000002" blue="0.89707332849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TPAButtonBlue" translatesAutoresizingMaskIntoConstraints="NO" id="al7-UE-8sC">
+                                <rect key="frame" x="48" y="577" width="70" height="70"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Vkr-TR-hkg"/>
+                                    <constraint firstAttribute="width" constant="70" id="lW5-Kl-gLT"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Ctd-0h-ufg" appends="YES" id="xM8-vk-qUG"/>
+                                </connections>
+                            </imageView>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SawbladeButtonBlue" translatesAutoresizingMaskIntoConstraints="NO" id="WAN-4h-K3h">
+                                <rect key="frame" x="256" y="577" width="70" height="70"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="1Dc-9g-1yI"/>
+                                    <constraint firstAttribute="width" constant="70" id="eij-Hk-0ME"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2j6-MT-X5y" appends="YES" id="m3l-Xm-IP2"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DF6-zn-gtp" firstAttribute="leading" secondItem="3Eo-EZ-bZh" secondAttribute="leadingMargin" id="AIE-rh-vbc"/>
+                            <constraint firstItem="al7-UE-8sC" firstAttribute="leading" secondItem="3Eo-EZ-bZh" secondAttribute="leading" constant="48" id="CJR-Zw-kjv"/>
                             <constraint firstItem="cEa-Id-iNN" firstAttribute="top" secondItem="DF6-zn-gtp" secondAttribute="bottom" constant="100" id="DEs-eV-32m"/>
                             <constraint firstItem="cEa-Id-iNN" firstAttribute="top" secondItem="zw7-pg-lE6" secondAttribute="bottom" constant="100" id="V0H-ny-YTE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WAN-4h-K3h" secondAttribute="trailing" constant="33" id="WuK-je-KE3"/>
                             <constraint firstItem="zw7-pg-lE6" firstAttribute="trailing" secondItem="3Eo-EZ-bZh" secondAttribute="trailingMargin" id="vb2-El-6dZ"/>
+                            <constraint firstItem="WAN-4h-K3h" firstAttribute="top" secondItem="zw7-pg-lE6" secondAttribute="bottom" constant="10" id="yWl-h9-JyB"/>
+                            <constraint firstItem="al7-UE-8sC" firstAttribute="top" secondItem="DF6-zn-gtp" secondAttribute="bottom" constant="10" id="zAU-Gv-Scs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tibial Plateau Angle" id="ag0-o9-0om">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="PYk-EP-k5o">
                             <connections>
-                                <segue destination="hxi-XM-H8J" kind="show" id="5I2-IM-idc"/>
+                                <segue destination="6Fb-LK-qoH" kind="show" id="or5-zp-dg6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="SawButton" destination="WAN-4h-K3h" id="pe4-hL-VFs"/>
+                        <outlet property="TPAButton" destination="al7-UE-8sC" id="PTW-ni-sLW"/>
                         <outlet property="sawbladeLabel" destination="zw7-pg-lE6" id="hAs-2d-i8p"/>
                         <outlet property="tpaLabel" destination="DF6-zn-gtp" id="jZc-9b-gA5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ehc-Nz-BJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2j6-MT-X5y">
+                    <connections>
+                        <action selector="SawPress:" destination="aPr-B8-w0T" id="i11-k0-pph"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Ctd-0h-ufg">
+                    <connections>
+                        <action selector="TPAPress:" destination="aPr-B8-w0T" id="N2k-UJ-QqE"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1821.5999999999999" y="3122.7886056971515"/>
         </scene>
@@ -517,50 +555,6 @@
             </objects>
             <point key="canvasLocation" x="1822" y="2411"/>
         </scene>
-        <!--Saw Blade Size-->
-        <scene sceneID="dh1-1C-i95">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hxi-XM-H8J" customClass="SawbladeViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ygq-AN-SVX"/>
-                        <viewControllerLayoutGuide type="bottom" id="jzN-Xy-coO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HZD-s6-yeO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOd-w4-gUe">
-                                <rect key="frame" x="16" y="617" width="343" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="xV2-Cb-WGu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="jzN-Xy-coO" firstAttribute="top" secondItem="aOd-w4-gUe" secondAttribute="bottom" id="2Ll-7W-urq"/>
-                            <constraint firstItem="aOd-w4-gUe" firstAttribute="leading" secondItem="HZD-s6-yeO" secondAttribute="leadingMargin" id="6HL-rb-xIu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aOd-w4-gUe" secondAttribute="trailing" id="E2B-AQ-ojL"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Saw Blade Size" id="DFd-Kf-LoC">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="NfV-ZK-OFf">
-                            <connections>
-                                <segue destination="6Fb-LK-qoH" kind="show" identifier="Continue" id="jG0-IX-JPJ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="outputLabel" destination="aOd-w4-gUe" id="mEo-FN-YdI"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y3X-JJ-2IB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1822" y="3856"/>
-        </scene>
         <!--Osteotomy-->
         <scene sceneID="h7n-KZ-6tR">
             <objects>
@@ -573,18 +567,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yN-Jk-BbU">
-                                <rect key="frame" x="16" y="626" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZO-aX-YPb">
+                                <rect key="frame" x="16" y="614" width="343" height="33"/>
+                                <color key="backgroundColor" red="0.26858986709999999" green="0.35287119290000002" blue="0.34048548229999998" alpha="0.61411065919999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="24"/>
+                                <color key="textColor" red="0.29282432790000001" green="0.74044257400000002" blue="0.89707332849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3yN-Jk-BbU" firstAttribute="leading" secondItem="Ylz-fX-dAu" secondAttribute="leadingMargin" id="RnV-e6-LSc"/>
-                            <constraint firstItem="mFj-Qn-zQ8" firstAttribute="top" secondItem="3yN-Jk-BbU" secondAttribute="bottom" constant="20" id="S5q-yJ-jsV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="3yN-Jk-BbU" secondAttribute="trailing" id="caJ-5e-E8R"/>
+                            <constraint firstItem="RZO-aX-YPb" firstAttribute="leading" secondItem="Ylz-fX-dAu" secondAttribute="leadingMargin" id="8xd-MT-lx8"/>
+                            <constraint firstItem="mFj-Qn-zQ8" firstAttribute="top" secondItem="RZO-aX-YPb" secondAttribute="bottom" constant="20" id="iAT-3S-r3W"/>
+                            <constraint firstItem="RZO-aX-YPb" firstAttribute="trailing" secondItem="Ylz-fX-dAu" secondAttribute="trailingMargin" id="xRO-Al-5OU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Osteotomy" id="isu-MO-4zK">
@@ -595,12 +590,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="chordLengthLabel" destination="3yN-Jk-BbU" id="t6B-P6-L9f"/>
+                        <outlet property="chordLengthLabel" destination="RZO-aX-YPb" id="sch-wR-48Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UX0-8C-2Iv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="4576"/>
+            <point key="canvasLocation" x="1821.5999999999999" y="3991.7541229385311"/>
         </scene>
         <!--Plate Size-->
         <scene sceneID="5is-Aa-uvL">
@@ -733,7 +728,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1821.5999999999999" y="5282.608695652174"/>
+            <point key="canvasLocation" x="1822" y="4744"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fsq-M4-sst">
@@ -762,6 +757,8 @@
         <image name="FirstPropertiesBackground" width="206" height="296"/>
         <image name="Logo" width="558" height="437"/>
         <image name="PlusButtonBlue" width="48" height="48"/>
+        <image name="SawbladeButtonBlue" width="48" height="48"/>
+        <image name="TPAButtonBlue" width="48" height="48"/>
         <image name="broad3.5(79mm)" width="180" height="500"/>
         <image name="defaultPhoto" width="540" height="540"/>
         <image name="short3.5(56mm)" width="125" height="350"/>

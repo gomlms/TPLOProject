@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OsteotomyViewController: UIViewController {
+class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
 
     //MARK: Properties
     var procedure : Procedure?
@@ -21,6 +21,8 @@ class OsteotomyViewController: UIViewController {
     var radiographImage = UIImageView()
     var backgroundImage = UIImageView()
     var rotatingView = UIView()
+    var innerView = UIView()
+    var scrollView = UIScrollView()
     
     @IBOutlet weak var chordLengthLabel: UILabel!
     
@@ -40,25 +42,37 @@ class OsteotomyViewController: UIViewController {
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         
-        backgroundImage.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        backgroundImage.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         
         backgroundImage.isUserInteractionEnabled = false
         backgroundImage.image = procedure.radiograph
         
-        self.view.addSubview(backgroundImage)
-        
-        rotatingView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        rotatingView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         
         rotatingView.isUserInteractionEnabled = false
         
-        self.view.addSubview(rotatingView)
-        
-        radiographImage.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        radiographImage.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         
         radiographImage.isUserInteractionEnabled = false
         radiographImage.image = procedure.radiograph
         
         rotatingView.addSubview(radiographImage)
+        
+        innerView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
+        innerView.addSubview(backgroundImage)
+        innerView.addSubview(rotatingView)
+        
+        scrollView.frame = CGRect(x: procedure.imageViewXOrigin, y: 0, width: imageViewWidth, height: imageViewHeight)
+        scrollView.delegate = self
+        scrollView.addSubview(innerView)
+        
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 6.0
+        
+        self.view.addSubview(scrollView)
+        
+        
+        
         
         //Creating Part that is being rotated
         
@@ -95,6 +109,8 @@ class OsteotomyViewController: UIViewController {
 
         
         chordLengthLabel.text = "Osteotomy Rotation = \(procedure.chordLength!)mm"
+        
+        view.bringSubview(toFront: chordLengthLabel)
     }
 
     override func didReceiveMemoryWarning() {
@@ -203,5 +219,9 @@ class OsteotomyViewController: UIViewController {
         angleWith4 = CGFloat(angle * Double.pi / 180);
         
         return yPoint
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return innerView
     }
 }

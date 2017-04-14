@@ -30,8 +30,14 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
     
     var imageViewWidth: CGFloat = 0.0, imageViewHeight: CGFloat = 0.0
     
+    var lineLayer = CAShapeLayer()
+    var circleLayer = CAShapeLayer()
+    
     @IBOutlet weak var tpaLabel: UILabel!
     @IBOutlet weak var sawbladeLabel: UILabel!
+    
+    @IBOutlet weak var TPAButton: UIImageView!
+    @IBOutlet weak var SawButton: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +89,7 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         procedure?.tpa = getAngle()
         let angle = procedure?.tpa
         
-        tpaLabel?.text = String(format: "TPA: %.2f°", angle!)
+        tpaLabel?.text = String(format: "%.2f°", angle!)
         
         self.scrollView.maximumZoomScale = 6.0
         self.scrollView.minimumZoomScale = 1.0
@@ -124,7 +130,10 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         procedure?.roundedRadius = roundedRadius
         
         drawSawbladeCircle()
-        sawbladeLabel?.text = String(format: "%dmm Size Sawblade", roundedRadius!)
+        sawbladeLabel?.text = String(format: "%dmm", roundedRadius!)
+        
+        view.bringSubview(toFront: TPAButton)
+        view.bringSubview(toFront: SawButton)
     }
     
     func drawSawbladeCircle(){
@@ -134,11 +143,11 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         
         let sawbladeCircle = UIBezierPath()
         
-        sawbladeCircle.addArc(withCenter: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!), radius: CGFloat(Float(roundedRadius!)), startAngle: 0.0, endAngle: CGFloat(2.0 * 3.141592), clockwise: true)
+        sawbladeCircle.addArc(withCenter: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!), radius: CGFloat(Float(Double(roundedRadius!) * (procedure?.pixelToMMRatio)!)), startAngle: 0.0, endAngle: CGFloat(2.0 * 3.141592), clockwise: true)
         
         UIGraphicsEndImageContext()
         
-        let circleLayer = CAShapeLayer()
+        circleLayer = CAShapeLayer()
         
         circleLayer.bounds = imageView.frame
         
@@ -172,6 +181,35 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func TPAPress(_ sender: Any) {
+        if(!lineLayer.isHidden){
+            UIView.animate(withDuration: 1, animations: {
+                self.lineLayer.isHidden = true
+            })
+            TPAButton.image = #imageLiteral(resourceName: "TPAButtonGray")
+        } else {
+            UIView.animate(withDuration: 1, animations: {
+                self.lineLayer.isHidden = false
+            })
+            TPAButton.image = #imageLiteral(resourceName: "TPAButtonBlue")
+        }
+    }
+    
+    @IBAction func SawPress(_ sender: Any) {
+        if(!circleLayer.isHidden){
+            UIView.animate(withDuration: 1, animations: {
+                self.circleLayer.isHidden = true
+            })
+            SawButton.image = #imageLiteral(resourceName: "SawButtonGray")
+        } else {
+            UIView.animate(withDuration: 1, animations: {
+                self.circleLayer.isHidden = false
+            })
+            SawButton.image = #imageLiteral(resourceName: "SawbladeButtonBlue")
+        }
+    }
+    
+    
     //MARK: Finding Angle
     func drawSetOfLines() {
         let opaque = false
@@ -185,7 +223,7 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         lines.move(to: (procedure?.points[2])!)
         lines.addLine(to: (procedure?.points[3])!)
         
-        let lineLayer = CAShapeLayer()
+        lineLayer = CAShapeLayer()
         
         lineLayer.bounds = imageView.frame
         
@@ -261,7 +299,7 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard let nextController = segue.destination as? SawbladeViewController else {
+        guard let nextController = segue.destination as? OsteotomyViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
         }
         
