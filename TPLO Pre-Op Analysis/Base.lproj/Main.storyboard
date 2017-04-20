@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rr6-UO-Pob">
-                                <rect key="frame" x="16" y="74" width="343" height="573"/>
+                                <rect key="frame" x="16" y="30" width="343" height="617"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="dIp-p5-8R5">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="161.5"/>
@@ -38,13 +38,13 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Previous TPLO Pre-Op Analyses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUm-qo-HJk">
-                                        <rect key="frame" x="48.5" y="171.5" width="246" height="0.0"/>
+                                        <rect key="frame" x="48.5" y="171.5" width="246" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="113" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K11-K9-iGE">
-                                        <rect key="frame" x="0.0" y="193" width="343" height="370"/>
+                                        <rect key="frame" x="0.0" y="213.5" width="343" height="373"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProcedureCell" rowHeight="110" id="Jpp-6F-CiU" customClass="ProcedureCell" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target">
@@ -95,7 +95,7 @@
                                         </connections>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us: 973-331-7800" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OE6-Pe-cws">
-                                        <rect key="frame" x="69" y="573" width="205.5" height="0.0"/>
+                                        <rect key="frame" x="69" y="596.5" width="205.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -145,7 +145,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iWh-ao-GcM">
-                                <rect key="frame" x="36" y="104" width="42" height="20.5"/>
+                                <rect key="frame" x="36" y="60" width="42" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQ3-1H-aTN">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
@@ -161,7 +161,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBk-y3-a9z">
-                                <rect key="frame" x="122" y="134.5" width="131" height="30"/>
+                                <rect key="frame" x="122" y="90.5" width="131" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="131" id="ChS-hO-ftX"/>
                                     <constraint firstAttribute="height" constant="30" id="sNg-Ma-iA3"/>
@@ -209,7 +209,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FirstPropertiesBackground" translatesAutoresizingMaskIntoConstraints="NO" id="c44-44-KJ0">
-                                <rect key="frame" x="-5" y="59" width="385" height="613"/>
+                                <rect key="frame" x="-5" y="15" width="385" height="657"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Started Choose Photo" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xv5-qa-EtF">
                                 <rect key="frame" x="39" y="471" width="248" height="118"/>
@@ -242,7 +242,7 @@
                                 </constraints>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FadeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Wth-Ub-dgQ">
-                                <rect key="frame" x="16" y="-136" width="343" height="200"/>
+                                <rect key="frame" x="16" y="-180" width="343" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="RO4-Cp-H1u"/>
                                 </constraints>
@@ -609,80 +609,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxQ-G4-d4P">
-                                <rect key="frame" x="0.0" y="447" width="375" height="200"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPJ-YW-l6d">
-                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="200"/>
-                                        <subviews>
-                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="broad3.5(79mm)" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-3Q-SKG">
-                                                <rect key="frame" x="50" y="33" width="45" height="135"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <gestureRecognizers/>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="GWr-hR-ycm" appends="YES" id="H0s-T3-w5w"/>
-                                                </connections>
-                                            </imageView>
-                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="standard3.5(65mm)" translatesAutoresizingMaskIntoConstraints="NO" id="IJj-im-wpB">
-                                                <rect key="frame" x="226.5" y="50" width="34" height="101.5"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <gestureRecognizers/>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="FZ6-xz-lwp" appends="YES" id="eTc-ij-Uj8"/>
-                                                </connections>
-                                            </imageView>
-                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="short3.5(56mm)" translatesAutoresizingMaskIntoConstraints="NO" id="X8m-By-jUC">
-                                                <rect key="frame" x="145" y="57" width="31.5" height="87.5"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <gestureRecognizers/>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="Uz4-ue-RXc" appends="YES" id="o0k-OX-MeP"/>
-                                                </connections>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="broad3.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYs-uz-fyS">
-                                                <rect key="frame" x="35" y="8" width="74" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="short3.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dn-Pn-rGX">
-                                                <rect key="frame" x="126" y="28" width="65" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="standard3.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMC-hl-bNy">
-                                                <rect key="frame" x="214" y="21" width="96" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="1000" id="SKc-jx-vTf"/>
-                                            <constraint firstAttribute="height" constant="200" id="W35-Sv-dhv"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FadeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="uwA-vE-dfK">
+                                <rect key="frame" x="0.0" y="667" width="375" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="3dg-gd-oEd"/>
-                                    <constraint firstItem="mPJ-YW-l6d" firstAttribute="leading" secondItem="uxQ-G4-d4P" secondAttribute="leading" id="8JD-lm-nKB"/>
-                                    <constraint firstItem="mPJ-YW-l6d" firstAttribute="top" secondItem="uxQ-G4-d4P" secondAttribute="top" id="9zP-7H-J72"/>
-                                    <constraint firstAttribute="trailing" secondItem="mPJ-YW-l6d" secondAttribute="trailing" id="D7y-52-eTR"/>
-                                    <constraint firstAttribute="bottom" secondItem="mPJ-YW-l6d" secondAttribute="bottom" id="rSN-HB-JCm"/>
-                                    <constraint firstAttribute="width" constant="375" id="xTm-r0-EnD"/>
+                                    <constraint firstAttribute="height" constant="300" id="DuH-ED-T4X"/>
                                 </constraints>
-                            </scrollView>
+                            </imageView>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusButtonBlue" translatesAutoresizingMaskIntoConstraints="NO" id="mAa-6O-UkX">
+                                <rect key="frame" x="289" y="577" width="70" height="70"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Ngd-ci-Wo9"/>
+                                    <constraint firstAttribute="width" constant="70" id="we6-dn-173"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="NHr-6F-adz" appends="YES" id="YSw-pe-Z47"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="uxQ-G4-d4P" secondAttribute="trailing" id="T2o-fi-5iM"/>
-                            <constraint firstItem="uxQ-G4-d4P" firstAttribute="leading" secondItem="ncj-wF-kFh" secondAttribute="leading" id="VaO-g1-Jp0"/>
-                            <constraint firstItem="Ymh-Ft-Pmp" firstAttribute="top" secondItem="uxQ-G4-d4P" secondAttribute="bottom" constant="20" id="vSo-ku-BA2"/>
+                            <constraint firstItem="mAa-6O-UkX" firstAttribute="trailing" secondItem="ncj-wF-kFh" secondAttribute="trailingMargin" id="3us-NY-YZ3"/>
+                            <constraint firstAttribute="bottom" secondItem="uwA-vE-dfK" secondAttribute="bottom" constant="-300" id="INo-VH-zJj"/>
+                            <constraint firstItem="uwA-vE-dfK" firstAttribute="leading" secondItem="ncj-wF-kFh" secondAttribute="leading" id="bUc-aD-aXe"/>
+                            <constraint firstAttribute="trailing" secondItem="uwA-vE-dfK" secondAttribute="trailing" id="gcw-hF-Ov2"/>
+                            <constraint firstItem="Ymh-Ft-Pmp" firstAttribute="top" secondItem="mAa-6O-UkX" secondAttribute="bottom" constant="20" id="pub-uW-DDt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Plate Size" id="hBw-81-ib8">
@@ -693,9 +645,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="innerScrollView" destination="mPJ-YW-l6d" id="Y0b-aT-yzk"/>
+                        <outlet property="menuBotConstraint" destination="INo-VH-zJj" id="sbQ-Xb-fAt"/>
+                        <outlet property="menuView" destination="uwA-vE-dfK" id="tt2-Rn-2xA"/>
                         <outlet property="movingRecognizer" destination="0ah-qI-Geb" id="2Se-hP-zYa"/>
                         <outlet property="nextButton" destination="ZE6-7W-b8l" id="6Kv-Mb-mGe"/>
+                        <outlet property="plusBotConstraint" destination="pub-uW-DDt" id="qYg-lV-vgD"/>
+                        <outlet property="plusButton" destination="mAa-6O-UkX" id="yLY-vu-FcQ"/>
                         <outlet property="rotatingRecognizer" destination="3Db-o3-KSV" id="dVV-Qb-1Oy"/>
                     </connections>
                 </viewController>
@@ -712,19 +667,9 @@
                         <outlet property="delegate" destination="Gb7-id-kt6" id="JUk-By-QwR"/>
                     </connections>
                 </rotationGestureRecognizer>
-                <tapGestureRecognizer id="GWr-hR-ycm">
+                <tapGestureRecognizer id="NHr-6F-adz">
                     <connections>
-                        <action selector="handleTapWithRecognizer:" destination="Gb7-id-kt6" id="bi1-FW-3Fz"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="Uz4-ue-RXc">
-                    <connections>
-                        <action selector="handleTapWithRecognizer:" destination="Gb7-id-kt6" id="RYc-0Z-yZL"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="FZ6-xz-lwp">
-                    <connections>
-                        <action selector="handleTapWithRecognizer:" destination="Gb7-id-kt6" id="x1O-v4-BEs"/>
+                        <action selector="pressPlus:" destination="Gb7-id-kt6" id="cze-kq-qVK"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -759,13 +704,10 @@
         <image name="PlusButtonBlue" width="48" height="48"/>
         <image name="SawbladeButtonBlue" width="48" height="48"/>
         <image name="TPAButtonBlue" width="48" height="48"/>
-        <image name="broad3.5(79mm)" width="180" height="500"/>
         <image name="defaultPhoto" width="540" height="540"/>
-        <image name="short3.5(56mm)" width="125" height="350"/>
-        <image name="standard3.5(65mm)" width="135" height="405"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1a7-zG-5Jk"/>
         <segue reference="ogz-KK-8fZ"/>
-        <segue reference="Ja1-Ei-mtl"/>
     </inferredMetricsTieBreakers>
 </document>

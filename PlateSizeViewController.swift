@@ -8,11 +8,13 @@
 
 import UIKit
 
-class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
+class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     var rotatingView = UIView()
     var radiographView = UIImageView()
     var backgroundView = UIImageView()
+    var innerView = UIView()
+    var scrollView = UIScrollView()
     var procedure : Procedure?
     
     var tempAngle : Double = 0
@@ -33,11 +35,31 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
     var desiredHeight: Double = 0.0
     var currentImageName: String = ""
     
+    var movingImage = UIImageView()
+
+    var broadButton = UIView()
+    var shortButton = UIView()
+    var standardButton = UIView()
+    var confirmSelection = UIView()
+    var deleteButton = UIView()
+    
+    var broadRecog = UITapGestureRecognizer()
+    var shortRecog = UITapGestureRecognizer()
+    var standardRecog = UITapGestureRecognizer()
+    var confirmRecog = UITapGestureRecognizer()
+    var deleteRecog = UITapGestureRecognizer()
+    
+    @IBOutlet weak var menuView: UIImageView!
+    @IBOutlet weak var plusBotConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuBotConstraint: NSLayoutConstraint!
+    @IBOutlet weak var plusButton: UIImageView!
+    
     @IBOutlet weak var rotatingRecognizer: UIRotationGestureRecognizer!    
     @IBOutlet weak var movingRecognizer: UIPanGestureRecognizer!
     @IBOutlet weak var innerScrollView: UIView!
     
     @IBOutlet weak var nextButton: UIBarButtonItem!
+    
     var platePresent = false
     
     var imageViewHeight: CGFloat = 0.0, imageViewWidth: CGFloat = 0.0
@@ -52,29 +74,38 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
         imageViewWidth = procedure.imageViewWidth
         imageViewHeight = procedure.imageViewHeight
         
-        
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-        
-        backgroundView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        backgroundView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         
         backgroundView.isUserInteractionEnabled = false
         backgroundView.image = procedure.radiograph
         
-        self.view.addSubview(backgroundView)
-        
-        rotatingView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        rotatingView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         
         rotatingView.isUserInteractionEnabled = false
         
         self.view.addSubview(rotatingView)
         
-        radiographView.frame = CGRect(x: (screenWidth - imageViewWidth) / 2, y: (navigationController?.navigationBar.frame.height)! + 30, width: imageViewWidth, height: imageViewHeight)
+        radiographView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         
         radiographView.isUserInteractionEnabled = false
         radiographView.image = procedure.radiograph
         
         rotatingView.addSubview(radiographView)
+        
+        innerView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
+        innerView.addSubview(backgroundView)
+        innerView.addSubview(rotatingView)
+        
+        scrollView.frame = CGRect(x: procedure.imageViewXOrigin, y: 0, width: imageViewWidth, height: imageViewHeight)
+        scrollView.delegate = self
+        scrollView.addSubview(innerView)
+        
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 6.0
+        
+        self.view.addSubview(scrollView)
+        scrollView.isUserInteractionEnabled = false
+        //Creating Part that is Being Rotated
         
         let maskPath = drawMaskImage(size: (procedure.radiograph?.size)!)
         
@@ -107,7 +138,153 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
         radiographView.transform = radiographView.transform.rotated(by: CGFloat(-tempAngle))
         rotatingView.center = procedure.points[0]
         
+        view.bringSubview(toFront: menuView)
+        view.bringSubview(toFront: plusButton)
+        
         // Do any additional setup after loading the view.
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let buttonWidth = screenWidth / 3.0
+        let buttonHeight = menuView.frame.height / 2
+        let plateWidth = buttonWidth * (3/5)
+        let platePosX = buttonWidth / 5
+        let platePosY = buttonHeight / 12
+        
+        standardButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight)
+        
+        let standardImage = UIImageView(image: #imageLiteral(resourceName: "standard3.5(65mm)"))
+        standardImage.frame = CGRect(x: platePosX, y: platePosY, width: plateWidth, height: plateWidth)
+        standardImage.contentMode = UIViewContentMode.scaleAspectFit
+        
+        let standardLabel = UILabel(frame: CGRect(x: buttonWidth / 10, y: platePosY + plateWidth - buttonWidth / 48, width: buttonWidth * 4 / 5, height: 60))
+        standardLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        standardLabel.numberOfLines = 0
+        standardLabel.font = UIFont(name:"Open Sans", size: 20)
+        standardLabel.textColor = UIColor.white
+        standardLabel.textAlignment = .center
+        standardLabel.text = "Standard\n3.5"
+        
+        standardButton.layer.borderColor = UIColor.gray.cgColor
+        standardButton.layer.borderWidth = 2.0
+        standardButton.layer.shadowRadius = 10.0
+        
+        standardButton.addSubview(standardImage)
+        standardButton.addSubview(standardLabel)
+        
+        standardButton.isUserInteractionEnabled = true
+        menuView.addSubview(standardButton)
+     
+        broadButton.frame = CGRect(x: buttonWidth, y: 0, width: buttonWidth, height: buttonHeight)
+        
+        let broadImage = UIImageView(image: #imageLiteral(resourceName: "broad3.5(79mm)"))
+        broadImage.frame = CGRect(x: platePosX, y: platePosY, width: plateWidth, height: plateWidth)
+        broadImage.contentMode = UIViewContentMode.scaleAspectFit
+        
+        let broadLabel = UILabel(frame: CGRect(x: buttonWidth / 10, y: platePosY + plateWidth - buttonWidth / 48, width: buttonWidth * 4 / 5, height: 60))
+        broadLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        broadLabel.numberOfLines = 0
+        broadLabel.font = UIFont(name:"Open Sans", size: 20)
+        broadLabel.textColor = UIColor.white
+        broadLabel.textAlignment = .center
+        broadLabel.text = "Broad\n3.5"
+        
+        broadButton.layer.borderColor = UIColor.gray.cgColor
+        broadButton.layer.borderWidth = 2.0
+        broadButton.layer.shadowRadius = 10.0
+        
+        broadButton.addSubview(broadImage)
+        broadButton.addSubview(broadLabel)
+        
+        broadButton.isUserInteractionEnabled = true
+        menuView.addSubview(broadButton)
+        
+        shortButton.frame = CGRect(x: 2 * buttonWidth, y: 0, width: buttonWidth, height: buttonHeight)
+        
+        let shortImage = UIImageView(image: #imageLiteral(resourceName: "short3.5(56mm)"))
+        shortImage.frame = CGRect(x: platePosX, y: platePosY, width: plateWidth, height: plateWidth)
+        shortImage.contentMode = UIViewContentMode.scaleAspectFit
+        
+        let shortLabel = UILabel(frame: CGRect(x: buttonWidth / 10, y: platePosY + plateWidth - buttonWidth / 48, width: buttonWidth * 4 / 5, height: 60))
+        shortLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        shortLabel.numberOfLines = 0
+        shortLabel.font = UIFont(name:"Open Sans", size: 20)
+        shortLabel.textColor = UIColor.white
+        shortLabel.textAlignment = .center
+        shortLabel.text = "Short\n3.5"
+        
+        shortButton.layer.borderColor = UIColor.gray.cgColor
+        shortButton.layer.borderWidth = 2.0
+        shortButton.layer.shadowRadius = 10.0
+        
+        shortButton.addSubview(shortImage)
+        shortButton.addSubview(shortLabel)
+        
+        shortButton.isUserInteractionEnabled = true
+        menuView.addSubview(shortButton)
+        
+        deleteButton.frame = CGRect(x: 0, y: buttonHeight, width: buttonWidth, height: buttonHeight)
+        
+        let deleteImage = UIImageView(image: #imageLiteral(resourceName: "RemoveButton"))
+        deleteImage.frame = CGRect(x: platePosX, y: platePosY, width: plateWidth, height: plateWidth)
+        deleteImage.contentMode = UIViewContentMode.scaleAspectFit
+        
+        let deleteLabel = UILabel(frame: CGRect(x: buttonWidth / 10, y: platePosY + plateWidth - buttonWidth / 48, width: buttonWidth * 4 / 5, height: 60))
+        deleteLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        deleteLabel.numberOfLines = 0
+        deleteLabel.font = UIFont(name:"Open Sans", size: 20)
+        deleteLabel.textColor = UIColor.white
+        deleteLabel.textAlignment = .center
+        deleteLabel.text = "Remove Plate"
+        
+        deleteButton.layer.borderColor = UIColor.gray.cgColor
+        deleteButton.layer.borderWidth = 2.0
+        deleteButton.layer.shadowRadius = 10.0
+        
+        deleteButton.addSubview(deleteImage)
+        deleteButton.addSubview(deleteLabel)
+        
+        deleteButton.isUserInteractionEnabled = true
+        menuView.addSubview(deleteButton)
+        
+        confirmSelection.frame = CGRect(x: 2 * buttonWidth, y: menuView.frame.height / 2, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        let confirmImage = UIImageView(image: #imageLiteral(resourceName: "CheckButtonBlue"))
+        confirmImage.frame = CGRect(x: platePosX, y: platePosY, width: plateWidth, height: plateWidth)
+        confirmImage.contentMode = UIViewContentMode.scaleAspectFit
+        
+        let confirmLabel = UILabel(frame: CGRect(x: buttonWidth / 10, y: platePosY + plateWidth - menuView.frame.height / 48, width: buttonWidth * 4 / 5, height: 60))
+        confirmLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        confirmLabel.numberOfLines = 0
+        confirmLabel.font = UIFont(name:"Open Sans", size: 20)
+        confirmLabel.textColor = UIColor.white
+        confirmLabel.textAlignment = .center
+        confirmLabel.text = "Confirm"
+        
+        confirmSelection.layer.borderColor = UIColor.gray.cgColor
+        confirmSelection.layer.borderWidth = 2.0
+        confirmSelection.layer.shadowRadius = 10.0
+        
+        confirmSelection.addSubview(confirmImage)
+        confirmSelection.addSubview(confirmLabel)
+        
+        confirmSelection.isUserInteractionEnabled = true
+        menuView.addSubview(confirmSelection)
+    
+        
+        standardRecog.addTarget(self, action: #selector(PlateSizeViewController.standardPress(_:)))
+        broadRecog.addTarget(self, action: #selector(PlateSizeViewController.broadPress(_:)))
+        shortRecog.addTarget(self, action: #selector(PlateSizeViewController.shortPress(_:)))
+        confirmRecog.addTarget(self, action: #selector(PlateSizeViewController.confirmPress(_:)))
+        deleteRecog.addTarget(self, action: #selector(PlateSizeViewController.deletePress(_:)))
+        
+        standardButton.addGestureRecognizer(standardRecog)
+        broadButton.addGestureRecognizer(broadRecog)
+        shortButton.addGestureRecognizer(shortRecog)
+        confirmSelection.addGestureRecognizer(confirmRecog)
+        deleteButton.addGestureRecognizer(deleteRecog)
+        
+        menuView.isUserInteractionEnabled = true
+        
     }
     
     func drawMaskImage(size: CGSize) -> UIBezierPath? {
@@ -221,8 +398,60 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
         return yPoint
     }
     
-    @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
-        if let movingImage = recognizer.view as! UIImageView? {
+    @IBAction func standardPress(_ sender: Any) {
+        movingImage.image = #imageLiteral(resourceName: "standard3.5(65mm)")
+        if(imageInSuperview){
+            handleTap()
+        }
+        handleTap()
+    }
+    
+    @IBAction func broadPress(_ sender: Any) {
+        movingImage.image = #imageLiteral(resourceName: "broad3.5(79mm)")
+        if(imageInSuperview){
+            handleTap()
+        }
+        handleTap()
+    }
+    
+    @IBAction func shortPress(_ sender: Any) {
+        movingImage.image = #imageLiteral(resourceName: "short3.5(56mm)")
+        if(imageInSuperview){
+            handleTap()
+        }
+        handleTap()
+    }
+    
+    @IBAction func confirmPress(_ sender: Any) {
+        if(imageInSuperview){
+            pressPlus(self)
+            self.view.removeGestureRecognizer(movingRecognizer)
+            self.view.removeGestureRecognizer(rotatingRecognizer)
+        }
+    }
+    
+    @IBAction func deletePress(_ sender: Any) {
+        self.view.removeGestureRecognizer(movingRecognizer)
+        self.view.removeGestureRecognizer(rotatingRecognizer)
+        
+        movingImage.removeFromSuperview()
+        movingImage.transform = movingImage.transform.rotated(by: -totalRotation)
+        
+        if(currentImageName == "broad35") {
+            movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(broad35[2]), height: CGFloat(broad35[3]))
+        } else if(currentImageName == "short35") {
+            movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(short35[2]), height: CGFloat(short35[3]))
+        } else if(currentImageName == "standard35") {
+            movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(standard35[2]), height: CGFloat(standard35[3]))
+        }
+        
+        originOfActiveImage = CGPoint.zero
+        activeImage = nil
+        imageInSuperview = false
+        totalRotation = 0.0
+    }
+    
+    func handleTap() {
             if(!imageInSuperview) {
                 if(movingImage.image == #imageLiteral(resourceName: "broad3.5(79mm)")) {
                     desiredHeight = broad35[0]
@@ -244,9 +473,15 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
                 
                 originOfActiveImage = movingImage.frame.origin
                 
+                let screenWidth = UIScreen.main.bounds.width
+                
+                let plateWidth: CGFloat = CGFloat(desiredWidth * (procedure?.pixelToMMRatio)!)
+                let plateHeight: CGFloat = CGFloat(desiredHeight * (procedure?.pixelToMMRatio)!)
+                
                 movingImage.removeFromSuperview()
-                movingImage.frame = CGRect(x: 100.0, y: 100.0, width: desiredWidth * (procedure?.pixelToMMRatio)!, height: desiredHeight * (procedure?.pixelToMMRatio)!)
+                movingImage.frame = CGRect(x: (screenWidth - plateWidth) / 2.0, y: 100.0, width: plateWidth, height: plateHeight)
                 self.view.addSubview(movingImage)
+                view.bringSubview(toFront: menuView)
                 
                 activeImage = movingImage
                 imageInSuperview = true
@@ -266,15 +501,12 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
                         movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(standard35[2]), height: CGFloat(standard35[3]))
                     }
                     
-                    innerScrollView.addSubview(movingImage)
-                    
                     originOfActiveImage = CGPoint.zero
                     activeImage = nil
                     imageInSuperview = false
                     totalRotation = 0.0
                 }
             }
-        }
     }
     
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
@@ -301,5 +533,33 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     internal func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return innerView
+    }
+    
+    
+    @IBAction func pressPlus(_ sender: Any) {
+        if(plusButton.image == #imageLiteral(resourceName: "PlusButtonBlue")){
+            menuBotConstraint.constant = 0
+            plusBotConstraint.constant += 300
+            
+            plusButton.image = #imageLiteral(resourceName: "DownButtonBlue")
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+            
+        } else {
+            menuBotConstraint.constant = -300
+            plusBotConstraint.constant -= 300
+            
+            plusButton.image = #imageLiteral(resourceName: "PlusButtonBlue")
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
     }
 }
