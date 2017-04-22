@@ -144,40 +144,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iWh-ao-GcM">
-                                <rect key="frame" x="36" y="60" width="42" height="20.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQ3-1H-aTN">
-                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HideBlueButton" translatesAutoresizingMaskIntoConstraints="NO" id="dww-Ll-zkw">
+                                <rect key="frame" x="289" y="577" width="70" height="70"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="RQ3-1H-aTN" firstAttribute="top" secondItem="iWh-ao-GcM" secondAttribute="top" id="D1z-av-EPV"/>
-                                    <constraint firstItem="RQ3-1H-aTN" firstAttribute="leading" secondItem="iWh-ao-GcM" secondAttribute="leading" id="Mcr-LB-pE1"/>
-                                    <constraint firstAttribute="trailing" secondItem="RQ3-1H-aTN" secondAttribute="trailing" id="lrx-JY-bNa"/>
+                                    <constraint firstAttribute="height" constant="70" id="LCY-1p-eKM"/>
+                                    <constraint firstAttribute="width" constant="70" id="Zr9-sE-Vqj"/>
                                 </constraints>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBk-y3-a9z">
-                                <rect key="frame" x="122" y="90.5" width="131" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="131" id="ChS-hO-ftX"/>
-                                    <constraint firstAttribute="height" constant="30" id="sNg-Ma-iA3"/>
-                                </constraints>
-                                <state key="normal" title="Send Email"/>
                                 <connections>
-                                    <action selector="sendEmailPressed:" destination="bm3-ib-QkO" eventType="touchUpInside" id="igM-oT-y1R"/>
+                                    <outletCollection property="gestureRecognizers" destination="0F4-Se-Yu3" appends="YES" id="4Vs-Ql-laL"/>
                                 </connections>
-                            </button>
+                            </imageView>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MailButtonBlue" translatesAutoresizingMaskIntoConstraints="NO" id="p77-D8-cE9">
+                                <rect key="frame" x="289" y="497" width="70" height="70"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="fOB-Oq-cLi"/>
+                                    <constraint firstAttribute="height" constant="70" id="q5k-6a-UHO"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2ZL-cf-Uvf" appends="YES" id="sVn-OJ-QNA"/>
+                                </connections>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Z8-lM-Uyt">
+                                <rect key="frame" x="16" y="497" width="265" height="150"/>
+                                <color key="backgroundColor" red="0.26858986709999999" green="0.35287119290000002" blue="0.34048548229999998" alpha="0.61411065919999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="op6-h3-sgC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                <color key="textColor" red="0.29282432790000001" green="0.74044257400000002" blue="0.89707332849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mBk-y3-a9z" firstAttribute="top" secondItem="iWh-ao-GcM" secondAttribute="bottom" constant="10" id="Jx7-N7-N0H"/>
-                            <constraint firstItem="iWh-ao-GcM" firstAttribute="leading" secondItem="vJq-ai-QzP" secondAttribute="leadingMargin" constant="20" id="NQy-Ub-xy4"/>
-                            <constraint firstItem="mBk-y3-a9z" firstAttribute="centerX" secondItem="vJq-ai-QzP" secondAttribute="centerX" id="qqd-nu-ehK"/>
-                            <constraint firstItem="iWh-ao-GcM" firstAttribute="top" secondItem="e3R-U4-IV0" secondAttribute="bottom" constant="40" id="yst-iU-H7J"/>
+                            <constraint firstItem="OVu-WN-x2v" firstAttribute="top" secondItem="dww-Ll-zkw" secondAttribute="bottom" constant="20" id="97U-nB-opu"/>
+                            <constraint firstItem="p77-D8-cE9" firstAttribute="leading" secondItem="6Z8-lM-Uyt" secondAttribute="trailing" constant="8" id="9X6-l5-XLb"/>
+                            <constraint firstItem="6Z8-lM-Uyt" firstAttribute="leading" secondItem="vJq-ai-QzP" secondAttribute="leadingMargin" id="QBf-OK-V7c"/>
+                            <constraint firstItem="dww-Ll-zkw" firstAttribute="top" secondItem="p77-D8-cE9" secondAttribute="bottom" constant="10" id="R2q-aO-kGf"/>
+                            <constraint firstItem="p77-D8-cE9" firstAttribute="trailing" secondItem="vJq-ai-QzP" secondAttribute="trailingMargin" id="a4u-Pd-b95"/>
+                            <constraint firstItem="dww-Ll-zkw" firstAttribute="trailing" secondItem="vJq-ai-QzP" secondAttribute="trailingMargin" id="i3P-AT-gDf"/>
+                            <constraint firstItem="OVu-WN-x2v" firstAttribute="top" secondItem="6Z8-lM-Uyt" secondAttribute="bottom" constant="20" id="tTB-ms-lGq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Summary" id="eCF-op-yBy">
@@ -188,11 +196,21 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="outputLabel" destination="RQ3-1H-aTN" id="skT-f1-g4T"/>
-                        <outlet property="sendEmailButton" destination="mBk-y3-a9z" id="cqO-Q1-cSZ"/>
+                        <outlet property="hideButton" destination="dww-Ll-zkw" id="zBi-iE-3Ld"/>
+                        <outlet property="outputLabel" destination="6Z8-lM-Uyt" id="UAc-mA-IOY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nwU-dY-Pva" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2ZL-cf-Uvf">
+                    <connections>
+                        <action selector="sendEmailPressed:" destination="bm3-ib-QkO" id="WYP-D1-fxW"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="0F4-Se-Yu3">
+                    <connections>
+                        <action selector="hideText:" destination="bm3-ib-QkO" id="40H-Po-Evp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2773.5999999999999" y="37.331334332833585"/>
         </scene>
@@ -223,18 +241,18 @@
                                 <color key="shadowColor" white="0.26665581597222221" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusButtonBlue" translatesAutoresizingMaskIntoConstraints="NO" id="ZVE-sq-CSp">
-                                <rect key="frame" x="282" y="583" width="77" height="64"/>
+                                <rect key="frame" x="289" y="577" width="70" height="70"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="77" id="1Od-yu-ZXH"/>
-                                    <constraint firstAttribute="height" constant="64" id="bxW-Cg-LV9"/>
+                                    <constraint firstAttribute="width" constant="70" id="1Od-yu-ZXH"/>
+                                    <constraint firstAttribute="height" constant="70" id="bxW-Cg-LV9"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="P2S-n8-Dyd" appends="YES" id="8Fh-Ib-Une"/>
                                 </connections>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="99N-sE-dQj">
-                                <rect key="frame" x="297" y="485" width="48" height="90"/>
+                                <rect key="frame" x="297" y="479" width="48" height="90"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="EGx-Lu-WkY"/>
@@ -700,7 +718,9 @@
         <image name="DownArrow" width="48" height="90"/>
         <image name="FadeBackground" width="521" height="196"/>
         <image name="FirstPropertiesBackground" width="206" height="296"/>
+        <image name="HideBlueButton" width="48" height="48"/>
         <image name="Logo" width="558" height="437"/>
+        <image name="MailButtonBlue" width="48" height="48"/>
         <image name="PlusButtonBlue" width="48" height="48"/>
         <image name="SawbladeButtonBlue" width="48" height="48"/>
         <image name="TPAButtonBlue" width="48" height="48"/>

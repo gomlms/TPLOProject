@@ -88,7 +88,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
                 fatalError("Unexpected Destination: \(segue.destination)")
             }
             guard let selectedProcedureCell = sender as? ProcedureCell else {
-                fatalError("Unexpected Sender: \(sender)")
+                fatalError("Unexpected Sender: \(String(describing: sender))")
             }
             guard let indexPath = tableView.indexPath(for: selectedProcedureCell) else{
                 fatalError("The selected meal cell is not being displayed by the table")
@@ -97,7 +97,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             procedureDetailViewController.procedure = selectedProcedure
             procedureDetailViewController.isThere = true
         default:
-            fatalError("Unexpected segue identifier: \(segue.identifier)")
+            fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
         }
     }
     

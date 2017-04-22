@@ -12,8 +12,8 @@ import MessageUI
 class SummaryViewController: UIViewController, MFMailComposeViewControllerDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var outputLabel: UILabel!
-    @IBOutlet weak var sendEmailButton: UIButton!
-
+    
+    @IBOutlet weak var hideButton: UIImageView!
     var procedure : Procedure?
     var isThere = false
     
@@ -83,6 +83,8 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         radiographView.image = procedure.radiograph
         radiographView.layer.mask = maskLayer
         
+        scrollView.isUserInteractionEnabled = true
+        
         //Cropping out portion of original
         
         
@@ -104,10 +106,12 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         radiographView.transform = radiographView.transform.rotated(by: CGFloat(-tempAngle))
         rotatingView.center = procedure.points[0]
         
+        self.view.sendSubview(toBack: scrollView)
+        
         procedure.tpa = getAngle()
         
         outputLabel.text = String(format: "Date: \(procedure.dateOfProcedure)\nPatient Name: \((procedure.name)!)\nTPA: %.2f°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)", procedure.tpa)
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -211,7 +215,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             mailComposer.mailComposeDelegate = self
             
             mailComposer.setSubject("TPLO Pre-Op Analysis Summary Report")
-            mailComposer.setMessageBody("Date: \(procedure?.dateOfProcedure)\nPatient Name: \((procedure?.name)!)\nTPA: \(procedure?.tpa)°\nOsteotomy Rotation: \((procedure?.chordLength)!)mm\nSawblade Size: \((procedure?.roundedRadius)!)mm\nPlate Size: \((procedure?.plateCatalogNumber)!)", isHTML: false)
+            mailComposer.setMessageBody("Date: \(String(describing: procedure?.dateOfProcedure))\nPatient Name: \((procedure?.name)!)\nTPA: \(String(describing: procedure?.tpa))°\nOsteotomy Rotation: \((procedure?.chordLength)!)mm\nSawblade Size: \((procedure?.roundedRadius)!)mm\nPlate Size: \((procedure?.plateCatalogNumber)!)", isHTML: false)
             
             self.present(mailComposer, animated: true, completion: nil)
         }
@@ -234,7 +238,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
                 startViewController.procedures.append(procedure!)
             }
         default:
-            fatalError("Unexpected segue identifier: \(segue.identifier)")
+            fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
         }
     }
     
@@ -242,7 +246,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         let angle2I = Double(atan2((procedure?.points[1].y)! - (procedure?.intersectionPoint.y)!, (procedure?.points[1].x)! - (procedure?.intersectionPoint.x)!))
         let angle4I = Double(atan2((procedure?.points[3].y)! - (procedure?.intersectionPoint.y)!, (procedure?.points[3].x)! - (procedure?.intersectionPoint.x)!))
         var angle = Double(angle2I - angle4I)
-        angle = angle * (180.0 / M_PI)
+        angle = angle * (180.0 / Double.pi)
         return angle
     }
     
@@ -250,6 +254,15 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         return innerView
     }
     
+    @IBAction func hideText(_ sender: Any) {
+        if(!outputLabel.isHidden){
+            outputLabel.isHidden = true;
+            hideButton.image = #imageLiteral(resourceName: "HideGreyButton")
+        } else {
+            outputLabel.isHidden = false
+            hideButton.image = #imageLiteral(resourceName: "HideBlueButton")
+        }
+    }
 
     /*
     // MARK: - Navigation

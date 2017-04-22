@@ -39,8 +39,8 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
         imageViewHeight = procedure.imageViewHeight
         
         
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
+        _ = UIScreen.main.bounds.width
+        _ = UIScreen.main.bounds.height
         
         backgroundImage.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
         

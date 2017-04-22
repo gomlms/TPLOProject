@@ -289,7 +289,7 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         let angle2I = Double(atan2((procedure?.points[1].y)! - (procedure?.intersectionPoint.y)!, (procedure?.points[1].x)! - (procedure?.intersectionPoint.x)!))
         let angle4I = Double(atan2((procedure?.points[3].y)! - (procedure?.intersectionPoint.y)!, (procedure?.points[3].x)! - (procedure?.intersectionPoint.x)!))
         var angle = Double(angle2I - angle4I)
-        angle = angle * (180.0 / M_PI)
+        angle = angle * (180.0 / Double.pi)
         return angle
     }
     
