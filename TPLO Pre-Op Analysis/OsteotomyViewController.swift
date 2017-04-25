@@ -31,6 +31,9 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+        
         guard let procedure = procedure else {
             fatalError("Procedure was not correctly passed to Osteotomy Controller")
         }
@@ -99,7 +102,7 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
         
         
         procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
-        procedure.chordLength = Double(round(2 * procedure.sawbladeRadius! * sin(procedure.alpha! / 2) * 10)/10)
+        procedure.chordLength = Double(round((Double.pi * 2.0)(2.0 * procedure.roundedRadius)((procedure.tpa - 5.0) / 360.0))/10.0)
         
         tempAngle = sin(procedure.alpha! / 2)
         

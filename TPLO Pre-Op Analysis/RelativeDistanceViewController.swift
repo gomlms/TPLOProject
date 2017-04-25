@@ -20,6 +20,10 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     var isTop = false
     var isBot = false
     
+    var selectedColor : UIColor = UIColor(red:0.00, green:0.74, blue:0.89, alpha:0.7)
+    var unselectedColor : UIColor = UIColor(red:0.00, green:0.32, blue:0.61, alpha:0.7)
+    var greyColor : UIColor = UIColor(red:0.27, green:0.35, blue:0.34, alpha:1.0)
+    
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var menuBotConstraint: NSLayoutConstraint!
     @IBOutlet weak var plusBotConstraint: NSLayoutConstraint!
@@ -104,6 +108,9 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
         
         updateNextButtonState()
         
@@ -271,6 +278,10 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         dotView.image = #imageLiteral(resourceName: "dot1")
         currSelector = 1
         
+        pointOneButton.backgroundColor = selectedColor
+        pointTwoButton.backgroundColor = greyColor
+        confirmButton.backgroundColor = unselectedColor
+        
         imageView.isUserInteractionEnabled = true
         
     }
@@ -281,6 +292,10 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         dotView.image = #imageLiteral(resourceName: "dot2")
         currSelector = 2
         
+        pointOneButton.backgroundColor = greyColor
+        pointTwoButton.backgroundColor = selectedColor
+        confirmButton.backgroundColor = unselectedColor
+        
         imageView.isUserInteractionEnabled = true
         
     }
@@ -289,6 +304,10 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         imageView.isUserInteractionEnabled = false
         enableSelectionButtons()
         zoomedView.isHidden = true
+        
+        confirmButton.backgroundColor = selectedColor
+        pointOneButton.backgroundColor = unselectedColor
+        pointTwoButton.backgroundColor = unselectedColor
         
         points[currSelector - 1] = currentImageViewPoint
         updateNextButtonState()
@@ -494,5 +513,4 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     private func removeDot(dotImageView: UIImageView) {
         dotImageView.removeFromSuperview()
     }
-
 }

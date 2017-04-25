@@ -50,6 +50,9 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+        
         scheduledTimerWithInterval()
         
         markerTap.addTarget(self, action: #selector(FirstPropertiesViewController.markerPressed(_:)))

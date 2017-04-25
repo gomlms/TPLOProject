@@ -333,7 +333,7 @@
                                     <constraint firstAttribute="width" constant="200" id="6mA-g1-8Ua"/>
                                 </constraints>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FadeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="7Bf-5V-VA5">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Bf-5V-VA5">
                                 <rect key="frame" x="0.0" y="667" width="375" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="WTk-9Z-iX8"/>
@@ -587,7 +587,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZO-aX-YPb">
                                 <rect key="frame" x="16" y="614" width="343" height="33"/>
-                                <color key="backgroundColor" red="0.26858986709999999" green="0.35287119290000002" blue="0.34048548229999998" alpha="0.61411065919999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.3529411764705882" blue="0.3411764705882353" alpha="0.61411065919999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="24"/>
                                 <color key="textColor" red="0.29282432790000001" green="0.74044257400000002" blue="0.89707332849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -728,6 +728,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1a7-zG-5Jk"/>
-        <segue reference="ogz-KK-8fZ"/>
+        <segue reference="UL5-Oe-iHR"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -84,6 +84,9 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+        
         nextButton.isEnabled = false
         
         plusButton.isUserInteractionEnabled = true

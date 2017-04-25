@@ -33,6 +33,9 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+        
         guard let procedure = procedure else {
             fatalError("Procedure was not correctly passed to Summary Controller")
         }

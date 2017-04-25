@@ -42,6 +42,9 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+        
         imageViewWidth = procedure!.imageViewWidth
         imageViewHeight = procedure!.imageViewHeight
         

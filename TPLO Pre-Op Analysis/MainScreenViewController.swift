@@ -21,6 +21,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         if let savedProcedures = loadProcedures() {
             procedures += savedProcedures

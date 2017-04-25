@@ -71,6 +71,9 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
             fatalError("Procedure was not correctly passed to Plate Size Controller")
         }
         
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+        
         imageViewWidth = procedure.imageViewWidth
         imageViewHeight = procedure.imageViewHeight
         
