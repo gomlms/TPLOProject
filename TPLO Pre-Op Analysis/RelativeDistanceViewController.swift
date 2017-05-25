@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
+class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     //MARK: Properties
     
@@ -31,6 +31,8 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var plusButton: UIImageView!
     @IBOutlet weak var menuView: UIImageView!
+    
+    @IBOutlet var movingRecognizer: UIPanGestureRecognizer!
     
     var pointOneButton = UIView()
     var pointTwoButton = UIView()
@@ -69,12 +71,11 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
     var currentDot = #imageLiteral(resourceName: "dot1")
     var dot1ImageView = UIImageView(image: #imageLiteral(resourceName: "dot1"))
     var dot2ImageView = UIImageView(image: #imageLiteral(resourceName: "dot2"))
+    var activeImageView = UIImageView()
     
     var dot1Recog = UITapGestureRecognizer()
     var dot2Recog = UITapGestureRecognizer()
     var confirmRecog = UITapGestureRecognizer()
-    
-    @IBOutlet var zoomRecog: ZoomGestureRecognizer!
     
     
     //MARK: Navigation
@@ -151,7 +152,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(innerView)
         
         imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
-        imageView.addGestureRecognizer(zoomRecog)
+        //imageView.addGestureRecognizer(zoomRecog)
         imageView.isUserInteractionEnabled = false
         imageView.image = radiographImage
         innerView.addSubview(imageView)
@@ -237,7 +238,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         confirmButton.layer.borderWidth = 2.0
         confirmButton.layer.shadowRadius = 10.0
         
-        let confirmButtonImage = UIImageView(image: #imageLiteral(resourceName: "ConfirmButtonBlue"))
+        let confirmButtonImage = UIImageView(image: #imageLiteral(resourceName: "CheckButtonBlue"))
         confirmButtonImage.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
         confirmButtonImage.contentMode = UIViewContentMode.scaleAspectFit
         
@@ -259,7 +260,16 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         pointTwoButton.addGestureRecognizer(dot2Recog)
         confirmButton.addGestureRecognizer(confirmRecog)
         
+        pointOneButton.backgroundColor = unselectedColor
+        pointTwoButton.backgroundColor = unselectedColor
+        confirmButton.backgroundColor = unselectedColor
+        
         self.view.bringSubview(toFront: menuView)
+        
+        self.view.removeGestureRecognizer(movingRecognizer)
+        scrollView.addGestureRecognizer(movingRecognizer)
+        
+        movingRecognizer.isEnabled = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -278,9 +288,18 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         dotView.image = #imageLiteral(resourceName: "dot1")
         currSelector = 1
         
+        movingRecognizer.isEnabled = true
+        
+        createDotAt(dotImageView: dot1ImageView, coordInImageView: CGPoint(x: 200, y: 200))
+        
         pointOneButton.backgroundColor = selectedColor
         pointTwoButton.backgroundColor = greyColor
         confirmButton.backgroundColor = unselectedColor
+        
+        pointTwoButton.isUserInteractionEnabled = false
+        pointOneButton.isUserInteractionEnabled = true
+        confirmButton.isUserInteractionEnabled = true
+        pointOneCreated = true
         
         imageView.isUserInteractionEnabled = true
         
@@ -292,9 +311,18 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         dotView.image = #imageLiteral(resourceName: "dot2")
         currSelector = 2
         
+        movingRecognizer.isEnabled = true
+        
+        createDotAt(dotImageView: dot2ImageView, coordInImageView: CGPoint(x: 200, y: 200))
+        
         pointOneButton.backgroundColor = greyColor
         pointTwoButton.backgroundColor = selectedColor
         confirmButton.backgroundColor = unselectedColor
+        
+        pointTwoButton.isUserInteractionEnabled = true
+        pointOneButton.isUserInteractionEnabled = false
+        confirmButton.isUserInteractionEnabled = true
+        pointTwoCreated = true
         
         imageView.isUserInteractionEnabled = true
         
@@ -305,12 +333,21 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         enableSelectionButtons()
         zoomedView.isHidden = true
         
+        movingRecognizer.isEnabled = false
+        
         confirmButton.backgroundColor = selectedColor
         pointOneButton.backgroundColor = unselectedColor
         pointTwoButton.backgroundColor = unselectedColor
         
         points[currSelector - 1] = currentImageViewPoint
         updateNextButtonState()
+        
+        pointOneButton.isUserInteractionEnabled = true
+        pointTwoButton.isUserInteractionEnabled = true
+        
+        if(confirmRecog.state == .ended){
+            confirmButton.backgroundColor = unselectedColor
+        }
         
         confirmButton.isUserInteractionEnabled = false
     }
@@ -334,7 +371,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
 
     }
     
-    @IBAction func tapDown(sender: ZoomGestureRecognizer) {
+    /*@IBAction func tapDown(sender: ZoomGestureRecognizer) {
         zoomedView.isHidden = false
         let point = sender.location(in: imageView)
         zoomedView.image = getZoomedImage(point: point)
@@ -373,7 +410,25 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         
-        if(currentDot == #imageLiteral(resourceName: "dot1")) {
+        if(sender.state == .began) {
+            print("poop")
+            if(currentDot == #imageLiteral(resourceName: "dot1")) {
+                createDotAt(dotImageView: dot1ImageView, coordInImageView: currentImageViewPoint)
+                activeImageView = dot1ImageView
+                pointOneCreated = true
+            } else if(currentDot == #imageLiteral(resourceName: "dot2")){
+                createDotAt(dotImageView: dot2ImageView, coordInImageView: currentImageViewPoint)
+                activeImageView = dot2ImageView
+                pointTwoCreated = true
+            }
+            
+            self.view.addGestureRecognizer(movingRecognizer)
+        } else if(sender.state == .changed){
+
+        }
+        
+        
+        /*if(currentDot == #imageLiteral(resourceName: "dot1")) {
             createDotAt(dotImageView: dot1ImageView, coordInImageView: currentImageViewPoint)
         } else if(currentDot == #imageLiteral(resourceName: "dot2")) {
             createDotAt(dotImageView: dot2ImageView, coordInImageView: currentImageViewPoint)
@@ -389,13 +444,13 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
             }
             
             confirmButton.isUserInteractionEnabled = true
-        }
+        }*/
         
-    }
+    }*/
     
     
     @IBAction func animate(_ sender: Any) {
-        if(plusButton.image == #imageLiteral(resourceName: "PlusButtonBlue")){
+        if(plusButton.image! == #imageLiteral(resourceName: "PlusButtonBlue") || plusBotConstraint.constant == 20.0){
             menuBotConstraint.constant = 0
             plusBotConstraint.constant += 200
             
@@ -503,6 +558,64 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate {
         prevHeight = self.innerView.frame.height
         */
         return innerView
+    }
+    @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
+        var point = CGPoint()
+        
+        if(sender.state == .began) {
+            animate(self)
+        }
+        
+        let translation = sender.translation(in: self.view)
+        
+        zoomedView.isHidden = false
+        
+        if(currentDot == #imageLiteral(resourceName: "dot1")) {
+            dot1ImageView.center = CGPoint(x: (dot1ImageView.center.x) + translation.x, y: (dot1ImageView.center.y) + translation.y)
+            zoomedView.image = getZoomedImage(point: dot1ImageView.center)
+            point = dot1ImageView.center
+        } else if (currentDot == #imageLiteral(resourceName: "dot2")) {
+            dot2ImageView.center = CGPoint(x: (dot2ImageView.center.x) + translation.x, y: (dot2ImageView.center.y) + translation.y)
+            zoomedView.image = getZoomedImage(point: dot2ImageView.center)
+            point = dot2ImageView.center
+        }
+        
+        
+        if(point.y < self.imageViewHeight / 2){
+            isTop = true
+            if(plusButton.image != #imageLiteral(resourceName: "DownButtonBlue")){
+                zoomBotConstraint.constant = imageViewHeight * 0.1
+            }
+        } else {
+            isBot = true
+            zoomBotConstraint.constant = imageViewHeight * 0.6
+        }
+        
+        zoomedView.layer.borderColor = UIColor(red:0.00, green:0.74, blue:0.89, alpha:1.0).cgColor
+        zoomedView.layer.shadowRadius = 14
+        zoomedView.layer.shadowColor = UIColor.white.cgColor
+        zoomedView.layer.borderWidth = 1.0
+        
+        if(plusButton.image == #imageLiteral(resourceName: "DownButtonBlue")){
+            animate(self)
+        }
+        
+        if(isTop && isBot) {
+            zoomedView.alpha = 0
+            if(plusButton.image != #imageLiteral(resourceName: "DownButtonBlue")){
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.zoomedView.alpha = 1.0
+                })
+            }
+            
+            if(point.y < self.imageViewHeight / 2){
+                isBot = false
+            } else {
+                isTop = false
+            }
+        }
+        
+        sender.setTranslation(CGPoint(x: 0.0, y: 0.0), in: self.view)
     }
     
     private func createDotAt(dotImageView: UIImageView, coordInImageView: CGPoint) {

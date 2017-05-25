@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegate{
+class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
     //MARK: Properties
     
@@ -16,6 +16,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     var currentPoint = CGPoint(x: 0.0, y: 0.0)
     var points = [CGPoint]()
     var currSelector = 0
+    
+    var selectedColor : UIColor = UIColor(red:0.00, green:0.74, blue:0.89, alpha:0.7)
+    var unselectedColor : UIColor = UIColor(red:0.00, green:0.32, blue:0.61, alpha:0.7)
+    var greyColor : UIColor = UIColor(red:0.27, green:0.35, blue:0.34, alpha:1.0)
     
     var isTop = false
     var isBot = false
@@ -28,7 +32,6 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     var confirmSelection = UIView()
     
     @IBOutlet weak var zoomedView: UIImageView!
-    @IBOutlet var zoomRecog: ZoomGestureRecognizer!
     
     var radiographImage = #imageLiteral(resourceName: "defaultPhoto")
     
@@ -54,7 +57,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     
     var currentDot = #imageLiteral(resourceName: "dot1")
     var dot1ImageView = UIImageView(image: #imageLiteral(resourceName: "dot1"))
-    var dot2ImageView = UIImageView(image: #imageLiteral(resourceName: "dot2"))
+    var dot2ImageView = UIImageView(image: #imageLiteral(resourceName: "CircleScaleDot"))
     var dot3ImageView = UIImageView(image: #imageLiteral(resourceName: "dot3"))
     var dot4ImageView = UIImageView(image: #imageLiteral(resourceName: "dot4"))
     var dot5ImageView = UIImageView(image: #imageLiteral(resourceName: "dot5"))
@@ -73,6 +76,8 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     @IBOutlet weak var plusButton: UIImageView!
     
     @IBOutlet weak var nextButton: UIBarButtonItem!
+    @IBOutlet var movingRecognizer: UIPanGestureRecognizer!
+    @IBOutlet var scalingRecognizer: UIPinchGestureRecognizer!
     
     var button1Recog = UITapGestureRecognizer()
     var button2Recog = UITapGestureRecognizer()
@@ -132,7 +137,6 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         scrollView.addSubview(innerView)
         
         imageView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
-        imageView.addGestureRecognizer(zoomRecog)
         imageView.isUserInteractionEnabled = false
         imageView.image = radiographImage
         innerView.addSubview(imageView)
@@ -320,7 +324,23 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point5Button.addGestureRecognizer(button5Recog)
         confirmSelection.addGestureRecognizer(confirmRecog)
         
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = unselectedColor
+        
         self.view.bringSubview(toFront: zoomedView)
+        
+        self.view.removeGestureRecognizer(movingRecognizer)
+        scrollView.addGestureRecognizer(movingRecognizer)
+        
+        self.view.removeGestureRecognizer(scalingRecognizer)
+        scrollView.addGestureRecognizer(scalingRecognizer)
+        
+        movingRecognizer.isEnabled = false
+        scalingRecognizer.isEnabled = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -329,7 +349,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     }
     
     //MARK: Action
-    @IBAction func tapDown(sender: ZoomGestureRecognizer) {
+    /*@IBAction func tapDown(sender: ZoomGestureRecognizer) {
         zoomedView.isHidden = false
         let point = sender.location(in: imageView)
         zoomedView.image = getZoomedImage(point: point)
@@ -403,7 +423,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
             confirmSelection.isUserInteractionEnabled = true
         }
         
-    }
+    }*/
     
     private func getZoomedImage(point: CGPoint) -> UIImage {
         let width: CGFloat = 100.0, height: CGFloat = 100.0
@@ -480,18 +500,54 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         dotView.image = #imageLiteral(resourceName: "dot1")
         currSelector = 1
         
+        movingRecognizer.isEnabled = true
+        createDotAt(dotImageView: dot1ImageView, coordInImageView: CGPoint(x: 200, y: 200))
+        
+        point1Button.backgroundColor = selectedColor
+        point2Button.backgroundColor = greyColor
+        point3Button.backgroundColor = greyColor
+        point4Button.backgroundColor = greyColor
+        point5Button.backgroundColor = greyColor
+        
+        point1Button.isUserInteractionEnabled = true
+        point2Button.isUserInteractionEnabled = false
+        point3Button.isUserInteractionEnabled = false
+        point4Button.isUserInteractionEnabled = false
+        point5Button.isUserInteractionEnabled = false
+        p1Chose = true
+        
+        confirmSelection.isUserInteractionEnabled = true
+        
         imageView.isUserInteractionEnabled = true
         
     }
     
     @IBAction func selectPoint2(_ sender: Any) {
         disableSelectionButtons()
-        currentDot = #imageLiteral(resourceName: "dot2")
-        dotView.image = #imageLiteral(resourceName: "dot2")
+        currentDot = #imageLiteral(resourceName: "CircleScaleDot")
+        dotView.image = #imageLiteral(resourceName: "CircleScaleDot")
         currSelector = 2
         
-        imageView.isUserInteractionEnabled = true
+        movingRecognizer.isEnabled = true
+        scalingRecognizer.isEnabled = true
+        createDotAt(dotImageView: dot2ImageView, coordInImageView: CGPoint(x: 200, y: 200))
         
+        point1Button.backgroundColor = greyColor
+        point2Button.backgroundColor = selectedColor
+        point3Button.backgroundColor = greyColor
+        point4Button.backgroundColor = greyColor
+        point5Button.backgroundColor = greyColor
+        
+        point1Button.isUserInteractionEnabled = false
+        point2Button.isUserInteractionEnabled = true
+        point3Button.isUserInteractionEnabled = false
+        point4Button.isUserInteractionEnabled = false
+        point5Button.isUserInteractionEnabled = false
+        p2Chose = true
+        
+        confirmSelection.isUserInteractionEnabled = true
+        
+        imageView.isUserInteractionEnabled = true
     }
     
     @IBAction func selectPoint3(_ sender: Any) {
@@ -499,6 +555,24 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         currentDot = #imageLiteral(resourceName: "dot3")
         dotView.image = #imageLiteral(resourceName: "dot3")
         currSelector = 3
+        
+        movingRecognizer.isEnabled = true
+        createDotAt(dotImageView: dot3ImageView, coordInImageView: CGPoint(x: 200, y: 200))
+        
+        point1Button.backgroundColor = greyColor
+        point2Button.backgroundColor = greyColor
+        point3Button.backgroundColor = selectedColor
+        point4Button.backgroundColor = greyColor
+        point5Button.backgroundColor = greyColor
+        
+        point1Button.isUserInteractionEnabled = false
+        point2Button.isUserInteractionEnabled = false
+        point3Button.isUserInteractionEnabled = true
+        point4Button.isUserInteractionEnabled = false
+        point5Button.isUserInteractionEnabled = false
+        p3Chose = true
+        
+        confirmSelection.isUserInteractionEnabled = true
         
         imageView.isUserInteractionEnabled = true
         
@@ -510,6 +584,24 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         dotView.image = #imageLiteral(resourceName: "dot4")
         currSelector = 4
         
+        movingRecognizer.isEnabled = true
+        createDotAt(dotImageView: dot4ImageView, coordInImageView: CGPoint(x: 200, y: 200))
+        
+        point1Button.backgroundColor = greyColor
+        point2Button.backgroundColor = greyColor
+        point3Button.backgroundColor = greyColor
+        point4Button.backgroundColor = selectedColor
+        point5Button.backgroundColor = greyColor
+        
+        point1Button.isUserInteractionEnabled = false
+        point2Button.isUserInteractionEnabled = false
+        point3Button.isUserInteractionEnabled = false
+        point4Button.isUserInteractionEnabled = true
+        point5Button.isUserInteractionEnabled = false
+        p4Chose = true
+        
+        confirmSelection.isUserInteractionEnabled = true
+        
         imageView.isUserInteractionEnabled = true
         
     }
@@ -519,6 +611,24 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         currentDot = #imageLiteral(resourceName: "dot5")
         dotView.image = #imageLiteral(resourceName: "dot5")
         currSelector = 5
+        
+        movingRecognizer.isEnabled = true
+        createDotAt(dotImageView: dot5ImageView, coordInImageView: CGPoint(x: 200, y: 200))
+        
+        point1Button.backgroundColor = greyColor
+        point2Button.backgroundColor = greyColor
+        point3Button.backgroundColor = greyColor
+        point4Button.backgroundColor = greyColor
+        point5Button.backgroundColor = selectedColor
+        
+        point1Button.isUserInteractionEnabled = false
+        point2Button.isUserInteractionEnabled = false
+        point3Button.isUserInteractionEnabled = false
+        point4Button.isUserInteractionEnabled = false
+        point5Button.isUserInteractionEnabled = true
+        p5Chose = true
+        
+        confirmSelection.isUserInteractionEnabled = true
         
         imageView.isUserInteractionEnabled = true
         
@@ -530,7 +640,22 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         imageView.isUserInteractionEnabled = false
         zoomedView.isHidden = true
         
+        movingRecognizer.isEnabled = false
+        scalingRecognizer.isEnabled = false
+        
         points[currSelector - 1] = currentImageViewPoint
+        
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = unselectedColor
+        
+        point1Button.isUserInteractionEnabled = true
+        point2Button.isUserInteractionEnabled = true
+        point3Button.isUserInteractionEnabled = true
+        point4Button.isUserInteractionEnabled = true
+        point5Button.isUserInteractionEnabled = true
         
         updateNextButtonState()
     }
@@ -573,7 +698,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     }
     
     @IBAction func animate(_ sender: Any) {
-        if(plusButton.image == #imageLiteral(resourceName: "PlusButtonBlue")){
+        if(plusButton.image! == #imageLiteral(resourceName: "PlusButtonBlue") || plusBotConstraint.constant == 20.0){
             menuBotConstraint.constant = 0
             plusBotConstraint.constant += 300
             
@@ -601,6 +726,83 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
                 self.view.layoutIfNeeded()
             })
         }
+    }
+    
+    @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
+        var point = CGPoint()
+        
+        if(sender.state == .began) {
+            animate(self)
+        }
+        
+        let translation = sender.translation(in: self.view)
+        
+        zoomedView.isHidden = false
+        
+        if(currentDot == #imageLiteral(resourceName: "dot1")) {
+            dot1ImageView.center = CGPoint(x: (dot1ImageView.center.x) + translation.x, y: (dot1ImageView.center.y) + translation.y)
+            zoomedView.image = getZoomedImage(point: dot1ImageView.center)
+            point = dot1ImageView.center
+        } else if (currentDot == #imageLiteral(resourceName: "CircleScaleDot")) {
+            dot2ImageView.center = CGPoint(x: (dot2ImageView.center.x) + translation.x, y: (dot2ImageView.center.y) + translation.y)
+            zoomedView.image = getZoomedImage(point: dot2ImageView.center)
+            point = dot2ImageView.center
+            procedure?.secondImageView = dot2ImageView
+        } else if (currentDot == #imageLiteral(resourceName: "dot3")) {
+            dot3ImageView.center = CGPoint(x: (dot3ImageView.center.x) + translation.x, y: (dot3ImageView.center.y) + translation.y)
+            zoomedView.image = getZoomedImage(point: dot3ImageView.center)
+            point = dot3ImageView.center
+        } else if (currentDot == #imageLiteral(resourceName: "dot4")) {
+            dot4ImageView.center = CGPoint(x: (dot4ImageView.center.x) + translation.x, y: (dot4ImageView.center.y) + translation.y)
+            zoomedView.image = getZoomedImage(point: dot4ImageView.center)
+            point = dot4ImageView.center
+        } else if (currentDot == #imageLiteral(resourceName: "dot5")) {
+            dot5ImageView.center = CGPoint(x: (dot5ImageView.center.x) + translation.x, y: (dot5ImageView.center.y) + translation.y)
+            zoomedView.image = getZoomedImage(point: dot5ImageView.center)
+            point = dot5ImageView.center
+        }
+        
+        
+        if(point.y < self.imageViewHeight / 2){
+            isTop = true
+            if(plusButton.image != #imageLiteral(resourceName: "DownButtonBlue")){
+                zoomBotConstraint.constant = imageViewHeight * 0.1
+            }
+        } else {
+            isBot = true
+            zoomBotConstraint.constant = imageViewHeight * 0.6
+        }
+        
+        zoomedView.layer.borderColor = UIColor(red:0.00, green:0.74, blue:0.89, alpha:1.0).cgColor
+        zoomedView.layer.shadowRadius = 14
+        zoomedView.layer.shadowColor = UIColor.white.cgColor
+        zoomedView.layer.borderWidth = 1.0
+        
+        if(plusButton.image == #imageLiteral(resourceName: "DownButtonBlue")){
+            animate(self)
+        }
+        
+        if(isTop && isBot) {
+            zoomedView.alpha = 0
+            if(plusButton.image != #imageLiteral(resourceName: "DownButtonBlue")){
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.zoomedView.alpha = 1.0
+                })
+            }
+            
+            if(point.y < self.imageViewHeight / 2){
+                isBot = false
+            } else {
+                isTop = false
+            }
+        }
+        
+        sender.setTranslation(CGPoint(x: 0.0, y: 0.0), in: self.view)
+    }
+    
+    @IBAction func scaleImage(_ sender: UIPinchGestureRecognizer) {
+        dot2ImageView.transform = dot2ImageView.transform.scaledBy(x: sender.scale, y: sender.scale)
+        sender.scale = 1
     }
 
     

@@ -102,7 +102,8 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
         
         
         procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
-        procedure.chordLength = Double(round((Double.pi * 2.0)(2.0 * procedure.roundedRadius)((procedure.tpa - 5.0) / 360.0))/10.0)
+        let temp = (Double.pi * 2.0) * (2.0 * Double(procedure.roundedRadius!))
+        procedure.chordLength = Double(round(temp * ((procedure.tpa - 5.0) / 360.0))/10.0)
         
         tempAngle = sin(procedure.alpha! / 2)
         
@@ -110,6 +111,7 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
         radiographImage.transform = radiographImage.transform.rotated(by: CGFloat(-tempAngle))
         rotatingView.center = procedure.points[0]
 
+        procedure.rotatedRadiograph = rotatingView
         
         chordLengthLabel.text = "Osteotomy Rotation = \(procedure.chordLength!)mm"
         
@@ -149,7 +151,7 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
         
         _ = getXOnCircle(yPoint: (procedure?.points[4].y)!);
         
-        polygon.addArc(withCenter: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!), radius: CGFloat(Float((procedure?.roundedRadius)!)), startAngle: angleWith4!, endAngle: CGFloat.pi, clockwise: true)
+        polygon.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double((procedure?.roundedRadius)!) * (procedure?.pixelToMMRatio)!)), startAngle: angleWith4!, endAngle: CGFloat.pi, clockwise: true)
         
         polygon.move(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))

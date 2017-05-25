@@ -11,27 +11,49 @@ import MessageUI
 
 class SummaryViewController: UIViewController, MFMailComposeViewControllerDelegate, UIScrollViewDelegate {
     
-    @IBOutlet weak var outputLabel: UILabel!
-    
-    @IBOutlet weak var hideButton: UIImageView!
+    @IBOutlet weak var mailBotConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuBotConstraint: NSLayoutConstraint!
+    @IBOutlet weak var plusBotConstraint: NSLayoutConstraint!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var plusButton: UIImageView!
     var procedure : Procedure?
     var isThere = false
+    var procIndex = 0
     
+    @IBOutlet weak var menuView: UIView!
     var rotatingView = UIView()
     var radiographView = UIImageView()
     var backgroundView = UIImageView()
     var innerView = UIView()
     var scrollView = UIScrollView()
+    var plateImageView = UIImageView()
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var outputLabel: UILabel!
+    
     
     var tempAngle : Double = 0
     var angleWith4 : CGFloat?
     var angleWith5 : CGFloat?
     var maskImage : UIImage?
     
+    var disableDone = false
+    
     var imageViewHeight: CGFloat = 0.0, imageViewWidth: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hideText(self)
+        
+        if(disableDone){
+            doneButton.isEnabled = false
+            doneButton.title = ""
+        } else {
+            doneButton.isEnabled = true
+            doneButton.title = "Done"
+        }
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
@@ -86,6 +108,10 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         radiographView.image = procedure.radiograph
         radiographView.layer.mask = maskLayer
         
+        
+        plateImageView = procedure.plateImageView!
+        innerView.addSubview(plateImageView)
+        
         scrollView.isUserInteractionEnabled = true
         
         //Cropping out portion of original
@@ -113,9 +139,21 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         
         procedure.tpa = getAngle()
         
-        outputLabel.text = String(format: "Date: \(procedure.dateOfProcedure)\nPatient Name: \((procedure.name)!)\nTPA: %.2f°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)", procedure.tpa)
+        titleLabel.text = "\(procedure.name!)"
+        dateLabel.text = "\(procedure.dateOfProcedure)"
+        
+        
+        outputLabel.numberOfLines = 0
+        outputLabel.text = String(format: "TPA: %.2f°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)", procedure.tpa)
+        outputLabel.textColor = UIColor.white
+        
+        
+        
+        menuView.addSubview(titleLabel)
+        menuView.addSubview(outputLabel)
         
         // Do any additional setup after loading the view.
+        
     }
     
     func drawMaskImage(size: CGSize) -> UIBezierPath? {
@@ -132,7 +170,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         
         _ = getXOnCircle(yPoint: (procedure?.points[4].y)!);
         
-        polygon.addArc(withCenter: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!), radius: CGFloat(Float((procedure?.roundedRadius)!)), startAngle: angleWith4!, endAngle: CGFloat.pi, clockwise: true)
+        polygon.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double((procedure?.roundedRadius)!) * (procedure?.pixelToMMRatio)!)), startAngle: angleWith4!, endAngle: CGFloat.pi, clockwise: true)
         
         polygon.move(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))
@@ -218,7 +256,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             mailComposer.mailComposeDelegate = self
             
             mailComposer.setSubject("TPLO Pre-Op Analysis Summary Report")
-            mailComposer.setMessageBody("Date: \(String(describing: procedure?.dateOfProcedure))\nPatient Name: \((procedure?.name)!)\nTPA: \(String(describing: procedure?.tpa))°\nOsteotomy Rotation: \((procedure?.chordLength)!)mm\nSawblade Size: \((procedure?.roundedRadius)!)mm\nPlate Size: \((procedure?.plateCatalogNumber)!)", isHTML: false)
+            mailComposer.setMessageBody(String(format: "Date: \(String((procedure?.dateOfProcedure)!)!)\nPatient Name: \((procedure?.name)!)\nTPA: %.2f°\nOsteotomy Rotation: \((procedure?.chordLength)!)mm\nSawblade Size: \((procedure?.roundedRadius)!)mm\nPlate Size: \((procedure?.plateCatalogNumber)!)", (procedure?.tpa)!), isHTML: false)
             
             self.present(mailComposer, animated: true, completion: nil)
         }
@@ -258,12 +296,27 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     @IBAction func hideText(_ sender: Any) {
-        if(!outputLabel.isHidden){
-            outputLabel.isHidden = true;
-            hideButton.image = #imageLiteral(resourceName: "HideGreyButton")
+        if(plusButton.image! == #imageLiteral(resourceName: "PlusButtonBlue") || plusBotConstraint.constant == 20.0){
+            menuBotConstraint.constant = 0
+            plusBotConstraint.constant += 400
+            mailBotConstraint.constant += 400
+            
+            plusButton.image = #imageLiteral(resourceName: "DownButtonBlue")
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+            
         } else {
-            outputLabel.isHidden = false
-            hideButton.image = #imageLiteral(resourceName: "HideBlueButton")
+            menuBotConstraint.constant = -400
+            plusBotConstraint.constant -= 400
+            mailBotConstraint.constant -= 400
+
+            plusButton.image = #imageLiteral(resourceName: "PlusButtonBlue")
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
         }
     }
 

@@ -10,6 +10,10 @@ import UIKit
 
 class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
+    var selectedColor : UIColor = UIColor(red:0.00, green:0.74, blue:0.89, alpha:0.7)
+    var unselectedColor : UIColor = UIColor(red:0.00, green:0.32, blue:0.61, alpha:0.7)
+    var greyColor : UIColor = UIColor(red:0.27, green:0.35, blue:0.34, alpha:1.0)
+    
     var rotatingView = UIView()
     var radiographView = UIImageView()
     var backgroundView = UIImageView()
@@ -288,6 +292,11 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         menuView.isUserInteractionEnabled = true
         
+        standardButton.backgroundColor = unselectedColor
+        broadButton.backgroundColor = unselectedColor
+        shortButton.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = unselectedColor
+        deleteButton.backgroundColor = unselectedColor
     }
     
     func drawMaskImage(size: CGSize) -> UIBezierPath? {
@@ -304,7 +313,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         _ = getXOnCircle(yPoint: (procedure?.points[4].y)!);
         
-        polygon.addArc(withCenter: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!), radius: CGFloat(Float((procedure?.roundedRadius)!)), startAngle: angleWith4!, endAngle: CGFloat.pi, clockwise: true)
+        polygon.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double((procedure?.roundedRadius)!) * (procedure?.pixelToMMRatio)!)), startAngle: angleWith4!, endAngle: CGFloat.pi, clockwise: true)
         
         polygon.move(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))
@@ -346,8 +355,31 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
             fatalError("Unexpected destination: \(segue.destination)")
         }
         
+        nextController.disableDone = false
+        
+        switch currentImageName {
+        case "broad35":
+            currentImageName = "3.5 Broad"
+            break
+        case "short35":
+            currentImageName = "3.5 Short"
+            break
+        case "standard35":
+            currentImageName = "3.5 Standard"
+            break
+        default:
+            currentImageName = "Not Recognized"
+            break
+        }
+        
         procedure?.plateCatalogNumber = currentImageName
         nextController.procedure = procedure
+        
+        procedure?.plateImageView = movingImage
+        
+        let imageToSave = UIImage(view: innerView)
+        procedure?.savedImage = imageToSave
+        self.view.addSubview(menuView)
     }
 
     
@@ -406,6 +438,15 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         if(imageInSuperview){
             handleTap()
         }
+        
+        standardButton.backgroundColor = selectedColor
+        broadButton.backgroundColor = greyColor
+        shortButton.backgroundColor = greyColor
+        
+        standardButton.isUserInteractionEnabled = true
+        broadButton.isUserInteractionEnabled = false
+        shortButton.isUserInteractionEnabled = false
+        
         handleTap()
     }
     
@@ -414,6 +455,15 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         if(imageInSuperview){
             handleTap()
         }
+        
+        standardButton.backgroundColor = greyColor
+        broadButton.backgroundColor = selectedColor
+        shortButton.backgroundColor = greyColor
+        
+        standardButton.isUserInteractionEnabled = false
+        broadButton.isUserInteractionEnabled = true
+        shortButton.isUserInteractionEnabled = false
+        
         handleTap()
     }
     
@@ -422,6 +472,15 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         if(imageInSuperview){
             handleTap()
         }
+        
+        standardButton.backgroundColor = greyColor
+        broadButton.backgroundColor = greyColor
+        shortButton.backgroundColor = selectedColor
+        
+        standardButton.isUserInteractionEnabled = false
+        broadButton.isUserInteractionEnabled = false
+        shortButton.isUserInteractionEnabled = true
+        
         handleTap()
     }
     
@@ -431,6 +490,14 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
             self.view.removeGestureRecognizer(movingRecognizer)
             self.view.removeGestureRecognizer(rotatingRecognizer)
         }
+        
+        standardButton.backgroundColor = unselectedColor
+        broadButton.backgroundColor = unselectedColor
+        shortButton.backgroundColor = unselectedColor
+        
+        standardButton.isUserInteractionEnabled = true
+        broadButton.isUserInteractionEnabled = true
+        shortButton.isUserInteractionEnabled = true
     }
     
     @IBAction func deletePress(_ sender: Any) {
@@ -447,6 +514,14 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         } else if(currentImageName == "standard35") {
             movingImage.frame = CGRect(x: originOfActiveImage.x, y: originOfActiveImage.y, width: CGFloat(standard35[2]), height: CGFloat(standard35[3]))
         }
+        
+        standardButton.backgroundColor = unselectedColor
+        broadButton.backgroundColor = unselectedColor
+        shortButton.backgroundColor = unselectedColor
+        
+        standardButton.isUserInteractionEnabled = true
+        broadButton.isUserInteractionEnabled = true
+        shortButton.isUserInteractionEnabled = true
         
         originOfActiveImage = CGPoint.zero
         activeImage = nil
@@ -483,11 +558,13 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
                 
                 movingImage.removeFromSuperview()
                 movingImage.frame = CGRect(x: (screenWidth - plateWidth) / 2.0, y: 100.0, width: plateWidth, height: plateHeight)
-                self.view.addSubview(movingImage)
+                innerView.addSubview(movingImage)
                 view.bringSubview(toFront: menuView)
                 
                 activeImage = movingImage
                 imageInSuperview = true
+                
+                pressPlus(self)
             } else {
                 if(movingImage == activeImage) {
                     self.view.removeGestureRecognizer(movingRecognizer)
@@ -544,7 +621,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
     
     
     @IBAction func pressPlus(_ sender: Any) {
-        if(plusButton.image == #imageLiteral(resourceName: "PlusButtonBlue")){
+        if(plusButton.image! == #imageLiteral(resourceName: "PlusButtonBlue") || plusBotConstraint.constant == 20.0){
             menuBotConstraint.constant = 0
             plusBotConstraint.constant += 300
             
@@ -564,5 +641,16 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
                 self.view.layoutIfNeeded()
             })
         }
+    }
+    
+}
+
+extension UIImage {
+    convenience init(view: UIView) {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(cgImage: (image?.cgImage)!)
     }
 }

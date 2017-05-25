@@ -23,7 +23,16 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
-        if let savedProcedures = loadProcedures() {
+        var index = 0
+        if var savedProcedures = loadProcedures() {
+            for proc in savedProcedures {
+                for curProc in procedures {
+                    if(proc.name == curProc.name){
+                        savedProcedures.remove(at: index)
+                    }
+                }
+                index += 1
+            }
             procedures += savedProcedures
         }
         
@@ -94,6 +103,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             guard let indexPath = tableView.indexPath(for: selectedProcedureCell) else{
                 fatalError("The selected meal cell is not being displayed by the table")
             }
+            procedureDetailViewController.disableDone = true
             let selectedProcedure = procedures[indexPath.row]
             procedureDetailViewController.procedure = selectedProcedure
             procedureDetailViewController.isThere = true
