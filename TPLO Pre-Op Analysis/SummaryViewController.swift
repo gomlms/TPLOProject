@@ -127,8 +127,8 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         backgroundView.layer.addSublayer(subLayer)
         
         procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
-        procedure.chordLength = Double(round(2 * procedure.sawbladeRadius! * sin(procedure.alpha! / 2) * 10)/10)
-        
+        procedure.chordLength = Double(round(sin(procedure.alpha!) * Double(procedure.roundedRadius!) * 10.0) / 10.0)
+
         tempAngle = sin(procedure.alpha! / 2)
         
         radiographView.layer.anchorPoint = CGPoint(x: CGFloat(procedure.points[0].x / radiographView.frame.width), y: CGFloat(procedure.points[0].y) / radiographView.frame.height)
@@ -136,8 +136,6 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         rotatingView.center = procedure.points[0]
         
         self.view.sendSubview(toBack: scrollView)
-        
-        procedure.tpa = getAngle()
         
         titleLabel.text = "\(procedure.name!)"
         dateLabel.text = "\(procedure.dateOfProcedure)"
@@ -170,7 +168,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         
         _ = getXOnCircle(yPoint: (procedure?.points[4].y)!);
         
-        polygon.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double((procedure?.roundedRadius)!) * (procedure?.pixelToMMRatio)!)), startAngle: angleWith4!, endAngle: CGFloat.pi, clockwise: true)
+        polygon.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double((procedure?.roundedRadius)!) * (procedure?.pixelToMMRatio)!)), startAngle: angleWith4!, endAngle: 7 * CGFloat.pi / 5, clockwise: true)
         
         polygon.move(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))

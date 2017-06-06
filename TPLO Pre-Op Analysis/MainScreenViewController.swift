@@ -68,6 +68,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.date.text = procedure.dateOfProcedure
         cell.name.text = procedure.name
         cell.radiograph.image = procedure.radiograph
+        cell.angle.text = String(format: "%.1f°/\(procedure.roundedRadius!)mm", procedure.tpa)
         
         return cell
     }

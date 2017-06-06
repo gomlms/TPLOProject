@@ -32,9 +32,9 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
     var totalRotation: CGFloat = 0.0
     var betterPxlToMM: Double = 0.0
     
-    var broad35 = [79, 28.4, 45, 135]
-    var short35 = [56, 20, 31.5, 87.5]
-    var standard35 = [65, 21.67, 34, 101.5]
+    var broad35 = [79, 28, 334, 937]
+    var short35 = [55.1, 19.2, 231, 655]
+    var standard35 = [64.6, 20.4, 245, 768]
     var desiredWidth: Double = 0.0
     var desiredHeight: Double = 0.0
     var currentImageName: String = ""
@@ -157,7 +157,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         let platePosX = buttonWidth / 5
         let platePosY = buttonHeight / 12
         
-        standardButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight)
+        standardButton.frame = CGRect(x: buttonWidth, y: 0, width: buttonWidth, height: buttonHeight)
         
         let standardImage = UIImageView(image: #imageLiteral(resourceName: "standard3.5(65mm)"))
         standardImage.frame = CGRect(x: platePosX, y: platePosY, width: plateWidth, height: plateWidth)
@@ -181,7 +181,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         standardButton.isUserInteractionEnabled = true
         menuView.addSubview(standardButton)
      
-        broadButton.frame = CGRect(x: buttonWidth, y: 0, width: buttonWidth, height: buttonHeight)
+        broadButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight)
         
         let broadImage = UIImageView(image: #imageLiteral(resourceName: "broad3.5(79mm)"))
         broadImage.frame = CGRect(x: platePosX, y: platePosY, width: plateWidth, height: plateWidth)
@@ -313,7 +313,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         _ = getXOnCircle(yPoint: (procedure?.points[4].y)!);
         
-        polygon.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double((procedure?.roundedRadius)!) * (procedure?.pixelToMMRatio)!)), startAngle: angleWith4!, endAngle: CGFloat.pi, clockwise: true)
+        polygon.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double((procedure?.roundedRadius)!) * (procedure?.pixelToMMRatio)!)), startAngle: angleWith4!, endAngle: 7 * CGFloat.pi / 5, clockwise: true)
         
         polygon.move(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))
@@ -486,7 +486,6 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
     
     @IBAction func confirmPress(_ sender: Any) {
         if(imageInSuperview){
-            pressPlus(self)
             self.view.removeGestureRecognizer(movingRecognizer)
             self.view.removeGestureRecognizer(rotatingRecognizer)
         }
@@ -532,8 +531,8 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
     func handleTap() {
             if(!imageInSuperview) {
                 if(movingImage.image == #imageLiteral(resourceName: "broad3.5(79mm)")) {
-                    desiredHeight = broad35[0]
-                    desiredWidth = broad35[1]
+                    desiredHeight = Double(broad35[0])
+                    desiredWidth = Double(broad35[1])
                     currentImageName = "broad35"
                 } else if(movingImage.image == #imageLiteral(resourceName: "short3.5(56mm)")) {
                     desiredHeight = Double(short35[0])
@@ -563,8 +562,8 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
                 
                 activeImage = movingImage
                 imageInSuperview = true
-                
-                pressPlus(self)
+            
+                pressPlus(1)
             } else {
                 if(movingImage == activeImage) {
                     self.view.removeGestureRecognizer(movingRecognizer)
@@ -640,6 +639,10 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
             UIView.animate(withDuration: 0.5, animations: {
                 self.view.layoutIfNeeded()
             })
+        }
+        
+        if(!(sender is Int)){
+            confirmPress(sender)
         }
     }
     

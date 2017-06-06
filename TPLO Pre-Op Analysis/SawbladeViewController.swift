@@ -87,7 +87,7 @@ class SawbladeViewController: UIViewController {
         
         let sawbladeCircle = UIBezierPath()
         
-        sawbladeCircle.addArc(withCenter: CGPoint(x: (procedure?.points[0].x)!, y: (procedure?.points[0].y)!), radius: CGFloat(Float(roundedRadius!)), startAngle: 0.0, endAngle: CGFloat(2.0 * 3.141592), clockwise: true)
+        sawbladeCircle.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(roundedRadius!)), startAngle: 0.0, endAngle: CGFloat(2.0 * 3.141592), clockwise: true)
         
         UIGraphicsEndImageContext()
         

@@ -96,6 +96,8 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         
         tpaLabel?.text = String(format: "%.2f°", (90 - angle!))
         
+        procedure?.tpa = 90 - angle!
+        
         self.scrollView.maximumZoomScale = 6.0
         self.scrollView.minimumZoomScale = 1.0
         scrollView.isUserInteractionEnabled = true
@@ -147,8 +149,8 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         UIGraphicsBeginImageContextWithOptions((imageView.image?.size)!, opaque, scale)
         
         let sawbladeCircle = UIBezierPath()
-        
-        sawbladeCircle.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double(roundedRadius!) * (procedure?.pixelToMMRatio)!)), startAngle: 0.0, endAngle: CGFloat(2.0 * 3.141592), clockwise: true)
+
+        sawbladeCircle.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double(roundedRadius!) * (procedure?.pixelToMMRatio)!)), startAngle: CGFloat(getNewAngle()) - (20 * CGFloat.pi / 180), endAngle: CGFloat(getNewAngle()) + (115 * CGFloat.pi / 180), clockwise: true)
         
         UIGraphicsEndImageContext()
         
@@ -304,14 +306,14 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
     func getNewAngle () -> Double {
         let angle2I = Double(atan2((procedure?.points[1].y)! - (procedure?.intersectionPoint.y)!, (procedure?.points[1].x)! - (procedure?.intersectionPoint.x)!))
         let angle4I = Double(atan2((procedure?.intersectionPoint.y)! - (procedure?.intersectionPoint.y)!, ((procedure?.intersectionPoint.x)! + 30) - (procedure?.intersectionPoint.x)!))
-        var angle = Double(angle2I - angle4I)
+        let angle = Double(angle2I - angle4I)
         return angle
     }
     
     func getOtherAngle () -> Double {
         let angle2I = Double(atan2((procedure?.points[3].y)! - (procedure?.intersectionPoint.y)!, (procedure?.points[3].x)! - (procedure?.intersectionPoint.x)!))
         let angle4I = Double(atan2((procedure?.intersectionPoint.y)! - (procedure?.intersectionPoint.y)!, ((procedure?.intersectionPoint.x)! + 30) - (procedure?.intersectionPoint.x)!))
-        var angle = Double(angle2I - angle4I)
+        let angle = Double(angle2I - angle4I)
         return angle
     }
     

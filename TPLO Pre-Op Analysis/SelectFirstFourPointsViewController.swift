@@ -172,10 +172,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         let dot1Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
         dot1Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot1Label.numberOfLines = 0
-        dot1Label.font = UIFont(name:"Open Sans", size: 20)
+        dot1Label.font = UIFont(name:"Open Sans", size: 16)
         dot1Label.textColor = UIColor.white
         dot1Label.textAlignment = .center
-        dot1Label.text = "Midpoint\nTibial Eminence"
+        dot1Label.text = "Intercondylar\n Eminence"
         
         point1Button.layer.borderColor = UIColor.gray.cgColor
         point1Button.layer.borderWidth = 2.0
@@ -195,7 +195,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         let dot2Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
         dot2Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot2Label.numberOfLines = 0
-        dot2Label.font = UIFont(name:"Open Sans", size: 20)
+        dot2Label.font = UIFont(name:"Open Sans", size: 16)
         dot2Label.textColor = UIColor.white
         dot2Label.textAlignment = .center
         dot2Label.text = "Center\nOf Talus"
@@ -218,10 +218,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         let dot3Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
         dot3Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot3Label.numberOfLines = 0
-        dot3Label.font = UIFont(name:"Open Sans", size: 20)
+        dot3Label.font = UIFont(name:"Open Sans", size: 16)
         dot3Label.textColor = UIColor.white
         dot3Label.textAlignment = .center
-        dot3Label.text = "Tibial Plateau\nPoint Cranial"
+        dot3Label.text = "Tibial Plateau\nCranial"
     
         point3Button.layer.borderColor = UIColor.gray.cgColor
         point3Button.layer.borderWidth = 2.0
@@ -241,10 +241,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         let dot4Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
         dot4Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot4Label.numberOfLines = 0
-        dot4Label.font = UIFont(name:"Open Sans", size: 20)
+        dot4Label.font = UIFont(name:"Open Sans", size: 16)
         dot4Label.textColor = UIColor.white
         dot4Label.textAlignment = .center
-        dot4Label.text = "Caudal"
+        dot4Label.text = "Tibial Plateau\nCaudal"
         
         point4Button.layer.borderColor = UIColor.gray.cgColor
         point4Button.layer.borderWidth = 2.0
@@ -264,7 +264,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         let dot5Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
         dot5Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot5Label.numberOfLines = 0
-        dot5Label.font = UIFont(name:"Open Sans", size: 20)
+        dot5Label.font = UIFont(name:"Open Sans", size: 16)
         dot5Label.textColor = UIColor.white
         dot5Label.textAlignment = .center
         dot5Label.text = "Proximal\nTubercle"
@@ -287,10 +287,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         let confirmLabel = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
         confirmLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         confirmLabel.numberOfLines = 0
-        confirmLabel.font = UIFont(name:"Open Sans", size: 20)
+        confirmLabel.font = UIFont(name:"Open Sans", size: 16)
         confirmLabel.textColor = UIColor.white
         confirmLabel.textAlignment = .center
-        confirmLabel.text = "Confirm"
+        confirmLabel.text = "Next"
         
         confirmSelection.layer.borderColor = UIColor.gray.cgColor
         confirmSelection.layer.borderWidth = 2.0
@@ -315,7 +315,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         button3Recog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.selectPoint3(_:)))
         button4Recog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.selectPoint4(_:)))
         button5Recog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.selectPoint5(_:)))
-        confirmRecog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.confirmSelectionAction(_:)))
+        confirmRecog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.nextMenu(_:)))
         
         point1Button.addGestureRecognizer(button1Recog)
         point2Button.addGestureRecognizer(button2Recog)
@@ -484,12 +484,21 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     }
     
     private func createDotAt(dotImageView: UIImageView, coordInImageView: CGPoint) {
-        dotImageView.frame = CGRect(x: coordInImageView.x - 5, y: coordInImageView.y - 5, width: 10, height: 10)
+        if(dotImageView.image == #imageLiteral(resourceName: "CircleScaleDot")){
+            dotImageView.frame = CGRect(x: coordInImageView.x - 5, y: coordInImageView.y - 5, width: 50, height: 50)
+
+        } else {
+            dotImageView.frame = CGRect(x: coordInImageView.x - 5, y: coordInImageView.y - 5, width: 10, height: 10)
+        }
         imageView.addSubview(dotImageView)
     }
     
     private func removeDot(dotImageView: UIImageView) {
         dotImageView.removeFromSuperview()
+    }
+    
+    @IBAction func nextMenu(_ sender: Any){
+        performSegue(withIdentifier: "TPA", sender: self)
     }
     
     //MARK: SelectionButtonsActions
@@ -634,7 +643,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         
     }
     
-    @IBAction func confirmSelectionAction(_ sender: Any) {
+    func confirmSelectionAction(_ sender: Any) {
         confirmSelection.isUserInteractionEnabled = false
         enableSelectionButtons()
         imageView.isUserInteractionEnabled = false
@@ -701,7 +710,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         if(plusButton.image! == #imageLiteral(resourceName: "PlusButtonBlue") || plusBotConstraint.constant == 20.0){
             menuBotConstraint.constant = 0
             plusBotConstraint.constant += 300
-            
+        
             if(isTop){
                 zoomBotConstraint.constant += 300
             }
@@ -726,18 +735,20 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
                 self.view.layoutIfNeeded()
             })
         }
+        if(currSelector != 0 && plusButton.image == #imageLiteral(resourceName: "DownButtonBlue") && (sender as AnyObject).state != .began){
+            confirmSelectionAction(self)
+            print("YES")
+        }
     }
     
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
         var point = CGPoint()
         
         if(sender.state == .began) {
-            animate(self)
+            animate(sender)
         }
         
         let translation = sender.translation(in: self.view)
-        
-        zoomedView.isHidden = false
         
         if(currentDot == #imageLiteral(resourceName: "dot1")) {
             dot1ImageView.center = CGPoint(x: (dot1ImageView.center.x) + translation.x, y: (dot1ImageView.center.y) + translation.y)
@@ -762,6 +773,9 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
             point = dot5ImageView.center
         }
         
+        if(currentDot != #imageLiteral(resourceName: "CircleScaleDot")){
+            zoomedView.isHidden = false
+        }
         
         if(point.y < self.imageViewHeight / 2){
             isTop = true
@@ -777,7 +791,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         zoomedView.layer.shadowRadius = 14
         zoomedView.layer.shadowColor = UIColor.white.cgColor
         zoomedView.layer.borderWidth = 1.0
-        
+    
         if(plusButton.image == #imageLiteral(resourceName: "DownButtonBlue")){
             animate(self)
         }

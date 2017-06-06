@@ -13,6 +13,7 @@ class ProcedureCell: UITableViewCell {
     @IBOutlet weak var radiograph: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var angle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

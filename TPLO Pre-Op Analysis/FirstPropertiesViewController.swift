@@ -129,10 +129,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         
         chosePicture = false
         
-        var name = nameTextField.text ?? ""
-        if(name == nil){
-            name = ""
-        }
+        let name = nameTextField.text ?? ""
         let photo = radiographImage
         
         let date = Date()

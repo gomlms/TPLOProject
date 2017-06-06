@@ -232,7 +232,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         confirmLabel.font = UIFont(name:"Open Sans", size: 20)
         confirmLabel.textColor = UIColor.white
         confirmLabel.textAlignment = .center
-        confirmLabel.text = "Confirm\nSelection"
+        confirmLabel.text = "Continue"
         
         confirmButton.layer.borderColor = UIColor.gray.cgColor
         confirmButton.layer.borderWidth = 2.0
@@ -254,7 +254,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         
         dot1Recog.addTarget(self, action: #selector(RelativeDistanceViewController.selectPointOne(_:)))
         dot2Recog.addTarget(self, action: #selector(RelativeDistanceViewController.selectPointTwo(_:)))
-        confirmRecog.addTarget(self, action: #selector(RelativeDistanceViewController.confirmSelectedAction(_:)))
+        confirmRecog.addTarget(self, action: #selector(RelativeDistanceViewController.nextMenu(_:)))
         
         pointOneButton.addGestureRecognizer(dot1Recog)
         pointTwoButton.addGestureRecognizer(dot2Recog)
@@ -270,6 +270,10 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         scrollView.addGestureRecognizer(movingRecognizer)
         
         movingRecognizer.isEnabled = false
+    }
+    
+    @IBAction func nextMenu(_ sender: Any){
+        performSegue(withIdentifier: "Continue", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -328,7 +332,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         
     }
     
-    @IBAction func confirmSelectedAction(_ sender: Any) {
+    func confirmSelectedAction(_ sender: Any) {
         imageView.isUserInteractionEnabled = false
         enableSelectionButtons()
         zoomedView.isHidden = true
@@ -478,6 +482,11 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
                 self.view.layoutIfNeeded()
             })
         }
+        
+        if(currSelector != 0 && plusButton.image == #imageLiteral(resourceName: "DownButtonBlue") && (sender as AnyObject).state != .began){
+            confirmSelectedAction(self)
+            print("YES")
+        }
     }
     
     private func getZoomedImage(point: CGPoint) -> UIImage {
@@ -563,7 +572,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         var point = CGPoint()
         
         if(sender.state == .began) {
-            animate(self)
+            animate(sender)
         }
         
         let translation = sender.translation(in: self.view)

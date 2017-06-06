@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "standard3.5(65mm).png",
+      "filename" : "standard3.5-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "standard3.5.png",
       "scale" : "2x"
     },
     {
