@@ -262,7 +262,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         
         pointOneButton.backgroundColor = unselectedColor
         pointTwoButton.backgroundColor = unselectedColor
-        confirmButton.backgroundColor = unselectedColor
+        confirmButton.backgroundColor = greyColor
         
         self.view.bringSubview(toFront: menuView)
         
@@ -274,6 +274,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
     
     @IBAction func nextMenu(_ sender: Any){
         performSegue(withIdentifier: "Continue", sender: self)
+        print("doing it")
     }
 
     override func didReceiveMemoryWarning() {
@@ -298,7 +299,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         
         pointOneButton.backgroundColor = selectedColor
         pointTwoButton.backgroundColor = greyColor
-        confirmButton.backgroundColor = unselectedColor
+        //confirmButton.backgroundColor = unselectedColor
         
         pointTwoButton.isUserInteractionEnabled = false
         pointOneButton.isUserInteractionEnabled = true
@@ -321,7 +322,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         
         pointOneButton.backgroundColor = greyColor
         pointTwoButton.backgroundColor = selectedColor
-        confirmButton.backgroundColor = unselectedColor
+        //confirmButton.backgroundColor = unselectedColor
         
         pointTwoButton.isUserInteractionEnabled = true
         pointOneButton.isUserInteractionEnabled = false
@@ -339,7 +340,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         
         movingRecognizer.isEnabled = false
         
-        confirmButton.backgroundColor = selectedColor
+        //confirmButton.backgroundColor = selectedColor
         pointOneButton.backgroundColor = unselectedColor
         pointTwoButton.backgroundColor = unselectedColor
         
@@ -350,7 +351,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         pointTwoButton.isUserInteractionEnabled = true
         
         if(confirmRecog.state == .ended){
-            confirmButton.backgroundColor = unselectedColor
+            //confirmButton.backgroundColor = unselectedColor
         }
         
         confirmButton.isUserInteractionEnabled = false
@@ -486,6 +487,10 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         if(currSelector != 0 && plusButton.image == #imageLiteral(resourceName: "DownButtonBlue") && (sender as AnyObject).state != .began){
             confirmSelectedAction(self)
             print("YES")
+            if(pointOneCreated && pointTwoCreated) {
+                confirmButton.backgroundColor = unselectedColor
+                confirmButton.isUserInteractionEnabled = true
+            }
         }
     }
     

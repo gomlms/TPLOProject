@@ -113,6 +113,11 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    @IBAction func nextMenu(_ sender: Any) {
+        performSegue(withIdentifier: "AddItem", sender: self)
+        print("working")
+    }
+    
     //MARK: Private Methods
     private func saveProcedures() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(procedures, toFile: (Procedure.ArchiveURL?.path)!)

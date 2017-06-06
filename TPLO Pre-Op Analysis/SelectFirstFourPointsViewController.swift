@@ -290,7 +290,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         confirmLabel.font = UIFont(name:"Open Sans", size: 16)
         confirmLabel.textColor = UIColor.white
         confirmLabel.textAlignment = .center
-        confirmLabel.text = "Next"
+        confirmLabel.text = "Continue"
         
         confirmSelection.layer.borderColor = UIColor.gray.cgColor
         confirmSelection.layer.borderWidth = 2.0
@@ -329,7 +329,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point3Button.backgroundColor = unselectedColor
         point4Button.backgroundColor = unselectedColor
         point5Button.backgroundColor = unselectedColor
-        confirmSelection.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = greyColor
         
         self.view.bringSubview(toFront: zoomedView)
         
@@ -738,6 +738,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         if(currSelector != 0 && plusButton.image == #imageLiteral(resourceName: "DownButtonBlue") && (sender as AnyObject).state != .began){
             confirmSelectionAction(self)
             print("YES")
+            if(p1Chose && p2Chose && p3Chose && p4Chose && p5Chose) {
+                confirmSelection.backgroundColor = unselectedColor
+                confirmSelection.isUserInteractionEnabled = true
+            }
         }
     }
     

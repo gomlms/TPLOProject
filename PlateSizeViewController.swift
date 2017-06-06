@@ -265,7 +265,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         confirmLabel.font = UIFont(name:"Open Sans", size: 20)
         confirmLabel.textColor = UIColor.white
         confirmLabel.textAlignment = .center
-        confirmLabel.text = "Confirm"
+        confirmLabel.text = "Continue"
         
         confirmSelection.layer.borderColor = UIColor.gray.cgColor
         confirmSelection.layer.borderWidth = 2.0
@@ -273,15 +273,15 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         confirmSelection.addSubview(confirmImage)
         confirmSelection.addSubview(confirmLabel)
-        
-        confirmSelection.isUserInteractionEnabled = true
+        confirmSelection.backgroundColor = greyColor
+        confirmSelection.isUserInteractionEnabled = false
         menuView.addSubview(confirmSelection)
     
         
         standardRecog.addTarget(self, action: #selector(PlateSizeViewController.standardPress(_:)))
         broadRecog.addTarget(self, action: #selector(PlateSizeViewController.broadPress(_:)))
         shortRecog.addTarget(self, action: #selector(PlateSizeViewController.shortPress(_:)))
-        confirmRecog.addTarget(self, action: #selector(PlateSizeViewController.confirmPress(_:)))
+        confirmRecog.addTarget(self, action: #selector(PlateSizeViewController.nextMenu(_:)))
         deleteRecog.addTarget(self, action: #selector(PlateSizeViewController.deletePress(_:)))
         
         standardButton.addGestureRecognizer(standardRecog)
@@ -497,6 +497,11 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         standardButton.isUserInteractionEnabled = true
         broadButton.isUserInteractionEnabled = true
         shortButton.isUserInteractionEnabled = true
+        confirmSelection.isUserInteractionEnabled = true
+    }
+    
+    @IBAction func nextMenu(_ sender: Any) {
+        performSegue(withIdentifier: "Continue", sender: self)
     }
     
     @IBAction func deletePress(_ sender: Any) {
@@ -643,6 +648,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         if(!(sender is Int)){
             confirmPress(sender)
+            confirmSelection.backgroundColor = unselectedColor
         }
     }
     

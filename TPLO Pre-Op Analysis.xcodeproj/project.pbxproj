@@ -21,7 +21,6 @@
 		964E4EC51E66234100378191 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E4EC41E66234100378191 /* SummaryViewController.swift */; };
 		968423A51E48F2990063FDCE /* OsteotomyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968423A41E48F2990063FDCE /* OsteotomyViewController.swift */; };
 		968423A71E48F2B90063FDCE /* SawbladeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968423A61E48F2B90063FDCE /* SawbladeViewController.swift */; };
-		96AD640C1E988AB80028BF1A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96AD640B1E988AB80028BF1A /* OpenSans-Regular.ttf */; };
 		96F9859F1E60AB090085E5B7 /* PlateSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9859E1E60AB090085E5B7 /* PlateSizeViewController.swift */; };
 		F42B17911E4BB3C400FEAFB2 /* TPAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42B17901E4BB3C400FEAFB2 /* TPAViewController.swift */; };
 		F42BE6971E412A2B00551DBF /* SelectFirstFourPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42BE6961E412A2B00551DBF /* SelectFirstFourPointsViewController.swift */; };
@@ -66,8 +65,8 @@
 		964E4EC41E66234100378191 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		968423A41E48F2990063FDCE /* OsteotomyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OsteotomyViewController.swift; sourceTree = "<group>"; };
 		968423A61E48F2B90063FDCE /* SawbladeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SawbladeViewController.swift; sourceTree = "<group>"; };
-		96AD640B1E988AB80028BF1A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../Desktop/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		96F9859E1E60AB090085E5B7 /* PlateSizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlateSizeViewController.swift; path = ../PlateSizeViewController.swift; sourceTree = "<group>"; };
+		F4009E491EE763B700306EEB /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		F42B17901E4BB3C400FEAFB2 /* TPAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPAViewController.swift; sourceTree = "<group>"; };
 		F42BE6961E412A2B00551DBF /* SelectFirstFourPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFirstFourPointsViewController.swift; sourceTree = "<group>"; };
 		F4B7A2291E81C64600AD8701 /* ZoomGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -101,7 +100,7 @@
 		96496E7A1E2D834700EE8CB5 = {
 			isa = PBXGroup;
 			children = (
-				96AD640B1E988AB80028BF1A /* OpenSans-Regular.ttf */,
+				F4009E491EE763B700306EEB /* OpenSans-Regular.ttf */,
 				96496E851E2D834800EE8CB5 /* TPLO Pre-Op Analysis */,
 				96496E9A1E2D834800EE8CB5 /* TPLO Pre-Op AnalysisTests */,
 				96496EA51E2D834800EE8CB5 /* TPLO Pre-Op AnalysisUITests */,
@@ -271,7 +270,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96AD640C1E988AB80028BF1A /* OpenSans-Regular.ttf in Resources */,
 				96496E911E2D834800EE8CB5 /* LaunchScreen.storyboard in Resources */,
 				96496E8E1E2D834800EE8CB5 /* Assets.xcassets in Resources */,
 				96496E8C1E2D834800EE8CB5 /* Main.storyboard in Resources */,

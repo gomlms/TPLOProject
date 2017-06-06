@@ -25,8 +25,6 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     var ballTap : UITapGestureRecognizer = UITapGestureRecognizer()
     
     @IBOutlet weak var menuView: UIImageView!
-    @IBOutlet weak var getStartedLabel: UILabel!
-    @IBOutlet weak var downArrow: UIImageView!
     @IBOutlet weak var gradient: UIImageView!
     
     var imageView: UIImageView = UIImageView()
@@ -69,6 +67,20 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
             nameTextField.text = procedure.name
             imageSelector.image = procedure.radiograph
         }
+        
+        //Hide Keyboard
+        nameTextField.resignFirstResponder()
+        
+        //UIImagePickerController allows user to choose photo from storage
+        let imagePickerController = UIImagePickerController()
+        
+        //Only allow Images to be chosen
+        imagePickerController.sourceType = .photoLibrary
+        
+        //Make Sure view controller is notified when photo is chosen
+        imagePickerController.delegate = self
+        
+        present(imagePickerController, animated: true, completion: nil)
     }
     
     func scheduledTimerWithInterval(){
@@ -187,10 +199,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         
         chosePicture = true
         dismiss(animated: true, completion: nil)
-        
-        getStartedLabel.isHidden = true
-        downArrow.isHidden = true
-        imageSelector.isHidden = true
+    
         gradient.isHidden = true
         
         imageView.image = radiographImage
