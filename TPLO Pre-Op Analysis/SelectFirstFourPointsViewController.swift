@@ -737,7 +737,6 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         }
         if(currSelector != 0 && plusButton.image == #imageLiteral(resourceName: "DownButtonBlue") && (sender as AnyObject).state != .began){
             confirmSelectionAction(self)
-            print("YES")
             if(p1Chose && p2Chose && p3Chose && p4Chose && p5Chose) {
                 confirmSelection.backgroundColor = unselectedColor
                 confirmSelection.isUserInteractionEnabled = true
