@@ -256,6 +256,11 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             mailComposer.setSubject("TPLO Pre-Op Analysis Summary Report")
             mailComposer.setMessageBody(String(format: "Date: \(String((procedure?.dateOfProcedure)!)!)\nPatient Name: \((procedure?.name)!)\nTPA: %.2f°\nOsteotomy Rotation: \((procedure?.chordLength)!)mm\nSawblade Size: \((procedure?.roundedRadius)!)mm\nPlate Size: \((procedure?.plateCatalogNumber)!)", (procedure?.tpa)!), isHTML: false)
             
+            /* Attach the Image*/
+            
+            let imageData: NSData = UIImagePNGRepresentation((procedure?.radiograph)!)! as NSData
+            mailComposer.addAttachmentData(imageData as Data, mimeType: "image/png", fileName: "radiograph")
+            
             self.present(mailComposer, animated: true, completion: nil)
         }
     }
