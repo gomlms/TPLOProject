@@ -257,8 +257,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             mailComposer.setMessageBody(String(format: "Date: \(String((procedure?.dateOfProcedure)!)!)\nPatient Name: \((procedure?.name)!)\nTPA: %.2f°\nOsteotomy Rotation: \((procedure?.chordLength)!)mm\nSawblade Size: \((procedure?.roundedRadius)!)mm\nPlate Size: \((procedure?.plateCatalogNumber)!)", (procedure?.tpa)!), isHTML: false)
             
             /* Attach the Image*/
-            
-            let imageData: NSData = UIImagePNGRepresentation((procedure?.radiograph)!)! as NSData
+            let imageData: NSData = UIImagePNGRepresentation(getMixedImg(image1: backgroundView.image!, image2: radiographView.image!, image3: plateImageView.image!))! as NSData
             mailComposer.addAttachmentData(imageData as Data, mimeType: "image/png", fileName: "radiograph")
             
             self.present(mailComposer, animated: true, completion: nil)
@@ -321,6 +320,22 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
                 self.view.layoutIfNeeded()
             })
         }
+    }
+    
+    func getMixedImg(image1: UIImage, image2: UIImage, image3: UIImage) -> UIImage {
+        let size = CGSize(width: image1.size.width, height: image1.size.height)
+        
+        UIGraphicsBeginImageContext(size)
+        
+        image1.draw(in: CGRect(x: 0, y: 0, width: image1.size.width, height: image1.size.height))
+        image2.draw(in: CGRect(x: 0, y: 0, width: image1.size.width, height: image1.size.height))
+        image3.draw(in: CGRect(x: 0, y: 0, width: image1.size.width, height: image1.size.height))
+        let finalImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return finalImage!
+    
     }
 
     /*
