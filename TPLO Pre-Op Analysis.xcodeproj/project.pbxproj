@@ -19,6 +19,7 @@
 		96496EBB1E32F92F00EE8CB5 /* ProcedureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EBA1E32F92F00EE8CB5 /* ProcedureCell.swift */; };
 		96496EBD1E347D9D00EE8CB5 /* RelativeDistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96496EBC1E347D9C00EE8CB5 /* RelativeDistanceViewController.swift */; };
 		964E4EC51E66234100378191 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E4EC41E66234100378191 /* SummaryViewController.swift */; };
+		967F770E1EE8644F002DFDCE /* SetSawbladeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F770D1EE8644F002DFDCE /* SetSawbladeViewController.swift */; };
 		968423A51E48F2990063FDCE /* OsteotomyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968423A41E48F2990063FDCE /* OsteotomyViewController.swift */; };
 		968423A71E48F2B90063FDCE /* SawbladeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968423A61E48F2B90063FDCE /* SawbladeViewController.swift */; };
 		96F9859F1E60AB090085E5B7 /* PlateSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9859E1E60AB090085E5B7 /* PlateSizeViewController.swift */; };
@@ -63,6 +64,7 @@
 		96496EBA1E32F92F00EE8CB5 /* ProcedureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedureCell.swift; sourceTree = "<group>"; };
 		96496EBC1E347D9C00EE8CB5 /* RelativeDistanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeDistanceViewController.swift; sourceTree = "<group>"; };
 		964E4EC41E66234100378191 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		967F770D1EE8644F002DFDCE /* SetSawbladeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSawbladeViewController.swift; sourceTree = "<group>"; };
 		968423A41E48F2990063FDCE /* OsteotomyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OsteotomyViewController.swift; sourceTree = "<group>"; };
 		968423A61E48F2B90063FDCE /* SawbladeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SawbladeViewController.swift; sourceTree = "<group>"; };
 		96F9859E1E60AB090085E5B7 /* PlateSizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlateSizeViewController.swift; path = ../PlateSizeViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				F42BE6961E412A2B00551DBF /* SelectFirstFourPointsViewController.swift */,
 				F42B17901E4BB3C400FEAFB2 /* TPAViewController.swift */,
 				96496E8A1E2D834800EE8CB5 /* Main.storyboard */,
+				967F770D1EE8644F002DFDCE /* SetSawbladeViewController.swift */,
 				964E4EC41E66234100378191 /* SummaryViewController.swift */,
 				968423A41E48F2990063FDCE /* OsteotomyViewController.swift */,
 				968423A61E48F2B90063FDCE /* SawbladeViewController.swift */,
@@ -303,6 +306,7 @@
 				96F9859F1E60AB090085E5B7 /* PlateSizeViewController.swift in Sources */,
 				968423A51E48F2990063FDCE /* OsteotomyViewController.swift in Sources */,
 				96496EB71E2D93EF00EE8CB5 /* FirstPropertiesViewController.swift in Sources */,
+				967F770E1EE8644F002DFDCE /* SetSawbladeViewController.swift in Sources */,
 				F4B7A22A1E81C64600AD8701 /* ZoomGestureRecognizer.swift in Sources */,
 				96496E871E2D834800EE8CB5 /* AppDelegate.swift in Sources */,
 				F42BE6971E412A2B00551DBF /* SelectFirstFourPointsViewController.swift in Sources */,
