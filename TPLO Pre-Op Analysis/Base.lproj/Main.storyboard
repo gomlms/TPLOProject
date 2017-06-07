@@ -541,7 +541,33 @@
                     <view key="view" contentMode="scaleToFill" id="OS3-Ge-aos">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusButtonBlue" translatesAutoresizingMaskIntoConstraints="NO" id="NQ1-BQ-nOg">
+                                <rect key="frame" x="269" y="577" width="70" height="70"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="EtW-mR-abd"/>
+                                    <constraint firstAttribute="width" constant="70" id="HQV-dZ-0w3"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Lfa-n5-Bvw" appends="YES" id="52z-AA-CFv"/>
+                                </connections>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kIF-7n-RPp">
+                                <rect key="frame" x="0.0" y="667" width="375" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="GCU-nd-ppe"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="kIF-7n-RPp" secondAttribute="bottom" constant="-300" id="3JQ-Xf-tgU"/>
+                            <constraint firstAttribute="trailing" secondItem="kIF-7n-RPp" secondAttribute="trailing" id="FXB-Re-hVG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NQ1-BQ-nOg" secondAttribute="trailing" constant="20" id="Up4-ac-7Pl"/>
+                            <constraint firstItem="kIF-7n-RPp" firstAttribute="leading" secondItem="OS3-Ge-aos" secondAttribute="leading" id="hyU-rS-emE"/>
+                            <constraint firstItem="AST-nZ-DpW" firstAttribute="top" secondItem="NQ1-BQ-nOg" secondAttribute="bottom" constant="20" id="qlB-wP-zXh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Set Sawblade" id="u81-9H-K9T">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="kzw-BU-COl">
@@ -550,10 +576,19 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="menuBotConstraint" destination="3JQ-Xf-tgU" id="Sla-zt-F9V"/>
+                        <outlet property="menuView" destination="kIF-7n-RPp" id="2We-DD-4dE"/>
+                        <outlet property="plusBotConstraint" destination="qlB-wP-zXh" id="AGy-Tc-45L"/>
+                        <outlet property="plusButton" destination="NQ1-BQ-nOg" id="xoC-kQ-iHf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="npD-Gp-fQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="yIZ-oL-o2l"/>
-                <tapGestureRecognizer id="w1n-OC-qJb"/>
+                <tapGestureRecognizer id="Lfa-n5-Bvw">
+                    <connections>
+                        <action selector="animate:" destination="24i-4B-CJU" id="Cva-tx-XAZ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2642" y="2960"/>
         </scene>
