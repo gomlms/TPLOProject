@@ -530,24 +530,6 @@
             </objects>
             <point key="canvasLocation" x="1822" y="3287"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="n5f-iM-v98">
-            <objects>
-                <viewController id="N6k-W1-WXM" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rLX-MK-Sbs"/>
-                        <viewControllerLayoutGuide type="bottom" id="1jT-zC-Vwq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nP6-Ue-UlV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="juv-gn-zYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2626" y="2891"/>
-        </scene>
         <!--Set Key Points-->
         <scene sceneID="6dj-wp-Fnp">
             <objects>
@@ -602,7 +584,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Set Key Points" id="H8K-ba-8Ih">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="wze-Mj-aua"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="wze-Mj-aua">
+                            <connections>
+                                <segue destination="CdP-nE-JyP" kind="show" identifier="TPA" id="KKd-fx-z3x"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="menuBotConstraint" destination="FFq-lq-8aT" id="SMD-7F-LHj"/>
@@ -776,6 +762,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2o-9y-oJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
+        </scene>
+        <!--Set Sawblade-->
+        <scene sceneID="0NU-EN-PBf">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CdP-nE-JyP" customClass="SelectFirstFourPointsViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UNA-52-7gT"/>
+                        <viewControllerLayoutGuide type="bottom" id="nET-tM-Yck"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TDU-jd-G9z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusButtonBlue" translatesAutoresizingMaskIntoConstraints="NO" id="2Lg-ZD-2El">
+                                <rect key="frame" x="285" y="577" width="70" height="70"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="6qG-g8-dYW"/>
+                                    <constraint firstAttribute="height" constant="70" id="lab-0l-5xX"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="hVp-Ui-rYd" appends="YES" id="3N7-1X-BlB"/>
+                                </connections>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k5P-Is-Icj">
+                                <rect key="frame" x="0.0" y="667" width="375" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="EA0-1b-rHY"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="nET-tM-Yck" firstAttribute="top" secondItem="2Lg-ZD-2El" secondAttribute="bottom" constant="20" id="0f6-9J-2ti"/>
+                            <constraint firstAttribute="bottom" secondItem="k5P-Is-Icj" secondAttribute="bottom" constant="-300" id="7NR-95-b6V"/>
+                            <constraint firstItem="k5P-Is-Icj" firstAttribute="leading" secondItem="TDU-jd-G9z" secondAttribute="leading" id="Kww-gM-fXO"/>
+                            <constraint firstAttribute="trailing" secondItem="k5P-Is-Icj" secondAttribute="trailing" id="yER-lL-7pA"/>
+                            <constraint firstAttribute="trailing" secondItem="2Lg-ZD-2El" secondAttribute="trailing" constant="20" id="yVg-5p-WuS"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aLn-Lx-0Vk" appends="YES" id="IvW-1r-0AD"/>
+                            <outletCollection property="gestureRecognizers" destination="eLl-rh-pGU" appends="YES" id="JEC-3P-hv8"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Set Sawblade" id="kJM-0V-ywp">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="M3o-iD-nsr">
+                            <connections>
+                                <segue destination="aPr-B8-w0T" kind="show" identifier="TPA" id="tNe-3x-d64"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuBotConstraint" destination="7NR-95-b6V" id="6k0-ZG-RAx"/>
+                        <outlet property="menuView" destination="k5P-Is-Icj" id="QbM-SG-8fR"/>
+                        <outlet property="movingRecognizer" destination="a5p-R0-1Yl" id="12a-nG-BeQ"/>
+                        <outlet property="nextButton" destination="M3o-iD-nsr" id="fWc-Cd-Kk3"/>
+                        <outlet property="plusBotConstraint" destination="0f6-9J-2ti" id="Gca-4w-4eC"/>
+                        <outlet property="plusButton" destination="2Lg-ZD-2El" id="dYE-Q1-rZm"/>
+                        <outlet property="scalingRecognizer" destination="oTV-xM-RPl" id="iah-k9-cgv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aDq-kX-nVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hVp-Ui-rYd">
+                    <connections>
+                        <action selector="animate:" destination="CdP-nE-JyP" id="laq-X2-RE2"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="aLn-Lx-0Vk">
+                    <connections>
+                        <action selector="handlePan:" destination="CdP-nE-JyP" id="HzS-Co-dbm"/>
+                        <outlet property="delegate" destination="CdP-nE-JyP" id="g8L-dL-dMf"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pinchGestureRecognizer id="eLl-rh-pGU">
+                    <connections>
+                        <action selector="scaleImage:" destination="CdP-nE-JyP" id="crP-Uz-Jkp"/>
+                        <outlet property="delegate" destination="CdP-nE-JyP" id="i8O-31-Okf"/>
+                    </connections>
+                </pinchGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2700" y="3005"/>
         </scene>
     </scenes>
     <resources>
