@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tLu-V9-RXN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tLu-V9-RXN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,14 +28,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUm-qo-HJk">
-                                <rect key="frame" x="10" y="74" width="365" height="164"/>
+                                <rect key="frame" x="10" y="74" width="365" height="140"/>
                                 <string key="text">TPLO                                           Pre-Operative                      Planning                                               </string>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Previous Cases" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkq-ER-Gxv">
-                                <rect key="frame" x="0.0" y="299" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="303" width="375" height="26"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jpp-6F-CiU" id="GY0-df-ckh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="nKS-TQ-AsY">
@@ -149,7 +149,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="TPLO Pre-Op Analysis" id="xaf-Ve-UZK">
                         <barButtonItem key="backBarButtonItem" title="TPLO Pre-Op" id="mpH-b1-o61"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8P2-jd-2uT">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="plain" id="8P2-jd-2uT">
                             <connections>
                                 <segue destination="obS-In-nic" kind="show" identifier="AddItem" id="tSl-sU-2RQ"/>
                             </connections>
@@ -210,19 +210,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOQ-IV-1CP">
-                                        <rect key="frame" x="10" y="20" width="355" height="69"/>
+                                        <rect key="frame" x="10" y="20" width="355" height="58.5"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="50"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzh-qY-BnP">
-                                        <rect key="frame" x="10" y="97" width="355" height="58"/>
+                                        <rect key="frame" x="10" y="86.5" width="355" height="49"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="42"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHX-BM-QEe">
-                                        <rect key="frame" x="10" y="165" width="355" height="36"/>
+                                        <rect key="frame" x="10" y="145.5" width="355" height="30.5"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="26"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -528,7 +528,25 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1821.5999999999999" y="3122.7886056971515"/>
+            <point key="canvasLocation" x="1822" y="3287"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="n5f-iM-v98">
+            <objects>
+                <viewController id="N6k-W1-WXM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rLX-MK-Sbs"/>
+                        <viewControllerLayoutGuide type="bottom" id="1jT-zC-Vwq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nP6-Ue-UlV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="juv-gn-zYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2626" y="2891"/>
         </scene>
         <!--Set Key Points-->
         <scene sceneID="6dj-wp-Fnp">
@@ -584,11 +602,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Set Key Points" id="H8K-ba-8Ih">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="wze-Mj-aua">
-                            <connections>
-                                <segue destination="aPr-B8-w0T" kind="show" identifier="TPA" id="p2Q-Dd-ZYC"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="wze-Mj-aua"/>
                     </navigationItem>
                     <connections>
                         <outlet property="menuBotConstraint" destination="FFq-lq-8aT" id="SMD-7F-LHj"/>
@@ -636,7 +650,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZO-aX-YPb">
-                                <rect key="frame" x="16" y="614" width="343" height="33"/>
+                                <rect key="frame" x="16" y="619" width="343" height="28"/>
                                 <color key="backgroundColor" red="0.26666666666666666" green="0.3529411764705882" blue="0.3411764705882353" alpha="0.61411065919999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="24"/>
                                 <color key="textColor" red="0.29282432790000001" green="0.74044257400000002" blue="0.89707332849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -750,7 +764,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Yjb-Q7-fiE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yjb-Q7-fiE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -776,7 +790,7 @@
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="UL5-Oe-iHR"/>
         <segue reference="Ja1-Ei-mtl"/>
-        <segue reference="ogz-KK-8fZ"/>
     </inferredMetricsTieBreakers>
 </document>
