@@ -766,7 +766,7 @@
         <!--Set Sawblade-->
         <scene sceneID="0NU-EN-PBf">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CdP-nE-JyP" customClass="SelectFirstFourPointsViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CdP-nE-JyP" customClass="SetSawbladeViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UNA-52-7gT"/>
                         <viewControllerLayoutGuide type="bottom" id="nET-tM-Yck"/>
