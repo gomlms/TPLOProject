@@ -530,6 +530,68 @@
             </objects>
             <point key="canvasLocation" x="1822" y="3287"/>
         </scene>
+        <!--Set Sawblade-->
+        <scene sceneID="vMO-51-JQX">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="24i-4B-CJU" customClass="SetSawbladeViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jYX-Kx-KKF"/>
+                        <viewControllerLayoutGuide type="bottom" id="AST-nZ-DpW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OS3-Ge-aos">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusButtonBlue" translatesAutoresizingMaskIntoConstraints="NO" id="NQ1-BQ-nOg">
+                                <rect key="frame" x="269" y="577" width="70" height="70"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="EtW-mR-abd"/>
+                                    <constraint firstAttribute="width" constant="70" id="HQV-dZ-0w3"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Lfa-n5-Bvw" appends="YES" id="52z-AA-CFv"/>
+                                </connections>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kIF-7n-RPp">
+                                <rect key="frame" x="0.0" y="667" width="375" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="GCU-nd-ppe"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="kIF-7n-RPp" secondAttribute="bottom" constant="-300" id="3JQ-Xf-tgU"/>
+                            <constraint firstAttribute="trailing" secondItem="kIF-7n-RPp" secondAttribute="trailing" id="FXB-Re-hVG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NQ1-BQ-nOg" secondAttribute="trailing" constant="20" id="Up4-ac-7Pl"/>
+                            <constraint firstItem="kIF-7n-RPp" firstAttribute="leading" secondItem="OS3-Ge-aos" secondAttribute="leading" id="hyU-rS-emE"/>
+                            <constraint firstItem="AST-nZ-DpW" firstAttribute="top" secondItem="NQ1-BQ-nOg" secondAttribute="bottom" constant="20" id="qlB-wP-zXh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Set Sawblade" id="u81-9H-K9T">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="kzw-BU-COl">
+                            <connections>
+                                <segue destination="aPr-B8-w0T" kind="show" identifier="" id="wQd-we-7JQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuBotConstraint" destination="3JQ-Xf-tgU" id="Sla-zt-F9V"/>
+                        <outlet property="menuView" destination="kIF-7n-RPp" id="2We-DD-4dE"/>
+                        <outlet property="plusBotConstraint" destination="qlB-wP-zXh" id="AGy-Tc-45L"/>
+                        <outlet property="plusButton" destination="NQ1-BQ-nOg" id="xoC-kQ-iHf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="npD-Gp-fQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Lfa-n5-Bvw">
+                    <connections>
+                        <action selector="animate:" destination="24i-4B-CJU" id="Cva-tx-XAZ"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2642" y="2960"/>
+        </scene>
         <!--Set Key Points-->
         <scene sceneID="6dj-wp-Fnp">
             <objects>
@@ -586,7 +648,7 @@
                     <navigationItem key="navigationItem" title="Set Key Points" id="H8K-ba-8Ih">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="wze-Mj-aua">
                             <connections>
-                                <segue destination="CdP-nE-JyP" kind="show" identifier="TPA" id="KKd-fx-z3x"/>
+                                <segue destination="24i-4B-CJU" kind="show" identifier="TPA" id="yXd-ED-pXX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -762,88 +824,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2o-9y-oJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
-        </scene>
-        <!--Set Sawblade-->
-        <scene sceneID="0NU-EN-PBf">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CdP-nE-JyP" customClass="SetSawbladeViewController" customModule="TPLO_Pre_Op_Analysis" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UNA-52-7gT"/>
-                        <viewControllerLayoutGuide type="bottom" id="nET-tM-Yck"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TDU-jd-G9z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusButtonBlue" translatesAutoresizingMaskIntoConstraints="NO" id="2Lg-ZD-2El">
-                                <rect key="frame" x="285" y="577" width="70" height="70"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="6qG-g8-dYW"/>
-                                    <constraint firstAttribute="height" constant="70" id="lab-0l-5xX"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="hVp-Ui-rYd" appends="YES" id="3N7-1X-BlB"/>
-                                </connections>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k5P-Is-Icj">
-                                <rect key="frame" x="0.0" y="667" width="375" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="EA0-1b-rHY"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="nET-tM-Yck" firstAttribute="top" secondItem="2Lg-ZD-2El" secondAttribute="bottom" constant="20" id="0f6-9J-2ti"/>
-                            <constraint firstAttribute="bottom" secondItem="k5P-Is-Icj" secondAttribute="bottom" constant="-300" id="7NR-95-b6V"/>
-                            <constraint firstItem="k5P-Is-Icj" firstAttribute="leading" secondItem="TDU-jd-G9z" secondAttribute="leading" id="Kww-gM-fXO"/>
-                            <constraint firstAttribute="trailing" secondItem="k5P-Is-Icj" secondAttribute="trailing" id="yER-lL-7pA"/>
-                            <constraint firstAttribute="trailing" secondItem="2Lg-ZD-2El" secondAttribute="trailing" constant="20" id="yVg-5p-WuS"/>
-                        </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="aLn-Lx-0Vk" appends="YES" id="IvW-1r-0AD"/>
-                            <outletCollection property="gestureRecognizers" destination="eLl-rh-pGU" appends="YES" id="JEC-3P-hv8"/>
-                        </connections>
-                    </view>
-                    <navigationItem key="navigationItem" title="Set Sawblade" id="kJM-0V-ywp">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="M3o-iD-nsr">
-                            <connections>
-                                <segue destination="aPr-B8-w0T" kind="show" identifier="TPA" id="tNe-3x-d64"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="menuBotConstraint" destination="7NR-95-b6V" id="6k0-ZG-RAx"/>
-                        <outlet property="menuView" destination="k5P-Is-Icj" id="QbM-SG-8fR"/>
-                        <outlet property="movingRecognizer" destination="a5p-R0-1Yl" id="12a-nG-BeQ"/>
-                        <outlet property="nextButton" destination="M3o-iD-nsr" id="fWc-Cd-Kk3"/>
-                        <outlet property="plusBotConstraint" destination="0f6-9J-2ti" id="Gca-4w-4eC"/>
-                        <outlet property="plusButton" destination="2Lg-ZD-2El" id="dYE-Q1-rZm"/>
-                        <outlet property="scalingRecognizer" destination="oTV-xM-RPl" id="iah-k9-cgv"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aDq-kX-nVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="hVp-Ui-rYd">
-                    <connections>
-                        <action selector="animate:" destination="CdP-nE-JyP" id="laq-X2-RE2"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="aLn-Lx-0Vk">
-                    <connections>
-                        <action selector="handlePan:" destination="CdP-nE-JyP" id="HzS-Co-dbm"/>
-                        <outlet property="delegate" destination="CdP-nE-JyP" id="g8L-dL-dMf"/>
-                    </connections>
-                </panGestureRecognizer>
-                <pinchGestureRecognizer id="eLl-rh-pGU">
-                    <connections>
-                        <action selector="scaleImage:" destination="CdP-nE-JyP" id="crP-Uz-Jkp"/>
-                        <outlet property="delegate" destination="CdP-nE-JyP" id="i8O-31-Okf"/>
-                    </connections>
-                </pinchGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="2700" y="3005"/>
         </scene>
     </scenes>
     <resources>

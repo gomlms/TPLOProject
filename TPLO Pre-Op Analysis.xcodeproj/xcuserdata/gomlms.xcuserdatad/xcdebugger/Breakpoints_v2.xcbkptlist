@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "292"
             endingLineNumber = "292"
-            landmarkName = "viewForZooming(in:)"
+            landmarkName = "getAngle()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,8 +111,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "296"
             endingLineNumber = "296"
-            landmarkName = "hideText(_:)"
-            landmarkType = "7">
+            landmarkName = "SummaryViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

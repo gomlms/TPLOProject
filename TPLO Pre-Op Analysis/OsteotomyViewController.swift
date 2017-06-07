@@ -114,7 +114,7 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
 
         procedure.rotatedRadiograph = rotatingView
         
-        chordLengthLabel.text = "Osteotomy Rotation = \(procedure.chordLength!)mm \n \(procedure.alpha!)° arc"
+        chordLengthLabel.text = String(format: "Osteotomy Rotation = \(procedure.chordLength!)mm \n%.2f° arc", procedure.alpha!)
         
         view.bringSubview(toFront: chordLengthLabel)
     }
