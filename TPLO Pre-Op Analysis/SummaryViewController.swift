@@ -126,7 +126,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         
         backgroundView.layer.addSublayer(subLayer)
         
-        procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
+        procedure.alpha = (procedure.tpa! - 5.0) * Double.pi / 180
         procedure.chordLength = Double(round(sin(procedure.alpha!) * Double(procedure.roundedRadius!) * 10.0) / 10.0)
 
         tempAngle = sin(procedure.alpha! / 2)
@@ -142,7 +142,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         
         
         outputLabel.numberOfLines = 0
-        outputLabel.text = "TPA: \(Int(round(procedure.tpa)))°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)"
+        outputLabel.text = "TPA: \(Int(round(procedure.tpa!)))°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)"
         outputLabel.textColor = UIColor.white
         
         

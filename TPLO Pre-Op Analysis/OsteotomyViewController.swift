@@ -101,7 +101,7 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
         backgroundImage.layer.addSublayer(subLayer)
         
         
-        procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
+        procedure.alpha = (procedure.tpa! - 5.0) * Double.pi / 180
         print(Double(procedure.roundedRadius!))
         procedure.chordLength = Double(round(sin(procedure.alpha!) * Double(procedure.roundedRadius!) * 10.0) / 10.0)
         
@@ -113,7 +113,7 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
 
         procedure.rotatedRadiograph = rotatingView
         
-        chordLengthLabel.text = "Osteotomy Rotation\n\(Int(round(procedure.tpa - 5)))° or \(procedure.chordLength!)mm "
+        chordLengthLabel.text = "Osteotomy Rotation\n\(Int(round(procedure.tpa! - 5)))° or \(procedure.chordLength!)mm "
         
         view.bringSubview(toFront: chordLengthLabel)
     }

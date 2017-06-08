@@ -143,7 +143,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         backgroundView.layer.addSublayer(subLayer)
         
-        procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
+        procedure.alpha = (procedure.tpa! - 5.0) * Double.pi / 180
         procedure.chordLength = Double(round(2 * procedure.sawbladeRadius! * sin(procedure.alpha! / 2) * 10)/10)
         
         tempAngle = sin(procedure.alpha! / 2)
