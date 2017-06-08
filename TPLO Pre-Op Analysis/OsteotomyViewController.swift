@@ -102,7 +102,6 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
         
         
         procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
-        print(procedure.alpha! * 180 / Double.pi)
         print(Double(procedure.roundedRadius!))
         procedure.chordLength = Double(round(sin(procedure.alpha!) * Double(procedure.roundedRadius!) * 10.0) / 10.0)
         
@@ -114,7 +113,7 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
 
         procedure.rotatedRadiograph = rotatingView
         
-        chordLengthLabel.text = String(format: "Osteotomy Rotation = \(procedure.chordLength!)mm \n%.2f° arc", procedure.alpha!)
+        chordLengthLabel.text = "Osteotomy Rotation\n\(Int(round(procedure.tpa - 5)))° or \(procedure.chordLength!)mm "
         
         view.bringSubview(toFront: chordLengthLabel)
     }
@@ -150,11 +149,11 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
         polygon.addLine(to: CGPoint(x: (procedure?.points[3].x)!, y: (procedure?.points[3].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[3].x)!, y: (getYOnCircle(xPoint: (procedure?.points[3].x)!))!))
         
-        _ = getXOnCircle(yPoint: (procedure?.points[4].y)!);
+        let xPoint = getXOnCircle(yPoint: (procedure?.points[0].y)!);
         
         polygon.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double((procedure?.roundedRadius)!) * (procedure?.pixelToMMRatio)!)), startAngle: angleWith4!, endAngle: 7 * CGFloat.pi / 5, clockwise: true)
         
-        polygon.move(to: CGPoint(x: (procedure?.points[4].x)!, y: (procedure?.points[4].y)!))
+        polygon.move(to: CGPoint(x: (xPoint)!, y: (procedure?.points[0].y)!))
         polygon.addLine(to: CGPoint(x: (procedure?.points[2].x)!, y: (procedure?.points[2].y)!))
         
         polygon.close()
@@ -188,14 +187,14 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
             var tempY = Double((procedure?.sawbladeRadius)! * sin(angle * Double.pi / 180))
             tempY += Double((procedure?.points[0].y)!)
             
-            if(abs(CGFloat(tempY) - yPoint) < 0.5){
+            if(abs(CGFloat(tempY) - yPoint) < 1){
                 xPoint = CGFloat(tempX)
                 if(CGFloat(angle * Double.pi / 180) > 1.4){
                     break;
                 }
             }
             
-            angle += 0.5
+            angle += 0.25
         }
         
         angleWith5 = CGFloat(angle * Double.pi / 180);
@@ -214,12 +213,12 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
             var tempX = Double((procedure?.sawbladeRadius)! * cos(angle * Double.pi / 180))
             tempX += Double((procedure?.points[0].x)!)
             
-            if(abs(CGFloat(tempX) - xPoint) < 0.5){
+            if(abs(CGFloat(tempX) - xPoint) < 1){
                 yPoint = CGFloat(tempY)
                 break;
             }
             
-            angle += 0.5
+            angle += 0.25
         }
         
         angleWith4 = CGFloat(angle * Double.pi / 180);

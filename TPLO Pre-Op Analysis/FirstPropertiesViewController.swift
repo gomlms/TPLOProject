@@ -95,6 +95,9 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        if(desChosen){
+            performSegue(withIdentifier: "Continue", sender: self)
+        }
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -122,6 +125,24 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         ballButton.image = #imageLiteral(resourceName: "25mmBallGrey")
         desChosen = true
         updateNextButtonState()
+        
+        
+        if(nameTextField.text != " Enter patient name..."){
+            let name = nameTextField.text ?? ""
+            let photo = radiographImage
+            
+            let date = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.dateStyle = DateFormatter.Style.long
+            let currentDate = dateFormatter.string(from: date)
+            
+            procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!, p1: [CGPoint](), i1: "0,0", s1: 0.0, s2: 0, s3: "", c1: 0.0, p2: "", p3: 0.0, r1: 0, a1: 0.0, r2: UIView(), s4: photo, i2: 0.0, i3: 0.0, i4: 0.0, p4: nil)
+        }
+        
+        if(procedure?.name !=  " Enter patient name..." && procedure?.name != nil){
+            performSegue(withIdentifier: "Continue", sender: self)
+        }
     }
     
     @IBAction func ballPressed(_ sender: Any) {
@@ -130,27 +151,28 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         ballButton.image = #imageLiteral(resourceName: "25mmBallButton")
         desChosen = true
         updateNextButtonState()
+        
+        if(nameTextField.text != " Enter patient name..."){
+            let name = nameTextField.text ?? ""
+            let photo = radiographImage
+            
+            let date = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.dateStyle = DateFormatter.Style.long
+            let currentDate = dateFormatter.string(from: date)
+            
+            procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!, p1: [CGPoint](), i1: "0,0", s1: 0.0, s2: 0, s3: "", c1: 0.0, p2: "", p3: 0.0, r1: 0, a1: 0.0, r2: UIView(), s4: photo, i2: 0.0, i3: 0.0, i4: 0.0, p4: nil)
+        }
+
+        if(procedure?.name !=  " Enter patient name..." && procedure?.name != nil){
+            performSegue(withIdentifier: "Continue", sender: self)
+        }
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let button = sender as? UIBarButtonItem, button === nextButton else {
-            os_log("The next button was not pressed, cancelling...", log: OSLog.default, type: .debug)
-            return
-        }
-        
         chosePicture = false
-        
-        let name = nameTextField.text ?? ""
-        let photo = radiographImage
-        
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = NSLocale.current
-        dateFormatter.dateStyle = DateFormatter.Style.long
-        let currentDate = dateFormatter.string(from: date)
-        
-        procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!, p1: [CGPoint](), i1: "0,0", s1: 0.0, s2: 0, s3: "", c1: 0.0, p2: "", p3: 0.0, r1: 0, a1: 0.0, r2: UIView(), s4: photo, i2: 0.0, i3: 0.0, i4: 0.0, p4: nil)
         
         procedure?.imageViewWidth = imageViewWidth
         procedure?.imageViewHeight  = imageViewHeight
@@ -218,7 +240,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         self.view.addSubview(imageView)
         
         nameTextField.frame = CGRect(x: 25, y: 20, width: menuView.frame.width - 50, height: 30)
-        nameTextField.text = " Enter title here..."
+        nameTextField.text = " Enter patient name..."
         nameTextField.font = UIFont(name:"Open Sans", size: 16)
         nameTextField.backgroundColor = UIColor.white
         nameTextField.layer.zPosition = 5
@@ -227,8 +249,8 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         
         menuView.addSubview(nameTextField)
         
-        markerButton.frame = CGRect(x: 20, y: 60, width: (menuView.frame.width - 70) / 2.0, height: 120)
-        ballButton.frame = CGRect(x: 50 + markerButton.frame.width, y: 60, width: (menuView.frame.width - 70) / 2.0, height: 120)
+        markerButton.frame = CGRect(x: 20, y: 80, width: (menuView.frame.width - 70) / 2.0, height: 80)
+        ballButton.frame = CGRect(x: 50 + markerButton.frame.width, y: 80, width: (menuView.frame.width - 70) / 2.0, height: 80)
         
         markerButton.contentMode = UIViewContentMode.scaleAspectFit
         ballButton.contentMode = UIViewContentMode.scaleAspectFit
@@ -262,7 +284,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     private func updateNextButtonState() {
         let text = nameTextField.text ?? ""
         
-        if text == "Enter title here" || desChosen == false{
+        if text == "Enter title here..." || desChosen == false{
             nextButton.isEnabled = false
         } else {
             nextButton.isEnabled = true

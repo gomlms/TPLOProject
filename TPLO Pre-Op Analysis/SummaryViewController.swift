@@ -142,7 +142,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
         
         
         outputLabel.numberOfLines = 0
-        outputLabel.text = String(format: "TPA: %.2f°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)", procedure.tpa)
+        outputLabel.text = "TPA: \(Int(round(procedure.tpa)))°\nOsteotomy Rotation: \((procedure.chordLength)!)mm\nSawblade Size: \((procedure.roundedRadius)!)mm\nPlate Size: \((procedure.plateCatalogNumber)!)"
         outputLabel.textColor = UIColor.white
         
         
@@ -204,14 +204,14 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             var tempY = Double((procedure?.sawbladeRadius)! * sin(angle * Double.pi / 180))
             tempY += Double((procedure?.points[0].y)!)
             
-            if(abs(CGFloat(tempY) - yPoint) < 0.5){
+            if(abs(CGFloat(tempY) - yPoint) < 1){
                 xPoint = CGFloat(tempX)
                 if(CGFloat(angle * Double.pi / 180) > 1.4){
                     break;
                 }
             }
             
-            angle += 0.5
+            angle += 0.25
         }
         
         angleWith5 = CGFloat(angle * Double.pi / 180);
@@ -230,12 +230,12 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             var tempX = Double((procedure?.sawbladeRadius)! * cos(angle * Double.pi / 180))
             tempX += Double((procedure?.points[0].x)!)
             
-            if(abs(CGFloat(tempX) - xPoint) < 0.5){
+            if(abs(CGFloat(tempX) - xPoint) < 1){
                 yPoint = CGFloat(tempY)
                 break;
             }
             
-            angle += 0.5
+            angle += 0.25
         }
         
         angleWith4 = CGFloat(angle * Double.pi / 180);
@@ -254,7 +254,7 @@ class SummaryViewController: UIViewController, MFMailComposeViewControllerDelega
             mailComposer.mailComposeDelegate = self
             
             mailComposer.setSubject("TPLO Pre-Op Analysis Summary Report")
-            mailComposer.setMessageBody(String(format: "Date: \(String((procedure?.dateOfProcedure)!)!)\nPatient Name: \((procedure?.name)!)\nTPA: %.2f°\nOsteotomy Rotation: \((procedure?.chordLength)!)mm\nSawblade Size: \((procedure?.roundedRadius)!)mm\nPlate Size: \((procedure?.plateCatalogNumber)!)", (procedure?.tpa)!), isHTML: false)
+            mailComposer.setMessageBody(String(format: "Date: \(String((procedure?.dateOfProcedure)!)!)\nPatient Name: \((procedure?.name)!)\nTPA: \(String(describing: Int(round((procedure?.tpa)!))))°\nOsteotomy Rotation: \((procedure?.chordLength)!)mm\nSawblade Size: \((procedure?.roundedRadius)!)mm\nPlate Size: \((procedure?.plateCatalogNumber)!)"), isHTML: false)
             
             /* Get Merged Image */
             UIGraphicsBeginImageContext(innerView.frame.size)

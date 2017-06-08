@@ -90,7 +90,6 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         super.viewDidLoad()
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-
         
         nextButton.isEnabled = false
         
@@ -169,10 +168,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         dot1Image.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
         dot1Image.contentMode = UIViewContentMode.scaleAspectFit
         
-        let dot1Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
+        let dot1Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 5 / 6, height: 60))
         dot1Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot1Label.numberOfLines = 0
-        dot1Label.font = UIFont(name:"Open Sans", size: 16)
+        dot1Label.font = UIFont(name:"Open Sans", size: 14)
         dot1Label.textColor = UIColor.white
         dot1Label.textAlignment = .center
         dot1Label.text = "Intercondylar\n Eminence"
@@ -192,10 +191,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         dot2Image.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
         dot2Image.contentMode = UIViewContentMode.scaleAspectFit
         
-        let dot2Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
+        let dot2Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 5 / 6, height: 60))
         dot2Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot2Label.numberOfLines = 0
-        dot2Label.font = UIFont(name:"Open Sans", size: 16)
+        dot2Label.font = UIFont(name:"Open Sans", size: 14)
         dot2Label.textColor = UIColor.white
         dot2Label.textAlignment = .center
         dot2Label.text = "Center\nOf Talus"
@@ -215,10 +214,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         dot3Image.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
         dot3Image.contentMode = UIViewContentMode.scaleAspectFit
         
-        let dot3Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
+        let dot3Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 5 / 6, height: 60))
         dot3Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot3Label.numberOfLines = 0
-        dot3Label.font = UIFont(name:"Open Sans", size: 16)
+        dot3Label.font = UIFont(name:"Open Sans", size: 14)
         dot3Label.textColor = UIColor.white
         dot3Label.textAlignment = .center
         dot3Label.text = "Tibial Plateau\nCranial"
@@ -238,10 +237,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         dot4Image.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
         dot4Image.contentMode = UIViewContentMode.scaleAspectFit
         
-        let dot4Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
+        let dot4Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 5 / 6, height: 60))
         dot4Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot4Label.numberOfLines = 0
-        dot4Label.font = UIFont(name:"Open Sans", size: 16)
+        dot4Label.font = UIFont(name:"Open Sans", size: 14)
         dot4Label.textColor = UIColor.white
         dot4Label.textAlignment = .center
         dot4Label.text = "Tibial Plateau\nCaudal"
@@ -257,24 +256,24 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
 
         point5Button.frame = CGRect(x: buttonWidth, y: menuView.frame.height / 2, width: buttonWidth, height: menuView.frame.height / 2)
         
-        let dot5Image = UIImageView(image: #imageLiteral(resourceName: "dot5"))
+        /*let dot5Image = UIImageView(image: #imageLiteral(resourceName: "dot5"))
         dot5Image.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
         dot5Image.contentMode = UIViewContentMode.scaleAspectFit
         
-        let dot5Label = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
+        let dot5Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 5 / 6, height: 60))
         dot5Label.lineBreakMode = NSLineBreakMode.byWordWrapping
         dot5Label.numberOfLines = 0
         dot5Label.font = UIFont(name:"Open Sans", size: 16)
         dot5Label.textColor = UIColor.white
         dot5Label.textAlignment = .center
-        dot5Label.text = "Proximal\nTubercle"
+        dot5Label.text = "Proximal\nTubercle"*/
         
         point5Button.layer.borderColor = UIColor.gray.cgColor
         point5Button.layer.borderWidth = 2.0
         point5Button.layer.shadowRadius = 10.0
     
-        point5Button.addSubview(dot5Image)
-        point5Button.addSubview(dot5Label)
+        //point5Button.addSubview(dot5Image)
+        //point5Button.addSubview(dot5Label)
         
         menuView.addSubview(point5Button)
         
@@ -284,10 +283,10 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         confirmImage.frame = CGRect(x: dotPosX, y: dotPosY, width: dotRadius, height: dotRadius)
         confirmImage.contentMode = UIViewContentMode.scaleAspectFit
         
-        let confirmLabel = UILabel(frame: CGRect(x: buttonWidth / 10, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 4 / 5, height: 60))
+        let confirmLabel = UILabel(frame: CGRect(x: buttonWidth / 15, y: dotPosY + dotRadius + menuView.frame.height / 24, width: buttonWidth * 5 / 6, height: 60))
         confirmLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         confirmLabel.numberOfLines = 0
-        confirmLabel.font = UIFont(name:"Open Sans", size: 16)
+        confirmLabel.font = UIFont(name:"Open Sans", size: 14)
         confirmLabel.textColor = UIColor.white
         confirmLabel.textAlignment = .center
         confirmLabel.text = "Continue"
@@ -314,14 +313,14 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         button2Recog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.selectPoint2(_:)))
         button3Recog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.selectPoint3(_:)))
         button4Recog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.selectPoint4(_:)))
-        button5Recog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.selectPoint5(_:)))
+        //button5Recog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.selectPoint5(_:)))
         confirmRecog.addTarget(self, action: #selector(SelectFirstFourPointsViewController.nextMenu(_:)))
         
         point1Button.addGestureRecognizer(button1Recog)
         point2Button.addGestureRecognizer(button2Recog)
         point3Button.addGestureRecognizer(button3Recog)
         point4Button.addGestureRecognizer(button4Recog)
-        point5Button.addGestureRecognizer(button5Recog)
+        //point5Button.addGestureRecognizer(button5Recog)
         confirmSelection.addGestureRecognizer(confirmRecog)
         
         point1Button.backgroundColor = unselectedColor
@@ -341,6 +340,8 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         
         movingRecognizer.isEnabled = false
         scalingRecognizer.isEnabled = false
+        
+        animate(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -516,7 +517,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point2Button.backgroundColor = greyColor
         point3Button.backgroundColor = greyColor
         point4Button.backgroundColor = greyColor
-        point5Button.backgroundColor = greyColor
+        //point5Button.backgroundColor = greyColor
         
         point1Button.isUserInteractionEnabled = true
         point2Button.isUserInteractionEnabled = false
@@ -545,7 +546,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point2Button.backgroundColor = selectedColor
         point3Button.backgroundColor = greyColor
         point4Button.backgroundColor = greyColor
-        point5Button.backgroundColor = greyColor
+        //point5Button.backgroundColor = greyColor
         
         point1Button.isUserInteractionEnabled = false
         point2Button.isUserInteractionEnabled = true
@@ -572,7 +573,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point2Button.backgroundColor = greyColor
         point3Button.backgroundColor = selectedColor
         point4Button.backgroundColor = greyColor
-        point5Button.backgroundColor = greyColor
+        //point5Button.backgroundColor = greyColor
         
         point1Button.isUserInteractionEnabled = false
         point2Button.isUserInteractionEnabled = false
@@ -600,7 +601,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point2Button.backgroundColor = greyColor
         point3Button.backgroundColor = greyColor
         point4Button.backgroundColor = selectedColor
-        point5Button.backgroundColor = greyColor
+        //point5Button.backgroundColor = greyColor
         
         point1Button.isUserInteractionEnabled = false
         point2Button.isUserInteractionEnabled = false
@@ -615,7 +616,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         
     }
     
-    @IBAction func selectPoint5(_ sender: Any) {
+    /*@IBAction func selectPoint5(_ sender: Any) {
         disableSelectionButtons()
         currentDot = #imageLiteral(resourceName: "dot5")
         dotView.image = #imageLiteral(resourceName: "dot5")
@@ -641,7 +642,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         
         imageView.isUserInteractionEnabled = true
         
-    }
+    }*/
     
     func confirmSelectionAction(_ sender: Any) {
         confirmSelection.isUserInteractionEnabled = false
@@ -658,13 +659,13 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         point2Button.backgroundColor = unselectedColor
         point3Button.backgroundColor = unselectedColor
         point4Button.backgroundColor = unselectedColor
-        point5Button.backgroundColor = unselectedColor
+        //point5Button.backgroundColor = unselectedColor
         
         point1Button.isUserInteractionEnabled = true
         point2Button.isUserInteractionEnabled = true
         point3Button.isUserInteractionEnabled = true
         point4Button.isUserInteractionEnabled = true
-        point5Button.isUserInteractionEnabled = true
+        //point5Button.isUserInteractionEnabled = true
         
         updateNextButtonState()
     }
@@ -697,7 +698,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard let nextController = segue.destination as? SetSawbladeViewController else {
+        guard let nextController = segue.destination as? TPAViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
         }
         
@@ -737,7 +738,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         }
         if(currSelector != 0 && plusButton.image == #imageLiteral(resourceName: "DownButtonBlue") && (sender as AnyObject).state != .began){
             confirmSelectionAction(self)
-            if(p1Chose && p2Chose && p3Chose && p4Chose && p5Chose) {
+            if(p1Chose && p2Chose && p3Chose && p4Chose) {
                 confirmSelection.backgroundColor = unselectedColor
                 confirmSelection.isUserInteractionEnabled = true
             }
@@ -841,7 +842,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
     }
     
     private func updateNextButtonState() {
-        if p1Chose && p2Chose && p3Chose && p4Chose && p5Chose {
+        if p1Chose && p2Chose && p3Chose && p4Chose {
             nextButton.isEnabled = true
         } else {
             nextButton.isEnabled = false
