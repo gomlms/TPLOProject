@@ -68,7 +68,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.date.text = procedure.dateOfProcedure
         cell.name.text = procedure.name
         cell.radiograph.image = procedure.radiograph
-        cell.angle.text = String(format: "%.1f°/\(procedure.roundedRadius!)mm", procedure.tpa)
+        cell.angle.text = "\(Int(round(procedure.tpa!)))°/\(procedure.roundedRadius!)mm"
         
         return cell
     }
@@ -85,6 +85,20 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Show the navigation bar on other view controllers
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TPAViewController: UIViewController, UIScrollViewDelegate {
+class TPAViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
     //MARK: Properties
     
@@ -19,15 +19,22 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
     var scrollView = UIScrollView()
     var innerView = UIView()
     
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+    @IBOutlet weak var menuView: UIImageView!
     var dot1 = UIImageView(image: #imageLiteral(resourceName: "dot1"))
     var dot2 = UIImageView(image: #imageLiteral(resourceName: "dot2"))
     var dot3 = UIImageView(image: #imageLiteral(resourceName: "dot3"))
     var dot4 = UIImageView(image: #imageLiteral(resourceName: "dot4"))
     var dot5 = UIImageView(image: #imageLiteral(resourceName: "dot5"))
     
+    @IBOutlet weak var tpaBotConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textBotConstraint: NSLayoutConstraint!
     var sawbladeRadiusMM : Double?
     var roundedRadius : Int?
     
+    @IBOutlet weak var plusButton: UIImageView!
+    @IBOutlet weak var plusBotConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuBotConstraint: NSLayoutConstraint!
     var imageViewWidth: CGFloat = 0.0, imageViewHeight: CGFloat = 0.0
     
     var lineLayer = CAShapeLayer()
@@ -37,10 +44,34 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var sawbladeLabel: UILabel!
     
     @IBOutlet weak var TPAButton: UIImageView!
-    @IBOutlet weak var SawButton: UIImageView!
+    
+    
+    var point1Button = UIView()
+    var point2Button = UIView()
+    var point3Button = UIView()
+    var point31Button = UIView()
+    var point4Button = UIView()
+    var point5Button = UIView()
+    var confirmSelection = UIView()
+    var point8Button = UIView()
+    
+    var button1Recog = UITapGestureRecognizer()
+    var button2Recog = UITapGestureRecognizer()
+    var button3Recog = UITapGestureRecognizer()
+    var button31Recog = UITapGestureRecognizer()
+    var button4Recog = UITapGestureRecognizer()
+    var button5Recog = UITapGestureRecognizer()
+    var confirmRecog = UITapGestureRecognizer()
+    var button8Recog = UITapGestureRecognizer()
+    
+    var selectedColor : UIColor = UIColor(red:0.00, green:0.74, blue:0.89, alpha:0.7)
+    var unselectedColor : UIColor = UIColor(red:0.00, green:0.32, blue:0.61, alpha:0.7)
+    var greyColor : UIColor = UIColor(red:0.27, green:0.35, blue:0.34, alpha:1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nextButton.isEnabled = false
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
@@ -94,7 +125,7 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         procedure?.tpa = getAngle()
         let angle = procedure?.tpa
         
-        tpaLabel?.text = String(format: "%.2f°", (90 - angle!))
+        tpaLabel?.text = "\(Int(round(90-angle!)))°"
         
         procedure?.tpa = 90 - angle!
         
@@ -110,7 +141,7 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         imageView.bringSubview(toFront: dot4)
         imageView.bringSubview(toFront: dot5)
         
-        //SAWBLADE-------------------------------------------------------------------------------
+        /*//SAWBLADE-------------------------------------------------------------------------------
         
         let xSquared = Double(pow(((procedure?.points[4].x)! - (procedure?.points[0].x)!), 2))
         
@@ -137,20 +168,324 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         procedure?.roundedRadius = roundedRadius
         
         drawSawbladeCircle()
-        sawbladeLabel?.text = String(format: "%dmm", roundedRadius!)
+        sawbladeLabel?.text = String(format: "%dmm", roundedRadius!)*/
         
+        let screenWidth = UIScreen.main.bounds.width
+        let buttonWidth = screenWidth / 4.0
+        
+        point1Button.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        let dot1Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: buttonWidth / 3, width: buttonWidth * 5 / 6, height: 60))
+        dot1Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        dot1Label.numberOfLines = 0
+        dot1Label.font = UIFont(name:"Open Sans", size: 20)
+        dot1Label.textColor = UIColor.white
+        dot1Label.textAlignment = .center
+        dot1Label.text = "12mm\n Sawblade"
+        
+        point1Button.layer.borderColor = UIColor.gray.cgColor
+        point1Button.layer.borderWidth = 2.0
+        point1Button.layer.shadowRadius = 10.0
+        point1Button.addSubview(dot1Label)
+        
+        menuView.addSubview(point1Button)
+        
+        point2Button.frame = CGRect(x: buttonWidth, y: 0, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        let dot2Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: buttonWidth / 3, width: buttonWidth * 5 / 6, height: 60))
+        dot2Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        dot2Label.numberOfLines = 0
+        dot2Label.font = UIFont(name:"Open Sans", size: 16)
+        dot2Label.textColor = UIColor.white
+        dot2Label.textAlignment = .center
+        dot2Label.text = "15mm\n Sawblade"
+        
+        point2Button.layer.borderColor = UIColor.gray.cgColor
+        point2Button.layer.borderWidth = 2.0
+        point2Button.layer.shadowRadius = 10.0
+        
+        point2Button.addSubview(dot2Label)
+        
+        menuView.addSubview(point2Button)
+        
+        point3Button.frame = CGRect(x: 2 * buttonWidth, y: 0, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        let dot3Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: buttonWidth / 3, width: buttonWidth * 5 / 6, height: 60))
+        dot3Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        dot3Label.numberOfLines = 0
+        dot3Label.font = UIFont(name:"Open Sans", size: 16)
+        dot3Label.textColor = UIColor.white
+        dot3Label.textAlignment = .center
+        dot3Label.text = "18mm\n Sawblade"
+        
+        point3Button.layer.borderColor = UIColor.gray.cgColor
+        point3Button.layer.borderWidth = 2.0
+        point3Button.layer.shadowRadius = 10.0
+        
+        point3Button.addSubview(dot3Label)
+        
+        menuView.addSubview(point3Button)
+        
+        point31Button.frame = CGRect(x: 3 * buttonWidth, y: 0, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        let dot31Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: buttonWidth / 3, width: buttonWidth * 5 / 6, height: 60))
+        dot31Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        dot31Label.numberOfLines = 0
+        dot31Label.font = UIFont(name:"Open Sans", size: 16)
+        dot31Label.textColor = UIColor.white
+        dot31Label.textAlignment = .center
+        dot31Label.text = "21mm\n Sawblade"
+        
+        point31Button.layer.borderColor = UIColor.gray.cgColor
+        point31Button.layer.borderWidth = 2.0
+        point31Button.layer.shadowRadius = 10.0
+        
+        point31Button.addSubview(dot31Label)
+        
+        menuView.addSubview(point31Button)
+        
+        
+        point4Button.frame = CGRect(x: 0, y: menuView.frame.height / 2, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        let dot4Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: buttonWidth / 3, width: buttonWidth * 5 / 6, height: 60))
+        dot4Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        dot4Label.numberOfLines = 0
+        dot4Label.font = UIFont(name:"Open Sans", size: 16)
+        dot4Label.textColor = UIColor.white
+        dot4Label.textAlignment = .center
+        dot4Label.text = "24mm\n Sawblade"
+        
+        point4Button.layer.borderColor = UIColor.gray.cgColor
+        point4Button.layer.borderWidth = 2.0
+        point4Button.layer.shadowRadius = 10.0
+        
+        point4Button.addSubview(dot4Label)
+        
+        menuView.addSubview(point4Button)
+        
+        point5Button.frame = CGRect(x: buttonWidth, y: menuView.frame.height / 2, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        let dot5Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: buttonWidth / 3, width: buttonWidth * 5 / 6, height: 60))
+        dot5Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        dot5Label.numberOfLines = 0
+        dot5Label.font = UIFont(name:"Open Sans", size: 16)
+        dot5Label.textColor = UIColor.white
+        dot5Label.textAlignment = .center
+        dot5Label.text = "27mm\n Sawblade"
+        
+        point5Button.layer.borderColor = UIColor.gray.cgColor
+        point5Button.layer.borderWidth = 2.0
+        point5Button.layer.shadowRadius = 10.0
+        
+        point5Button.addSubview(dot5Label)
+        
+        menuView.addSubview(point5Button)
+        
+        confirmSelection.frame = CGRect(x: 2 * buttonWidth, y: menuView.frame.height / 2, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        let confirmLabel = UILabel(frame: CGRect(x: buttonWidth / 15, y: buttonWidth / 3, width: buttonWidth * 5 / 6, height: 60))
+        confirmLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        confirmLabel.numberOfLines = 0
+        confirmLabel.font = UIFont(name:"Open Sans", size: 16)
+        confirmLabel.textColor = UIColor.white
+        confirmLabel.textAlignment = .center
+        confirmLabel.text = "30mm\n Sawblade"
+        
+        confirmSelection.layer.borderColor = UIColor.gray.cgColor
+        confirmSelection.layer.borderWidth = 2.0
+        confirmSelection.layer.shadowRadius = 10.0
+        
+        confirmSelection.addSubview(confirmLabel)
+        
+        menuView.addSubview(confirmSelection)
+        
+        point8Button.frame = CGRect(x: 3 * buttonWidth, y: menuView.frame.height / 2, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        let dot8Label = UILabel(frame: CGRect(x: buttonWidth / 15, y: buttonWidth / 3, width: buttonWidth * 5 / 6, height: 60))
+        dot8Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        dot8Label.numberOfLines = 0
+        dot8Label.font = UIFont(name:"Open Sans", size: 16)
+        dot8Label.textColor = UIColor.white
+        dot8Label.textAlignment = .center
+        dot8Label.text = "33mm\n Sawblade"
+        
+        point8Button.layer.borderColor = UIColor.gray.cgColor
+        point8Button.layer.borderWidth = 2.0
+        point8Button.layer.shadowRadius = 10.0
+        
+        point8Button.addSubview(dot8Label)
+        
+        menuView.addSubview(point8Button)
+        
+        
+        menuView.isUserInteractionEnabled = true
+        point1Button.isUserInteractionEnabled = true
+        point2Button.isUserInteractionEnabled = true
+        point3Button.isUserInteractionEnabled = true
+        point31Button.isUserInteractionEnabled = true
+        point4Button.isUserInteractionEnabled = true
+        point5Button.isUserInteractionEnabled = true
+        confirmSelection.isUserInteractionEnabled = true
+        point8Button.isUserInteractionEnabled = true
+        
+        
+        button1Recog.addTarget(self, action: #selector(TPAViewController.Blade12(_:)))
+        button2Recog.addTarget(self, action: #selector(TPAViewController.Blade15(_:)))
+        button3Recog.addTarget(self, action: #selector(TPAViewController.Blade18(_:)))
+        button31Recog.addTarget(self, action: #selector(TPAViewController.Blade21(_:)))
+        button4Recog.addTarget(self, action: #selector(TPAViewController.Blade24(_:)))
+        button5Recog.addTarget(self, action: #selector(TPAViewController.Blade27(_:)))
+        confirmRecog.addTarget(self, action: #selector(TPAViewController.Blade30(_:)))
+        button8Recog.addTarget(self, action: #selector(TPAViewController.Blade33(_:)))
+        
+        point1Button.addGestureRecognizer(button1Recog)
+        point2Button.addGestureRecognizer(button2Recog)
+        point3Button.addGestureRecognizer(button3Recog)
+        point31Button.addGestureRecognizer(button31Recog)
+        point4Button.addGestureRecognizer(button4Recog)
+        point5Button.addGestureRecognizer(button5Recog)
+        confirmSelection.addGestureRecognizer(confirmRecog)
+        point8Button.addGestureRecognizer(button8Recog)
+        
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = unselectedColor
+        point31Button.backgroundColor = unselectedColor
+        point8Button.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = unselectedColor
+
         view.bringSubview(toFront: TPAButton)
-        view.bringSubview(toFront: SawButton)
+        view.bringSubview(toFront: plusButton)
+        view.bringSubview(toFront: menuView)
     }
     
+    @IBAction func Blade12(_ sender: Any){
+        procedure?.roundedRadius = 12
+        drawSawbladeCircle()
+        
+        point1Button.backgroundColor = selectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = unselectedColor
+        point31Button.backgroundColor = unselectedColor
+        point8Button.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = unselectedColor
+    }
+    
+    @IBAction func Blade15(_ sender: Any){
+        procedure?.roundedRadius = 15
+        drawSawbladeCircle()
+        
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = selectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = unselectedColor
+        point31Button.backgroundColor = unselectedColor
+        point8Button.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = unselectedColor
+    }
+    
+    @IBAction func Blade18(_ sender: Any){
+        procedure?.roundedRadius = 18
+        drawSawbladeCircle()
+        
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = selectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = unselectedColor
+        point31Button.backgroundColor = unselectedColor
+        point8Button.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = unselectedColor
+    }
+    
+    @IBAction func Blade21(_ sender: Any){
+        procedure?.roundedRadius = 21
+        drawSawbladeCircle()
+        
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = unselectedColor
+        point31Button.backgroundColor = selectedColor
+        point8Button.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = unselectedColor
+    }
+    
+    @IBAction func Blade24(_ sender: Any){
+        procedure?.roundedRadius = 24
+        drawSawbladeCircle()
+        
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = selectedColor
+        point5Button.backgroundColor = unselectedColor
+        point31Button.backgroundColor = unselectedColor
+        point8Button.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = unselectedColor
+    }
+    
+    @IBAction func Blade27(_ sender: Any){
+        procedure?.roundedRadius = 27
+        drawSawbladeCircle()
+        
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = selectedColor
+        point31Button.backgroundColor = unselectedColor
+        point8Button.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = unselectedColor
+    }
+    
+    @IBAction func Blade30(_ sender: Any){
+        procedure?.roundedRadius = 30
+        drawSawbladeCircle()
+        
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = unselectedColor
+        point31Button.backgroundColor = unselectedColor
+        point8Button.backgroundColor = unselectedColor
+        confirmSelection.backgroundColor = selectedColor
+    }
+    
+    @IBAction func Blade33(_ sender: Any){
+        procedure?.roundedRadius = 33
+        drawSawbladeCircle()
+        
+        point1Button.backgroundColor = unselectedColor
+        point2Button.backgroundColor = unselectedColor
+        point3Button.backgroundColor = unselectedColor
+        point4Button.backgroundColor = unselectedColor
+        point5Button.backgroundColor = unselectedColor
+        point31Button.backgroundColor = unselectedColor
+        point8Button.backgroundColor = selectedColor
+        confirmSelection.backgroundColor = unselectedColor
+    }
+
+    
     func drawSawbladeCircle(){
+        circleLayer.removeFromSuperlayer()
+        
+        nextButton.isEnabled = true
+        
         let opaque = false
         let scale: CGFloat = 0
         UIGraphicsBeginImageContextWithOptions((imageView.image?.size)!, opaque, scale)
         
         let sawbladeCircle = UIBezierPath()
 
-        sawbladeCircle.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double(roundedRadius!) * (procedure?.pixelToMMRatio)!)), startAngle: CGFloat(getNewAngle()) - (20 * CGFloat.pi / 180), endAngle: CGFloat(getNewAngle()) + (115 * CGFloat.pi / 180), clockwise: true)
+        sawbladeCircle.addArc(withCenter: CGPoint(x: (procedure?.intersectionPoint.x)!, y: (procedure?.intersectionPoint.y)!), radius: CGFloat(Float(Double((procedure?.roundedRadius)!) * (procedure?.pixelToMMRatio)!)), startAngle: CGFloat(getNewAngle()) - (20 * CGFloat.pi / 180), endAngle: CGFloat(getNewAngle()) + (115 * CGFloat.pi / 180), clockwise: true)
         
         UIGraphicsEndImageContext()
         
@@ -203,16 +538,29 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func SawPress(_ sender: Any) {
-        if(!circleLayer.isHidden){
-            UIView.animate(withDuration: 1, animations: {
-                self.circleLayer.isHidden = true
+        if(plusButton.image! == #imageLiteral(resourceName: "PlusButtonBlue") || plusBotConstraint.constant == 20.0){
+            menuBotConstraint.constant = 0
+            plusBotConstraint.constant += 300
+            textBotConstraint.constant += 300
+            tpaBotConstraint.constant += 300
+            
+            plusButton.image = #imageLiteral(resourceName: "DownButtonBlue")
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
             })
-            SawButton.image = #imageLiteral(resourceName: "SawButtonGray")
+            
         } else {
-            UIView.animate(withDuration: 1, animations: {
-                self.circleLayer.isHidden = false
+            menuBotConstraint.constant = -300
+            plusBotConstraint.constant -= 300
+            textBotConstraint.constant -= 300
+            tpaBotConstraint.constant -= 300
+            
+            plusButton.image = #imageLiteral(resourceName: "PlusButtonBlue")
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
             })
-            SawButton.image = #imageLiteral(resourceName: "SawbladeButtonBlue")
         }
     }
     
@@ -230,8 +578,8 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
         lines.move(to: (procedure?.points[2])!)
         lines.addLine(to: (procedure?.points[3])!)
         
-        lines.move(to: (procedure?.intersectionPoint)!)
-        lines.addArc(withCenter: (procedure?.intersectionPoint)!, radius: 20, startAngle: CGFloat(getNewAngle()), endAngle: CGFloat(getOtherAngle()), clockwise: false)
+        //lines.move(to: (procedure?.intersectionPoint)!)
+        //lines.addArc(withCenter: (procedure?.intersectionPoint)!, radius: 20, startAngle: CGFloat(getNewAngle()), endAngle: CGFloat(getOtherAngle()), clockwise: false)
         
         lineLayer = CAShapeLayer()
         
@@ -323,10 +671,10 @@ class TPAViewController: UIViewController, UIScrollViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard let nextController = segue.destination as? OsteotomyViewController else {
+        guard let nextController = segue.destination as? PlateSizeViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
         }
-        
+        procedure?.sawbladeRadius = Double((procedure?.roundedRadius!)!)
         nextController.procedure = procedure
     }
     

@@ -111,7 +111,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         super.viewDidLoad()
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-
         
         updateNextButtonState()
         
@@ -270,11 +269,12 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         scrollView.addGestureRecognizer(movingRecognizer)
         
         movingRecognizer.isEnabled = false
+        
+        animate(self)
     }
     
     @IBAction func nextMenu(_ sender: Any){
         performSegue(withIdentifier: "Continue", sender: self)
-        print("doing it")
     }
 
     override func didReceiveMemoryWarning() {
@@ -486,7 +486,6 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         
         if(currSelector != 0 && plusButton.image == #imageLiteral(resourceName: "DownButtonBlue") && (sender as AnyObject).state != .began){
             confirmSelectedAction(self)
-            print("YES")
             if(pointOneCreated && pointTwoCreated) {
                 confirmButton.backgroundColor = unselectedColor
                 confirmButton.isUserInteractionEnabled = true

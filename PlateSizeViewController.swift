@@ -46,6 +46,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
     var standardButton = UIView()
     var confirmSelection = UIView()
     var deleteButton = UIView()
+    var blankSpace = UIView()
     
     var broadRecog = UITapGestureRecognizer()
     var shortRecog = UITapGestureRecognizer()
@@ -70,6 +71,12 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        procedure?.alpha = ((procedure?.tpa)! - 5.0) * Double.pi / 180
+        procedure?.chordLength = Double(round(sin((procedure?.alpha!)!) * Double((procedure?.roundedRadius!)!) * 10.0) / 10.0)
+        procedure?.rotatedRadiograph = rotatingView
+        
+        nextButton.isEnabled = false
         
         guard let procedure = procedure else {
             fatalError("Procedure was not correctly passed to Plate Size Controller")
@@ -136,7 +143,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         
         backgroundView.layer.addSublayer(subLayer)
         
-        procedure.alpha = (procedure.tpa - 5.0) * Double.pi / 180
+        procedure.alpha = (procedure.tpa! - 5.0) * Double.pi / 180
         procedure.chordLength = Double(round(2 * procedure.sawbladeRadius! * sin(procedure.alpha! / 2) * 10)/10)
         
         tempAngle = sin(procedure.alpha! / 2)
@@ -253,6 +260,16 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         deleteButton.isUserInteractionEnabled = true
         menuView.addSubview(deleteButton)
         
+        blankSpace.frame = CGRect(x: buttonWidth, y: menuView.frame.height / 2, width: buttonWidth, height: menuView.frame.height / 2)
+        
+        blankSpace.layer.borderColor = UIColor.gray.cgColor
+        blankSpace.layer.borderWidth = 2.0
+        blankSpace.layer.shadowRadius = 10.0
+        
+        blankSpace.isUserInteractionEnabled = true
+        menuView.addSubview(blankSpace)
+
+        
         confirmSelection.frame = CGRect(x: 2 * buttonWidth, y: menuView.frame.height / 2, width: buttonWidth, height: menuView.frame.height / 2)
         
         let confirmImage = UIImageView(image: #imageLiteral(resourceName: "CheckButtonBlue"))
@@ -297,6 +314,9 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         shortButton.backgroundColor = unselectedColor
         confirmSelection.backgroundColor = unselectedColor
         deleteButton.backgroundColor = unselectedColor
+        blankSpace.backgroundColor = unselectedColor
+        
+        pressPlus(self)
     }
     
     func drawMaskImage(size: CGSize) -> UIBezierPath? {
@@ -394,14 +414,14 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
             var tempY = Double((procedure?.sawbladeRadius)! * sin(angle * Double.pi / 180))
             tempY += Double((procedure?.points[0].y)!)
             
-            if(abs(CGFloat(tempY) - yPoint) < 0.5){
+            if(abs(CGFloat(tempY) - yPoint) < 1){
                 xPoint = CGFloat(tempX)
                 if(CGFloat(angle * Double.pi / 180) > 1.4){
                     break;
                 }
             }
             
-            angle += 0.5
+            angle += 0.25
         }
         
         angleWith5 = CGFloat(angle * Double.pi / 180);
@@ -420,12 +440,12 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
             var tempX = Double((procedure?.sawbladeRadius)! * cos(angle * Double.pi / 180))
             tempX += Double((procedure?.points[0].x)!)
             
-            if(abs(CGFloat(tempX) - xPoint) < 0.5){
+            if(abs(CGFloat(tempX) - xPoint) < 1){
                 yPoint = CGFloat(tempY)
                 break;
             }
             
-            angle += 0.5
+            angle += 0.25
         }
         
         angleWith4 = CGFloat(angle * Double.pi / 180);
@@ -507,6 +527,8 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
     @IBAction func deletePress(_ sender: Any) {
         self.view.removeGestureRecognizer(movingRecognizer)
         self.view.removeGestureRecognizer(rotatingRecognizer)
+        
+        nextButton.isEnabled = false
         
         movingImage.removeFromSuperview()
         movingImage.transform = movingImage.transform.rotated(by: -totalRotation)
@@ -594,6 +616,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
     }
     
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
+        nextButton.isEnabled = true
         let translation = recognizer.translation(in: self.view)
         activeImage?.center = CGPoint(x: (activeImage?.center.x)! + translation.x, y: (activeImage?.center.y)! + translation.y)
         
@@ -605,14 +628,6 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
             totalRotation += recognizer.rotation
             
             recognizer.rotation = 0
-    }
-
-    private func updateNextButtonState() {
-        if platePresent {
-            nextButton.isEnabled = true
-        } else {
-            nextButton.isEnabled = false
-        }
     }
     
     internal func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
