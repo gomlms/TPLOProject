@@ -111,7 +111,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
         super.viewDidLoad()
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
+        self.view.backgroundColor = UIColor.black
         updateNextButtonState()
         
         points.append(CGPoint(x: 0.0, y: 0.0))
@@ -140,7 +140,7 @@ class RelativeDistanceViewController: UIViewController, UIScrollViewDelegate, UI
             scrollView.frame = CGRect(x: 20, y: calcYPos(), width: imageViewWidth, height: imageViewHeight)
         }*/
         
-        scrollView.frame = CGRect(x: procedure.imageViewXOrigin, y: 0, width: imageViewWidth, height: imageViewHeight)
+        scrollView.frame = CGRect(x: procedure.imageViewXOrigin, y: procedure.imageViewYOrigin, width: imageViewWidth, height: imageViewHeight)
         
         scrollView.contentSize = CGSize(width: imageViewWidth, height: imageViewHeight)
         scrollView.delegate = self

@@ -90,6 +90,8 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         super.viewDidLoad()
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.view.backgroundColor = UIColor.black
+        
         
         nextButton.isEnabled = false
         
@@ -125,7 +127,7 @@ class SelectFirstFourPointsViewController: UIViewController, UIScrollViewDelegat
         imageViewWidth = procedure.imageViewWidth
         imageViewHeight = procedure.imageViewHeight
         
-        scrollView.frame = CGRect(x: procedure.imageViewXOrigin, y: 0, width: imageViewWidth, height: imageViewHeight)
+        scrollView.frame = CGRect(x: procedure.imageViewXOrigin, y: procedure.imageViewYOrigin, width: imageViewWidth, height: imageViewHeight)
         
         scrollView.contentSize = CGSize(width: imageViewWidth, height: imageViewHeight)
         scrollView.delegate = self

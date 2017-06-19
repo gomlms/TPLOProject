@@ -32,6 +32,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
     var imageViewWidth: CGFloat = 0
     var imageViewHeight: CGFloat = 0
     var imageViewXOrigin: CGFloat = 0
+    var imageViewYOrigin: CGFloat = 0
     
     
     var procedure : Procedure?
@@ -49,7 +50,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         super.viewDidLoad()
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-
+        self.view.backgroundColor = UIColor.black
         
         scheduledTimerWithInterval()
         
@@ -137,7 +138,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
             dateFormatter.dateStyle = DateFormatter.Style.long
             let currentDate = dateFormatter.string(from: date)
             
-            procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!, p1: [CGPoint](), i1: "0,0", s1: 0.0, s2: 0, s3: "", c1: 0.0, p2: "", p3: 0.0, r1: 0, a1: 0.0, r2: UIView(), s4: photo, i2: 0.0, i3: 0.0, i4: 0.0, p4: nil, t1: 0.0)
+            procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!, p1: [CGPoint](), i1: "0,0", s1: 0.0, s2: 0, s3: "", c1: 0.0, p2: "", p3: 0.0, r1: 0, a1: 0.0, r2: UIView(), s4: photo, i2: 0.0, i3: 0.0, i4: 0.0, i5: 0.0, p4: nil, t1: 0.0)
         }
         
         if(procedure?.name !=  " Enter patient name..." && procedure?.name != nil){
@@ -162,7 +163,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
             dateFormatter.dateStyle = DateFormatter.Style.long
             let currentDate = dateFormatter.string(from: date)
             
-            procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!, p1: [CGPoint](), i1: "0,0", s1: 0.0, s2: 0, s3: "", c1: 0.0, p2: "", p3: 0.0, r1: 0, a1: 0.0, r2: UIView(), s4: photo, i2: 0.0, i3: 0.0, i4: 0.0, p4: nil, t1: 0.0)
+            procedure = Procedure(n: name, r: photo, d: currentDate, m: designator!, p1: [CGPoint](), i1: "0,0", s1: 0.0, s2: 0, s3: "", c1: 0.0, p2: "", p3: 0.0, r1: 0, a1: 0.0, r2: UIView(), s4: photo, i2: 0.0, i3: 0.0, i4: 0.0, i5: 0.0, p4: nil, t1: 0.0)
         }
 
         if(procedure?.name !=  " Enter patient name..." && procedure?.name != nil){
@@ -177,6 +178,7 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         procedure?.imageViewWidth = imageViewWidth
         procedure?.imageViewHeight  = imageViewHeight
         procedure?.imageViewXOrigin = imageViewXOrigin
+        procedure?.imageViewYOrigin = imageViewYOrigin
         
         if segue.identifier == "Continue" {
             guard let procedureDataViewController = segue.destination as? RelativeDistanceViewController else {
@@ -230,12 +232,32 @@ class FirstPropertiesViewController: UIViewController, UITextFieldDelegate, UIIm
         let screenHeight = UIScreen.main.bounds.height
         let screenWidth = UIScreen.main.bounds.width
         
-        imageViewHeight = screenHeight
-        imageViewWidth = imageViewHeight * imageRatio
+        let desiredAspect = screenWidth / screenHeight
+        let rectAspect = (radiographImage.size.width) / (radiographImage.size.height)
+        let scaleFactor: CGFloat?
+        var x: CGFloat = 0.0, y: CGFloat = 0.0
         
-        imageViewXOrigin = (screenWidth - imageViewWidth) / 2.0
+        if(desiredAspect > rectAspect) {
+            scaleFactor = screenHeight / (radiographImage.size.height)
+            x = (screenWidth - ((radiographImage.size.width) * scaleFactor!)) / 2
+        } else {
+            scaleFactor = screenWidth / (radiographImage.size.width)
+            y = ((screenHeight - UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height)!) - ((radiographImage.size.height) * scaleFactor!)) / 2
+        }
         
-        imageView.frame = CGRect(x: imageViewXOrigin, y: 0, width: imageViewWidth, height: imageViewHeight)
+        
+        
+        imageViewXOrigin = x
+        imageViewYOrigin = y
+        imageViewWidth = radiographImage.size.width * scaleFactor!
+        imageViewHeight = radiographImage.size.height * scaleFactor!
+        
+        /*imageViewHeight = screenHeight
+         imageViewWidth = imageViewHeight * imageRatio
+         
+         imageViewXOrigin = (screenWidth - imageViewWidth) / 2.0*/
+        
+        imageView.frame = CGRect(x: imageViewXOrigin, y: imageViewYOrigin, width: imageViewWidth, height: imageViewHeight)
         
         self.view.addSubview(imageView)
         

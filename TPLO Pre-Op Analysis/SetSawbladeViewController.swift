@@ -62,6 +62,8 @@ class SetSawbladeViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.black
+        
         imageView.addSubview(dot1)
         imageView.addSubview(dot2)
         imageView.addSubview(dot3)
@@ -87,7 +89,7 @@ class SetSawbladeViewController: UIViewController, UIScrollViewDelegate {
         
         radiographImage = (procedure?.radiograph)!
         
-        scrollView.frame = CGRect(x: (procedure?.imageViewXOrigin)!, y: 0, width: imageViewWidth, height: imageViewHeight)
+        scrollView.frame = CGRect(x: (procedure?.imageViewXOrigin)!, y: (procedure?.imageViewYOrigin)!, width: imageViewWidth, height: imageViewHeight)
         
         scrollView.contentSize = CGSize(width: imageViewWidth, height: imageViewHeight)
         scrollView.delegate = self

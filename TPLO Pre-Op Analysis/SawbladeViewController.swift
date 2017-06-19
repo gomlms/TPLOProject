@@ -25,7 +25,7 @@ class SawbladeViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-
+        
         
         imageViewWidth = procedure!.imageViewWidth
         imageViewHeight = procedure!.imageViewHeight

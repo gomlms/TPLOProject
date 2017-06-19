@@ -31,6 +31,7 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.black
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
         
@@ -45,12 +46,12 @@ class OsteotomyViewController: UIViewController, UIScrollViewDelegate {
         _ = UIScreen.main.bounds.width
         _ = UIScreen.main.bounds.height
         
-        backgroundImage.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
+        backgroundImage.frame = CGRect(x: procedure.imageViewXOrigin, y: procedure.imageViewYOrigin, width: imageViewWidth, height: imageViewHeight)
         
         backgroundImage.isUserInteractionEnabled = false
         backgroundImage.image = procedure.radiograph
         
-        rotatingView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
+        rotatingView.frame = CGRect(x: procedure.imageViewXOrigin, y: procedure.imageViewYOrigin, width: imageViewWidth, height: imageViewHeight)
         
         rotatingView.isUserInteractionEnabled = false
         

@@ -72,6 +72,8 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.black
+        
         procedure?.alpha = ((procedure?.tpa)! - 5.0) * Double.pi / 180
         procedure?.chordLength = Double(round(sin((procedure?.alpha!)!) * Double((procedure?.roundedRadius!)!) * 10.0) / 10.0)
         procedure?.rotatedRadiograph = rotatingView
@@ -88,12 +90,12 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         imageViewWidth = procedure.imageViewWidth
         imageViewHeight = procedure.imageViewHeight
         
-        backgroundView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
+        backgroundView.frame = CGRect(x: procedure.imageViewXOrigin, y: 0, width: imageViewWidth, height: imageViewHeight)
         
         backgroundView.isUserInteractionEnabled = false
         backgroundView.image = procedure.radiograph
         
-        rotatingView.frame = CGRect(x: 0, y: 0, width: imageViewWidth, height: imageViewHeight)
+        rotatingView.frame = CGRect(x: procedure.imageViewXOrigin, y: procedure.imageViewYOrigin, width: imageViewWidth, height: imageViewHeight)
         
         rotatingView.isUserInteractionEnabled = false
         
@@ -110,7 +112,7 @@ class PlateSizeViewController: UIViewController, UIGestureRecognizerDelegate, UI
         innerView.addSubview(backgroundView)
         innerView.addSubview(rotatingView)
         
-        scrollView.frame = CGRect(x: procedure.imageViewXOrigin, y: 0, width: imageViewWidth, height: imageViewHeight)
+        scrollView.frame = CGRect(x: procedure.imageViewXOrigin, y: procedure.imageViewYOrigin, width: imageViewWidth, height: imageViewHeight)
         scrollView.delegate = self
         scrollView.addSubview(innerView)
         

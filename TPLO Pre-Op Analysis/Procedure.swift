@@ -31,6 +31,7 @@ class Procedure: NSObject, NSCoding {
     var imageViewWidth : CGFloat = 0
     var imageViewHeight : CGFloat = 0
     var imageViewXOrigin : CGFloat = 0
+    var imageViewYOrigin : CGFloat = 0
     var savedImage : UIImage?
     var plateImageView : UIImageView?
     var secondImageView : UIImageView?
@@ -41,7 +42,7 @@ class Procedure: NSObject, NSCoding {
     static let ArchiveURL = DocumentsDirectory?.appendingPathComponent("procedures")
     
     //MARK: Initialization
-    init?(n:String, r:UIImage?, d:String, m:String, p1: [CGPoint], i1: String, s1: Double, s2: Int, s3: String, c1: Double, p2: String, p3: Double, r1: Int, a1: Double, r2: UIView, s4: UIImage?, i2: CGFloat, i3: CGFloat, i4: CGFloat, p4: UIImageView?, t1: Double){
+    init?(n:String, r:UIImage?, d:String, m:String, p1: [CGPoint], i1: String, s1: Double, s2: Int, s3: String, c1: Double, p2: String, p3: Double, r1: Int, a1: Double, r2: UIView, s4: UIImage?, i2: CGFloat, i3: CGFloat, i4: CGFloat, i5: CGFloat, p4: UIImageView?, t1: Double){
         guard !n.isEmpty else {
             return nil
         }
@@ -65,6 +66,7 @@ class Procedure: NSObject, NSCoding {
         imageViewWidth = i2
         imageViewHeight = i3
         imageViewXOrigin = i4
+        imageViewYOrigin = i5
         plateImageView = p4
         tpa = t1
     }
@@ -91,6 +93,7 @@ class Procedure: NSObject, NSCoding {
         aCoder.encode(imageViewWidth, forKey: PropertyKey.imageViewWidth)
         aCoder.encode(imageViewHeight, forKey: PropertyKey.imageViewHeight)
         aCoder.encode(imageViewXOrigin, forKey: PropertyKey.imageViewXOrigin)
+        aCoder.encode(imageViewYOrigin, forKey: PropertyKey.imageViewYOrigin)
         aCoder.encode(plateImageView, forKey: PropertyKey.plateImageView)
         aCoder.encode(tpa, forKey: PropertyKey.tpa)
     }
@@ -119,10 +122,11 @@ class Procedure: NSObject, NSCoding {
         let imageViewHeight = aDecoder.decodeObject(forKey: PropertyKey.imageViewHeight) as! CGFloat
         let imageViewWidth = aDecoder.decodeObject(forKey: PropertyKey.imageViewWidth) as! CGFloat
         let imageViewXOrigin = aDecoder.decodeObject(forKey: PropertyKey.imageViewXOrigin) as! CGFloat
+        let imageViewYOrigin = aDecoder.decodeObject(forKey: PropertyKey.imageViewYOrigin) as! CGFloat
         let plateImageView = aDecoder.decodeObject(forKey: PropertyKey.plateImageView) as? UIImageView
         let tpa = aDecoder.decodeObject(forKey: PropertyKey.tpa) as! Double
     
-        self.init(n: name, r: radiograph, d: dateOfProcedure, m: designator, p1: points, i1: intersectionPoint, s1: sawbladeRadius, s2: sawbladeSize, s3: sawCatalogNumber, c1: chordLength, p2: plateCatalogNumber, p3: pixelToMMRatio, r1: roundedRadius, a1: alpha, r2: rotatedRadiograph, s4: savedImage, i2: imageViewWidth, i3: imageViewHeight, i4: imageViewXOrigin, p4: plateImageView, t1: tpa)
+        self.init(n: name, r: radiograph, d: dateOfProcedure, m: designator, p1: points, i1: intersectionPoint, s1: sawbladeRadius, s2: sawbladeSize, s3: sawCatalogNumber, c1: chordLength, p2: plateCatalogNumber, p3: pixelToMMRatio, r1: roundedRadius, a1: alpha, r2: rotatedRadiograph, s4: savedImage, i2: imageViewWidth, i3: imageViewHeight, i4: imageViewXOrigin, i5: imageViewYOrigin, p4: plateImageView, t1: tpa)
     }
     
     //MARK: Types
@@ -146,6 +150,7 @@ class Procedure: NSObject, NSCoding {
         static let imageViewHeight = "imageViewHeight"
         static let imageViewWidth = "imageViewWidth"
         static let imageViewXOrigin = "imageViewXOrigin"
+        static let imageViewYOrigin = "imageViewYOrigin"
         static let plateImageView = "plateImageView"
         static let tpa = "tpa"
     }
